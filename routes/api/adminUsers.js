@@ -9,12 +9,47 @@ module.exports = function(router) {
         {
         
             var data = {
-               "userName": req.body.userName
-                
+               userName: req.body.userName,
+               password:req.body.password,
+               profile:req.body.profile,
+               role:req.body.role,
+               address:req.body.address,
+               createdBy:req.body.createdBy,
+               updatedBy:req.body.updatedBy,
+               status:req.body.status    
+            }
+
+            db.adminUsers.register(data, function(data) {
+                res.json(data);
+            });
+        }); 
+
+     router.post("/adminUsers/login", function(req, res) // register a new user
+        {
+        
+        var username = req.body.username;
+        var password = req.body.password;
+        var role = req.body.role;
+         
+          if (!username || !password || !role) {
+            res.json(
+            {
+                error: true,
+                errorCode: "field missing" 
+            });
+            return;
+        }
+         
+            var data = {
+               userName: username,
+               password: password,
+               role:role
             }
         
-            db.adminUsers.register(data, function(data) {
-                res.send(data);
+            db.adminUsers.login(data, function(data) {
+                res.json(data);
             });
         });
+
+
 };

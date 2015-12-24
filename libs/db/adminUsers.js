@@ -6,7 +6,6 @@ var _ = require("underscore")._;
 module.exports = {
 
     register: function(data, callback) {
-        console.log("Data ::", data);
         db.adminUsers.findOne({
             userName: data.userName
         }, function(err, user) {
@@ -26,4 +25,22 @@ module.exports = {
             }
         });
     }
+    
+    login: function(data, callback){
+    
+    db.adminUsers.findOne({userName : data.userName, password : data.password}, function(err, user){
+    
+        if (user) {
+            delete user.password;
+                    callback(user);
+        }else{
+              callback({
+                    error: true,
+                    errorCode: "_constants.ERRORS.INVALID_CREDS"
+                });       
+        }
+    
+   });
+  
+} 
 };
