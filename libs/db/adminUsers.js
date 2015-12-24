@@ -16,6 +16,8 @@ module.exports = {
             else {
                 var adminUsers = new db.adminUsers(data);
                 adminUsers.save(function(err, savedUser){
+                    savedUser = savedUser.toObject();
+                    delete savedUser.password;
                     callback(savedUser);
                 });
             }
@@ -27,6 +29,7 @@ module.exports = {
             if (user) {
                 if(bcrypt.compareSync(data.password, user.password)) {                    
                     console.log('user ', user);
+                    user = user.toObject();
                     delete user.password;
                     callback(user);
                 }

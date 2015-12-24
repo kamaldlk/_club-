@@ -5,7 +5,19 @@ var _ = require("underscore")._;
 
 module.exports = {
 
-    register: function(data, callback) {
+    get: function(data, callback) {
+    	db.currency.findOne({'currency.currency': data.currency}, function (err, currency) {
+    		if(currency) {
+    			callback(currency);
+    		}
+    	});
+    },
 
+    getAll: function(data, callback) {    	
+    	db.currency.find({}, '-_id', function (err, currency) {
+    		if(currency) {
+    			callback(currency);
+    		}
+    	});
     }
 };

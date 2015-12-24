@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-
+var clubdata = require('./index').club;
+var Schema = mongoose.Schema;
 module.exports.adminUsersSchema = new mongoose.Schema({
     userName: String,
     password: String,    
@@ -11,5 +12,6 @@ module.exports.adminUsersSchema = new mongoose.Schema({
     createdBy:String,
     updatedBy:String,
     updatedOn:{ type: Date, default: Date.now },
-    status: {type: Boolean, default: true}
+    status: {type: Boolean, default: true},
+    club: {type: Schema.Types.ObjectId, ref: 'clubdata'}
 });
