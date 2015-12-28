@@ -18,8 +18,8 @@ if(!GLOBAL.portal.mongoose)
     });
 
 module.exports.currency = GLOBAL.portal.mongoose.model("currency", require("./currency.js").currencySchema, "currency");
-module.exports.club = GLOBAL.portal.mongoose.model("club", require("./club.js").clubSchema, "club");
 module.exports.adminUsers = GLOBAL.portal.mongoose.model("adminUsers", require("./adminUsers.js").adminUsersSchema, "adminUsers");
+module.exports.club = GLOBAL.portal.mongoose.model("club", require("./club.js").clubSchema, "club");
 module.exports.customerUsers = GLOBAL.portal.mongoose.model("customerUsers", require("./customerUsers.js").customerUsersSchema, "customerUsers");
 module.exports.clubCardOffer = GLOBAL.portal.mongoose.model("clubCardOffer", require("./clubCardOffer.js").clubCardOfferSchema, "clubCardOffer");
 module.exports.clubTransection = GLOBAL.portal.mongoose.model("clubTransection", require("./clubTransection.js").clubTransectionSchema, "clubTransection");

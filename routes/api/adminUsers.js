@@ -41,6 +41,8 @@ module.exports = function(router) {
             });
         }
         else if(!req.body.role) {
+            if(req.body.club) 
+                data.club = req.body.club;            
             db.adminUsers.register(data, function(data) {
                 res.json(data);
             });
