@@ -2,7 +2,7 @@ var db = require("../../libs/db/index.js");
 
 module.exports = function (router) {
 	// create new club
-	router.post('/createClub', function (req, res) {
+	router.post('/club/create', function (req, res) {
 		if (!req.body.clubName || !req.body.currencyDetails || !req.body.contactNumber) {
 			res.send({
 				error: true,
@@ -30,7 +30,7 @@ module.exports = function (router) {
 	});
 
 	// get club detail
-	router.get('/getClub', function (req, res) {
+	router.get('/club/get', function (req, res) {
 		var data = {
 			clubName: req.query.name
 		}
@@ -40,7 +40,7 @@ module.exports = function (router) {
 	});
 
 	// get all club detail
-	router.get('/getAllClub', function (req, res) {
+	router.get('/club/getAll', function (req, res) {
 		var data = {};
 		db.club.getAll(data, function (data) {
 			res.send(data);
@@ -48,7 +48,7 @@ module.exports = function (router) {
 	});
 
 	// edit club detail
-	router.put('/editClub', function (req, res) {		
+	router.put('/club/edit', function (req, res) {		
 		var data = req.body;
 		data.club = req.query.clubName;
 		if(data.currencyDetails || data.netAmount || data.createdBy) {
@@ -65,7 +65,7 @@ module.exports = function (router) {
 	});
 
 	// delete club
-	router.delete('/deleteClub', function (req, res) {
+	router.delete('/club/delete', function (req, res) {
 		var data = {
 			club: req.query.clubName
 		};

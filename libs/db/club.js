@@ -51,7 +51,7 @@ module.exports = {
 
     // get single club details
     get: function(data, callback) {
-    	db.club.findOne({'clubName': data.clubName}).populate('currencyDetails', '-_id -createdOn').exec(function (err, club) {
+    	db.club.findOne({'clubName': data.clubName}).populate([{path:'currencyDetails', select:'-_id -createdOn'}, {path:'managers', select: '-password -club'}]).exec(function (err, club) {
     		if(err) {
     			callback({
     				error: true,
@@ -73,7 +73,7 @@ module.exports = {
 
     // get all club details
     getAll: function (data, callback) {
-    	db.club.find({}).populate('currencyDetails', '-_id -createdOn').exec(function (err, club) {
+    	db.club.find({}).populate([{path:'currencyDetails', select:'-_id -createdOn'}, {path:'managers', select: '-password -club'}]).exec(function (err, club) {
     		if(err) {
     			callback({
     				error: true,
@@ -95,6 +95,7 @@ module.exports = {
 
     // edit club
     edit: function (data, callback) {
+        data.updatedOn = Date.now();
     	db.club.update({'clubName': data.club}, {$set: data}, {new: true}, function (err, updateClub) {
     		if(err) {
     			callback({
@@ -120,7 +121,7 @@ module.exports = {
 
     // remove club
     remove: function (data, callback) {
-    	db.club.remove({'clubName': data.clubName}, function (err, deleted) {
+    	db.club.remove({'clubName': data.club}, function (err, deleted) {
     		if(err) {
     			callback({
     				error: true,

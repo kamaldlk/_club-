@@ -4,6 +4,6 @@ module.exports = {
     club: require("./club.js"),
     clubCardOffer: require("./clubCardOffer.js"),
     currency: require("./currency.js"),
-    currencyConverstion: require("./currencyConverstion.js")
-    
+    currencyConversion: require("./currencyConversion.js"),
+    offer: require("./offer.js")    
 };
