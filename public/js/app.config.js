@@ -52,7 +52,7 @@ angular.module ("cms")
         })
 
 
-        apiProvider.setApiUrl("http://192.168.1.49:3002/");
+        apiProvider.setApiUrl("http://192.168.1.100:3002/");
 
 
     }])

@@ -144,8 +144,8 @@
 
         <img ng-src="images/user_avatar.jpg" class="club_bg">
         <md-button class="md-fab md-mini pointer" aria-label="Use visible" ng-click="clublist=false;"
-                   style="position: absolute;bottom: -25px;right: 0px;">
-            <label for="file-upload2">
+                   style="position: absolute;bottom: -25px;right: 0px;" ng-hide="true">
+            <label for="file-upload2" >
                 <md-icon md-svg-src="img/icons/mail89.svg" style="margin:0px;" class="pointer"></md-icon>
             </label>
             <input id="file-upload2" type="file" ng-model="imgs.image" class="nodisplay " app-filereader
@@ -159,7 +159,7 @@
         <div layout="column">
             <md-card class="md-whiteframe-2dp" style="min-height: 150px;;width: 80%;
 margin: 0px auto;">
-                <div layout="row" layout-sm="column" style="padding-top: 20px;" flex>
+                <div layout="row" layout-sm="column" style="padding-top: 20px;background: #F5F5F5;" flex>
                     <div layout="column" layout-sm="column" layout-margin flex class="club_profiletop">
   <span flex>
   <md-input-container>
@@ -167,38 +167,40 @@ margin: 0px auto;">
       <input ng-model="club.clubName" type="text">
   </md-input-container>
   </span>
-  <span flex ng-hide="true">
-    <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon btm-mq">
-        <md-icon md-svg-src="img/icons/business60.svg" class="email nomarg"></md-icon>
-        <md-select ng-model="ctrl.userState" class="padd-l36">
-            <md-option selected value="Currency">
-                Manager
-            </md-option>
-            <md-option>
-                Habib
-            </md-option>
-            <md-option>
-                Gopi
-            </md-option>
-            <md-option>
-                Ramya
-            </md-option>
+                         <span flex>
+    <md-input-container>
+        <label class="">Description</label>
+        <input ng-model="user.email" type="text">
+    </md-input-container>
+  </span>
 
-        </md-select>
-    </md-input-container> </span>
+  <!--<span flex ng-hide="true">-->
+    <!--<md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon btm-mq">-->
+        <!--<md-icon md-svg-src="img/icons/business60.svg" class="email nomarg"></md-icon>-->
+        <!--<md-select ng-model="ctrl.userState" class="padd-l36">-->
+            <!--<md-option selected value="Currency">-->
+                <!--Manager-->
+            <!--</md-option>-->
+            <!--<md-option>-->
+                <!--Habib-->
+            <!--</md-option>-->
+            <!--<md-option>-->
+                <!--Gopi-->
+            <!--</md-option>-->
+            <!--<md-option>-->
+                <!--Ramya-->
+            <!--</md-option>-->
+
+        <!--</md-select>-->
+    <!--</md-input-container> </span>-->
 
 
                     </div>
 
                     <span class="hori_line" hide-sm></span>
 
-                    <div layout="column" layout-sm="column" layout-margin flex class="club_profiletop">
-  <span flex>
-    <md-input-container>
-        <label class="">Description</label>
-        <input ng-model="user.email" type="text">
-    </md-input-container>
-  </span>
+                    <div layout="row" layout-sm="row" layout-margin layout-align="center center" flex class="club_profiletop">
+
   <span flex>
     <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
         <md-icon md-svg-src="img/icons/currency19.svg" class="email nomarg"></md-icon>

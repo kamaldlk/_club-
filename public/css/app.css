@@ -443,7 +443,7 @@ md-data-table-pagination div{font-size:16px !important; color:#023904 !important
   transition: 0.3s ease-in all;
 }
 .md-sidenav-left{background: #111d29! important; position: absolute; color:#757575; }
-md-sidenav.md-locked-open{position: fixed ! important; z-index: 90; top:0;}
+md-sidenav.md-locked-open{position: fixed ! important; z-index: 79; top:0;}
 
 .moveFabRight {
 	left: 260px !important; transition: 0.3s ease-in all;

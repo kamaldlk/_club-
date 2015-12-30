@@ -1,23 +1,36 @@
-<md-dialog style="min-width: 55%;border: 1px solid #5d9bfb;border-left: 3px solid #5d9bfb;" ng-init="getClubList()">
+<md-dialog style="min-width: 55%;" ng-init="getClubList()">
     <div>
-      <span style="position: absolute;top: 10px;right: 0px;z-index: 10;">
-         <ng-md-icon icon="close" style="fill:gray" size="24"></ng-md-icon>
-      </span>
+
+        <md-toolbar class="toolbar-bg md-whiteframe-4dp">
+            <div class="md-toolbar-tools" layout="row">
+                <h2 layout-align="start" class="ft_fff" ng-show="!updateButton">Create Manager </h2>
+                <h2 layout-align="start" class="ft_fff" ng-show="updateButton">Update Manager </h2>
+            </div>
+        </md-toolbar>
 
         <md-content flex layout-padding>
-            <span class="ft-30" layout="row" flex layout-margin ng-show="!updateButton">Create Manager</span>
-            <span class="ft-30" layout="row" flex layout-margin ng-show="updateButton">Update Manager</span>
+
             <md-divider></md-divider>
             <div layout="column" class="club_managerCreate">
                 <div layout="row" layout-sm="column">
                     <div layout="column" layout-margin flex="70" flex-sm="100">
-                  <span flex>
+                        <div layout="row" flex>
+                                 <span flex class="padd">
                      <md-input-container>
-                         <label>Manager Name</label>
+                         <label>User Name</label>
                          <input ng-model="manager.userName" type="text">
                      </md-input-container>
                   </span>
-                  <span flex>
+                        <span flex>
+                     <md-input-container>
+                         <label>Password</label>
+                         <input ng-model="manager.password" type="password">
+                     </md-input-container>
+                  </span>
+                        </div>
+                        <div layout="row" layout-margin flex>
+
+                         <span flex>
                      <md-input-container>
                          <label>Select Club</label>
                          <md-select ng-model="manager.club">
@@ -25,16 +38,14 @@
                                  {{club.clubName}}
                              </md-option>
 
-                             <!--<md-option >-->
-                                 <!--Minus1-->
-                             <!--</md-option>-->
-                             <!--<md-option >-->
-                                 <!--Jipmer-->
-                             <!--</md-option>-->
                          </md-select>
                      </md-input-container>
                   </span>
+
+                        </div>
+
                     </div>
+
                     <div layout="column" layout-margin layout-align-sm="center center" flex="25" flex-sm="100">
                         <label for="file-upload2">
                             <img ng-src="images/user_avatar.jpg" class="manager_avatar  ">
@@ -44,104 +55,101 @@
 
                     </div>
                 </div>
-                <div layout="row" layout-sm="column" layout-margin>
-               <span flex>
-                  <md-input-container>
-                      <label>First Name</label>
-                      <input ng-model="manager.profile.firstName" type="text">
-                  </md-input-container>
-               </span>
-               <span flex>
-                  <md-input-container>
-                      <label>Last Name</label>
-                      <input ng-model="manager.profile.lastName" type="text">
-                  </md-input-container>
-               </span>
-                </div>
-                <div layout="row" layout-sm="column" layout-margin>
-               <span flex>
-                  <md-input-container>
-                      <label>Mobile</label>
-                      <input ng-model="manager.profile.mobile" type="text">
-                  </md-input-container>
-               </span>
-               <span flex>
+                <md-card class="marg-t10">
+                    <md-toolbar class="toolbar-bg md-whiteframe-4dp">
+                        <div class="md-toolbar-tools" layout="row">
+                            <h3 layout-align="start" class="ft_fff">Manager Profile : </h3>
+                        </div>
+                    </md-toolbar>
+                    <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/situation.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.profile.firstName" type="text" placeholder="First Name">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/pin66.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.profile.lastName" type="text" placeholder="Last Name">
+          </md-input-container>   </span>
 
-                    <label>Gender</label>
-                  <md-radio-group ng-model="manager.profile.gender">
-                      <md-radio-button value="male" class="md-primary">Male</md-radio-button>
-                      <md-radio-button value="female"> Female </md-radio-button>
-                  </md-radio-group>
+                    </div>
+
+                    <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/situation.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.address.address1" type="text" placeholder="Address Lane 1">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/pin66.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.address.address2" type="text" placeholder="Address Lane 2">
+          </md-input-container>   </span>
+
+                    </div>
+                    <div layout="row" layout-sm="column" layout-margin class="padd-t10 club_profile">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/city36.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.address.city" type="text" placeholder="City">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/europe4.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.address.state" type="text" placeholder="State">
+          </md-input-container>   </span>
+
+                    </div>
+                    <div layout="row" layout-sm="column" layout-margin class="padd-t10 club_profile">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/flag86.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.address.country" type="text" placeholder="Country">
+          </md-input-container>
+           </span>
+        <span flex>
+            <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+                <md-icon md-svg-src="img/icons/parking29.svg" class="email nomarg"></md-icon>
+                <input ng-model="manager.address.pin" type="text" placeholder="Pin">
+            </md-input-container>  </span>
+
+                    </div>
+                    <div layout="row" layout-sm="column" layout-margin class=" padd-t10 club_profile">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/phone21.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.profile.mobile" type="text" placeholder="phone">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/email19.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.profile.email" type="text" placeholder="Email">
+          </md-input-container>   </span>
+
+                    </div>
 
 
-               </span>
-                </div>
+                    <div layout="row" layout-margin layout-align="center center">
+        <span>
+          <md-button class="md-raised md-primary" ng-click="save(manager)" ng-show="!updateButton">Save</md-button>
+             <md-button class="md-raised md-primary" ng-click="update(manager)" ng-show="updateButton">Update
+             </md-button>
+           </span>
+       <span>
+                  <md-button class="md-raised md-primary" ng-click="cancel()" >Cancel</md-button>
 
-                <div layout="row" layout-sm="column" layout-margin>
-               <span flex>
-                  <md-input-container>
-                      <label>Address1</label>
-                      <input ng-model="manager.address.address1" type="text">
-                  </md-input-container>
                </span>
-               <span flex>
-                  <md-input-container>
-                      <label>Address2</label>
-                      <input ng-model="manager.address.address2" type="text">
-                  </md-input-container>
-               </span>
-                </div>
-                <div layout="row" layout-sm="column" layout-margin>
-               <span flex>
-                  <md-input-container>
-                      <label>City</label>
-                      <input ng-model="manager.address.city" type="text">
-                  </md-input-container>
-               </span>
-               <span flex>
-                  <md-input-container>
-                      <label>State</label>
-                      <input ng-model="manager.address.state" type="text">
-                  </md-input-container>
-               </span>
-                </div>
-                <div layout="row" layout-sm="column" layout-margin>
-               <span flex>
-                  <md-input-container>
-                      <label>Country</label>
-                      <input ng-model="manager.address.country" type="text">
-                  </md-input-container>
-               </span>
-               <span flex>
-                  <md-input-container>
-                      <label>Pin</label>
-                      <input ng-model="manager.address.pin" type="text">
-                  </md-input-container>
-               </span>
-                </div>
-                <div layout="row" layout-sm="column" layout-margin>
-               <span flex>
-                  <md-input-container>
-                      <label>Email</label>
-                      <input ng-model="manager.profile.email" type="text">
-                  </md-input-container>
-               </span>
-               <span flex>
-                  <md-input-container>
-                      <label>Password</label>
-                      <input  ng-model="manager.password" type="password">
-                  </md-input-container>
-               </span>
-                </div>
-                <div layout="row" layout-margin layout-align="center center">
-               <span>
-                  <md-button class="md-raised md-primary" ng-click="save(manager)" ng-show="!updateButton">Save</md-button>
-                  <md-button class="md-raised md-primary" ng-click="update(manager)" ng-show="updateButton">Update</md-button>
-               </span>
-               <span>
-                  <!--<md-button class="md-raised md-primary">Cancel</md-button>-->
-               </span>
-                </div>
+
+                    </div>
+
+
+                </md-card>
+
             </div>
         </md-content>
 
@@ -149,124 +157,3 @@
 </md-dialog>
 
 
-<!--<md-dialog style="min-width: 55%">-->
-<!--<div>-->
-<!--<span style="background: rgb(63,81,181);padding: 3px 5px;border: 2px solid #fff;position: absolute;border-bottom-left-radius: 6px;top: -5px;right: -2px;">-->
-<!--<ng-md-icon icon="close" style="fill:white" size="24"></ng-md-icon>-->
-<!--</span>-->
-<!--<md-card>-->
-<!--<h1 class="text-center">Create Manager</h1>-->
-
-
-<!--<div  layout="column" class="club_managerCreate">-->
-
-<!--<div layout="row">-->
-<!--<div layout="column" layout-margin flex="70">-->
-
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Club Name</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>-->
-<!--</span>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Manager</label>-->
-<!--<md-select ng-model="ctrl.userState">-->
-<!--<md-option>-->
-<!--Habib-->
-<!--</md-option>-->
-<!--<md-option>-->
-<!--Saravanan-->
-<!--</md-option>-->
-<!--<md-option>-->
-<!--Gopi-->
-<!--</md-option>-->
-<!--<md-option>-->
-<!--Ramya-->
-<!--</md-option>-->
-
-<!--</md-select>-->
-<!--</md-input-container>  </span>-->
-<!--</div>-->
-<!--<div layout="column" layout-margin flex="25">-->
-
-<!--<img ng-src="images/user_avatar.jpg" class="manager_avatar">-->
-<!--</div>-->
-<!--</div>-->
-
-
-<!--<div layout="row" layout-sm="column" layout-margin>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Address1</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>-->
-<!--</span>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Address2</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>   </span>-->
-
-<!--</div>-->
-<!--<div layout="row" layout-sm="column" layout-margin>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>City</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>-->
-<!--</span>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>State</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>   </span>-->
-
-<!--</div>-->
-<!--<div layout="row" layout-sm="column" layout-margin>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Country</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>-->
-<!--</span>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Pin</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>   </span>-->
-
-<!--</div>-->
-<!--<div layout="row" layout-sm="column" layout-margin>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Phone</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>-->
-<!--</span>-->
-<!--<span flex>-->
-<!--<md-input-container>-->
-<!--<label>Mobile</label>-->
-<!--<input ng-model="user.email" type="text">-->
-<!--</md-input-container>   </span>-->
-
-<!--</div>-->
-
-<!--<div layout="row" layout-margin layout-align="center center">-->
-<!--<span>-->
-<!--<md-button class="md-raised md-primary">Save</md-button>-->
-<!--</span>-->
-<!--<span>-->
-<!--&lt;!&ndash;<md-button class="md-raised md-primary">Cancel</md-button>&ndash;&gt;-->
-<!--</span>-->
-
-<!--</div>-->
-
-
-<!--</div>-->
-
-
-<!--</md-card>-->
-<!--</div>-->
-<!--</md-dialog>-->
