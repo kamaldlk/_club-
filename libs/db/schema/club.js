@@ -24,7 +24,7 @@ var customerUsers = new mongoose.Schema({
     mobileNo: String,
     email: {type: String, required: true},
     cardNo: {type: String, required: true},
-    netAmount: String,
+    netAmount: Number,
     role: {type: String, default: 'member'},
     address: mongoose.Schema.Types.Mixed,
     createdOn: { type: Date, default: Date.now },
@@ -52,7 +52,8 @@ var club = new mongoose.Schema({
     status: {type: Boolean, default: true},
     contactNumber: {type: String, required: true},
     email: String,
-    managers: [{type: Schema.Types.ObjectId, ref: 'adminUsers'}]
+    managers: [{type: Schema.Types.ObjectId, ref: 'adminUsers'}],
+    description: String
 });
 
 module.exports = {

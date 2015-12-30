@@ -22,6 +22,8 @@ module.exports = function (router) {
 				data.logo = req.body.logo;
 			if(req.body.email)
 				data.email = req.body.email;
+			if(req.body.description)
+				data.description = req.body.description;
 			db.club.register(data, function (data) {
 				console.log('data ', data);
 				res.send(data);

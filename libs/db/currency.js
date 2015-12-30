@@ -14,7 +14,7 @@ module.exports = {
     },
     // get all currency
     getAll: function(data, callback) {    	
-    	db.currency.find({}, '-_id', function (err, currency) {
+    	db.currency.find({}, function (err, currency) {
     		if(currency) {
     			callback(currency);
     		}

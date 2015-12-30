@@ -21,6 +21,6 @@ module.exports.currency = GLOBAL.portal.mongoose.model("currency", require("./cu
 module.exports.adminUsers = GLOBAL.portal.mongoose.model("adminUsers", require("./club.js").adminUsersSchema, "adminUsers");
 module.exports.customerUsers = GLOBAL.portal.mongoose.model("customerUsers", require("./club.js").customerUsersSchema, "customerUsers");
 module.exports.club = GLOBAL.portal.mongoose.model("club", require("./club.js").clubSchema, "club");
-module.exports.clubTransection = GLOBAL.portal.mongoose.model("clubTransection", require("./clubTransection.js").clubTransectionSchema, "clubTransection");
+module.exports.transaction = GLOBAL.portal.mongoose.model("transaction", require("./transaction.js").transactionSchema, "transaction");
 module.exports.currencyConversion = GLOBAL.portal.mongoose.model("currencyConversion", require("./currencyConversion.js").currencyConverstionSchema, "currencyConversion");
 module.exports.offer = GLOBAL.portal.mongoose.model("offer", require("./offer.js").offerSchema, "offer");

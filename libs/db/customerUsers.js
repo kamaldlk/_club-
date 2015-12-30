@@ -6,7 +6,7 @@ var _ = require("underscore")._;
 module.exports = {
     // create member
     register: function (data, callback) {
-        db.customerUsers.findOne({'email': data.email}, function (err, exists) {
+        db.customerUsers.findOne({$or: [{'cardNo': data.cardNo}, {'email': data.email}]}, function (err, exists) {
             if(err) {
                 callback({
                     error: true,
@@ -17,7 +17,7 @@ module.exports = {
             else if(exists) {
                 callback({
                     error: true,
-                    errorCode: 'Duplicate member'
+                    errorCode: 'Duplicate member / card'
                 });
             }
             else if(!exists) {

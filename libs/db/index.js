@@ -4,5 +4,6 @@ module.exports = {
     club: require("./club.js"),
     currency: require("./currency.js"),
     currencyConversion: require("./currencyConversion.js"),
-    offer: require("./offer.js")    
+    offer: require("./offer.js"),
+    transaction: require("./transaction.js")
 };

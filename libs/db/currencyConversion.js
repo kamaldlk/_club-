@@ -64,11 +64,9 @@ module.exports = {
                 });
                 db.currency.find({}, 'currency -_id', function (err, masterCurrency) {
                     var list = (_.pluck(masterCurrency, 'currency'));
-                    var toData = _.findWhere(list, {'code': currency[0].toCurrency[0].code});
-                    var toData = _.extend((currency[0].toCurrency[0]).toObject(), _.findWhere(list, {'code': currency[0].toCurrency[0].code}));
                     _.each(currency, function (curr) {
                         _.extend((curr.fromCurrency).toObject(), _.findWhere(list, {'code': curr.fromCurrency.code}));
-                        curr.toCurrency[0] = toData;
+                        _.extend((curr.toCurrency[0]).toObject(), _.findWhere(list, {'code': currency[0].toCurrency[0].code}));
                     });
                     callback(currency);
                 });
