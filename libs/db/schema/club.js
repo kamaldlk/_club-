@@ -14,15 +14,16 @@ var adminUsers = new mongoose.Schema({
     updatedBy: String,
     updatedOn: {type: Date, default: Date.now},
     status: {type: Boolean, default: true},
-    club: {type: Schema.Types.ObjectId, ref: 'club'}
+    club: {type: Schema.Types.ObjectId, ref: 'club'},
+    members:[{type: Schema.Types.ObjectId, ref: 'customerUsers'}]
 });
 var adminUsersSchema = mongoose.model('adminUsers', adminUsers, 'adminUsers');
 
 var customerUsers = new mongoose.Schema({
     profile: mongoose.Schema.Types.Mixed,
     mobileNo: String,
-    email: String,
-    cardNo: String,
+    email: {type: String, required: true},
+    cardNo: {type: String, required: true},
     netAmount: String,
     role: {type: String, default: 'member'},
     address: mongoose.Schema.Types.Mixed,

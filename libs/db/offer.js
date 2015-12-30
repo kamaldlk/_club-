@@ -61,14 +61,12 @@ module.exports = {
                 });
             }
             else {
-                console.log('before offer ', offer); 
                 var newCustomer = offer.newCustomer.pop();
                 var referralCustomer = offer.referralCustomer.pop();
                 offer = {
                     newCustomer: newCustomer.percentage,
                     referralCustomer: referralCustomer.percentage
                 }
-                console.log('after offer ', offer);
                 callback(offer);
             }
         });
