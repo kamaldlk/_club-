@@ -1,0 +1,109 @@
+<div layout="column" flex class="nopadd" ng-init = "getAllManager();">
+    <md-toolbar class="md-default-theme" style="background-color:transparent;">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding-left: 2px;">
+         <span layout layout-align="start start" flex>
+            <h3 layout-align="start" class="ft_000">Club Manager List</h3>
+            <ng-md-icon icon="face" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon>
+         </span>
+            <div class="search_style">
+                <input type="text" class="search_input"/>
+                <div class="close">
+                    <span class="front"></span>
+                    <span class="back"></span>
+                </div>
+            </div>
+            <md-button class="create-button" ng-click="createManager($event)">Create Manager</md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="" layout="column" layout-wrap layout-align="none" layout-xs="column" flex>
+        <div flex layout="column" class="wid-100">
+            <md-card class="nomarg">
+                <md-card-content class="nopadd">
+                    <md-list>
+                        <md-item class="data-table-list ">
+                            <md-item-content layout="row" class="tbl-header min-h60">
+                                <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
+                           <span flex=35 flex-xs="100" layout-align="start center" layout>
+                              <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18">
+                                 <ng-md-icon icon="face" class="svgheadercolor"></ng-md-icon>
+                                 <span class="svgheadercolor ft_16 padd-t3 padd-l5">List of Manager</span>
+                              </span>
+                           </span>
+                           <span flex=15 flex-xs=100 layout-align="start center" layout>
+                           <span class="ft_red">Manager ID</span>
+                           </span>
+                           <span flex=20 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">Club Name</span>
+                           </span>
+                           <span flex=15 flex-xs=100 layout-align="start center" layout>
+                           <span class="ft_red">Location</span>
+                           </span>
+                           <span flex=15 flex-xs=100 layout-align="start center" layout>
+                           <span class="ft_red">Mobile No</span>
+                           </span>
+                                </div>
+                            </md-item-content>
+                        </md-item>
+                        <md-divider></md-divider>
+                    </md-list>
+                    <md-list>
+                        <md-item class="listview" ng-repeat="manager in managers">
+                            <md-item-content layout="row" class="tbl-header min-h90">
+                                <div layout="row" layout-wrap class="full_wid" ng-click="view = !view">
+                           <span flex=35 layout-align="start center" layout>
+                           <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18"><img ng-src="images/user2.jpg" class="avatar"></span> <span class="hash_color">{{manager.userName}}</span>
+                           </span>
+                           <span flex="15" layout-align="start center" layout>
+                           <span >{{manager.userName}}</span>
+                           </span>
+                           <span flex="20" layout-align="center center" layout>
+                           <span >{{manager.club.clubName}}</span>
+                           </span>
+                           <span flex="15" layout-align="start center" layout>
+                           <span >{{manager.address.city}}</span>
+                           </span>
+                           <span flex="15" layout-align="start center" layout>
+                           <span >{{manager.profile.mobile}}</span>
+                           </span>
+                                    <div layout="column" layout-padding layout-wrap class="full_wid ft-14 hash_color" ng-hide="view">
+                                        <div layout="row">
+                                 <span flex flex-sm="100">
+                                 <label>Address1 : <span class="hash_color">{{manager.address.address1}}</span> </label>
+                                 </span>
+                                 <span flex flex-sm="100">
+                                 <label>Phone no : <span class="hash_color">{{manager.address.phone}}</span> </label>
+                                 </span>
+                                 <span flex flex-sm="100">
+                                 <label>Pan No : <span class="hash_color">{{manager.address.phone}}</span> </label>
+                                 </span>
+                                        </div>
+                                        <div layout="row">
+                                 <span flex flex-sm="100">
+                                 <label>Address2 : <span class="hash_color">{{manager.address.address2}}</span> </label>
+                                 </span>
+                                 <span flex flex-sm="100">
+                                 <label>Location : <span class="hash_color">{{manager.address.city}}</span> </label>
+                                 </span>
+                                 <span flex flex-sm="100" layout="row">
+                                    <label>Last logged date : <span class="hash_color">{{loggedDate(manager.lastLoggedOn)}}</span> </label>
+                                    <span flex style="text-align: right;">
+                                       <span>
+                                          <ng-md-icon icon="edit" style="fill:gray" size="24" ng-click="managerUpdate($event,manager);$event.stopPropagation();"></ng-md-icon>
+                                       </span>
+                                       <span>
+                                          <ng-md-icon icon="close" style="fill:red" size="24" ng-click="managerRemove($event,manager);$event.stopPropagation();"></ng-md-icon>
+                                       </span>
+                                    </span>
+                                 </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-item-content>
+                            <md-divider></md-divider>
+                        </md-item>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+</div>

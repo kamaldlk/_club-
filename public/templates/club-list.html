@@ -1,0 +1,181 @@
+<div layout="column" flex class="nopadd" ng-init="clublist=true;getAllClubList();" >
+    <md-toolbar class="md-default-theme" style="background-color:transparent;">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding-left: 2px;">
+         <span layout layout-align="start start" flex>
+            <h3 layout-align="start" class="ft_000">Club List</h3>
+            <ng-md-icon icon="location_city" style="fill:#aaa;padding-left: 5px;" size="26"></ng-md-icon>
+         </span>
+            <div class="search_style">
+                <input type="text" class="search_input"/>
+                <div class="close">
+                    <span class="front"></span>
+                    <span class="back"></span>
+                </div>
+            </div>
+            <md-button class=" create-button" ng-click="createClub()">Create Club</md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="" layout="column" layout-wrap layout-align="none" layout-xs="column" flex>
+        <div flex layout="column" class="wid-100">
+            <md-card class="nomarg">
+                <md-card-content class="nopadd">
+                    <md-grid-list md-cols="4" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="6" md-cols-lg="5"
+                                  md-row-height-gt-md="1:1" md-row-height="2:2" md-row-height-gt-sm="2:2"
+                                  md-gutter="2px" md-gutter-gt-sm="10px">
+                        <md-grid-tile ng-repeat="club in clubs" class="clublist-item md-whiteframe-1dp" md-rowspan="2"
+                                      md-colspan="2" md-colspan-xs="1">
+                            <md-content flex layout-padding layout="column" style="position: absolute;top: 0;left: 0;;">
+                                <div layout="row" flex layout-padding style="padding:0px;position: relative;">
+                                    <img random-src images="images" style="width:100%;height:100%;"/>
+                                    <span class="club-overlay"></span>
+                                    <h2 class="clubName">{{club.clubName}}</h2>
+                                    <md-button class="md-fab md-mini" aria-label="Use visible"
+                                               ng-click="clublist=false;"
+                                               style="position: absolute;bottom: -25px;right: 0px;">
+                                        <md-icon md-svg-src="images/icons/eye.svg" style="margin:0px;"></md-icon>
+                                    </md-button>
+                                </div>
+                                <div layout="row" flex layout-padding style="padding-left:0px;padding-right:0px;">
+                                    <img ng-src="images/user1.jpg" class="md-avatar"
+                                         style="width:40px; height:40px;border-radius: 50%;"/>
+                                    <span class="word-B ft-12" style="margin-top: 10px;padding-left: 5px;"> {{club.managers[0].profile.firstName}}  {{club.managers[0].profile.lastName  }}</span>
+                                </div>
+                                <md-divider></md-divider>
+                                <div layout="row" layout-align="space-between center" flex layout-padding
+                                     style="padding-left:0px;padding-right:0px;">
+                           <span layout="row" layout-align="center center">
+                              <span>
+                                 <ng-md-icon icon="location_on" style="fill:green" size="30"></ng-md-icon>
+                              </span>
+                              <span class="word-B ft-12" style="margin-top: 10px;">{{club.address.city}} </span>
+                           </span>
+                           <span>
+                              <ng-md-icon icon="edit" style="fill:gray" size="18" ng-click="editClub(club)"></ng-md-icon>
+                              <ng-md-icon icon="close" style="fill:gray" size="18" ng-click="removeClub($event,club)"></ng-md-icon>
+                           </span>
+                                </div>
+                            </md-content>
+                            <md-content flex layout-padding layout="column" ng-hide="clublist"
+                                        ng-class="{'robothin md-whiteframe-10dp':clublist, 'robothin md-whiteframe-10dp animated bounceInUp':!clublist}"
+                                        style="position: absolute;top: 0;left: 0;font-weight: 600;z-index: 99;min-height: 100%;min-width:100%;">
+                        <span flex style="position: absolute;top: 10px;right: 4px;z-index: 10;padding: 0px;cursor: pointer;">
+                           <ng-md-icon icon="highlight_remove" style="fill:gray" size="20" ng-click="clublist=true;"></ng-md-icon>
+                        </span>
+                                <span flex class="md-headline" style="font-weight: 600;"> {{club.clubName}}</span>
+                        <span flex
+                              class="ft-12">Club Description Here is some more information about this card.</span>
+                        <span flex>
+                           <ng-md-icon icon="perm_identity" style="fill:skyblue" size="18"></ng-md-icon>
+                           <span class="ft-14"> {{club.managers[0].profile.firstName}}  {{club.managers[0].profile.lastName  }}</span>
+                        </span>
+                        <span flex>
+                           <ng-md-icon icon="email" style="fill:skyblue" size="16"></ng-md-icon>
+                           <span class="ft-14"> {{club.managers[0].profile.email}}</span>
+                        </span>
+                        <span flex>
+                           <ng-md-icon icon="cake" style="fill:skyblue" size="16"></ng-md-icon>
+                           <span class="ft-14"> {{club.createdOn}}</span>
+                        </span>
+                        <span flex>
+                           <ng-md-icon icon="location_city" style="fill:skyblue" size="16"></ng-md-icon>
+                           <span class="ft-14"> {{club.address.city}}</span>
+                        </span>
+                        <span flex>
+                           <ng-md-icon icon="phone" style="fill:skyblue" size="16"></ng-md-icon>
+                           <span class="ft-14"> {{club.contactNumber}}</span>
+                        </span>
+                        <span flex
+                              style="position: absolute;padding: 5px;background: darkslategray;right: 0px;bottom: 0;z-index: 10;cursor: pointer;">
+                           <ng-md-icon icon="edit" style="fill:#fcd71d" size="18" ng-click="clublist=true;editClub(club)"></ng-md-icon>
+                        </span>
+                            </md-content>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+</div>
+
+
+<!--<div layout="column" flex class="nopadd" ng-init="getAllClubList()">-->
+
+    <!--<md-toolbar class="md-default-theme" style="background-color:transparent;">-->
+        <!--<div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding-left: 2px;">-->
+
+<!--<span layout layout-align="start start" flex>-->
+<!--<h3 layout-align="start" class="ft_000">Club List</h3>-->
+<!--<ng-md-icon icon="location_city" style="fill:#aaa;padding-left: 5px;" size="26"></ng-md-icon>-->
+<!--</span>-->
+
+            <!--<div class="search_style">-->
+                <!--<input type="text" class="search_input"/>-->
+
+                <!--<div class="close">-->
+                    <!--<span class="front"></span>-->
+                    <!--<span class="back"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<md-button class="create-button" ng-click="createClub()">Create Club</md-button>-->
+        <!--</div>-->
+    <!--</md-toolbar>-->
+
+    <!--<md-content class="" layout="column" layout-wrap layout-align="none" layout-xs="column" flex>-->
+        <!--<div flex layout="column" class="wid-100">-->
+            <!--<md-card class="nomarg">-->
+                <!--<md-card-content class="nopadd">-->
+                    <!--<md-grid-list md-row-height="fit" md-cols-xs="1" md-cols-sm="2" md-cols-md="3" md-cols-lg="3"-->
+                                  <!--md-cols-gt-lg="4" style="height: 400px;">-->
+
+                        <!--<md-grid-tile ng-repeat="club in clubs">-->
+
+                            <!--<md-card>-->
+
+<!--<span style="position:relative;">-->
+<!--<img ng-src="{{club.bg_image}}" style="min-height: 220px;max-height: 220px"/>   <span class="club-overlay"></span>-->
+<!--<h2 style="color: #fff;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);">{{club.clubName}}</h2>-->
+<!--</span>-->
+
+
+                                <!--<div layout layout="row" layout-padding layout-wrap layout-xs="column">-->
+<!--<span flex layout="row" layout-align=" start center">-->
+<!--<label class="padd-r5"> <img ng-src="{{club.managerProfilePic}}" class="md-avatar"-->
+                             <!--style="width:40px; height:40px;border-radius: 50%;"/>-->
+<!--</label><span> {{club.managerName}} </span>-->
+<!--</span>-->
+<!--<span flex layout="row" layout-align=" end center">-->
+<!--<span><ng-md-icon icon="location_on" style="fill:green" size="32"></ng-md-icon>  </span>-->
+<!--<span>{{club.address.adderss2}} </span>-->
+<!--</span>-->
+                                <!--</div>-->
+                                <!--<md-divider></md-divider>-->
+                                <!--<div layout layout="row" layout-wrap layout-xs="column" layout-padding-->
+                                     <!--layout-align="end center">-->
+<!--<span flex layout="row" layout-align=" start center">-->
+<!--<label class="padd-r5">-->
+
+    <!--<md-icon md-svg-icon="images/icons/phone2.svg" style="width:20px;height:20px;"></md-icon>-->
+<!--</label>-->
+<!--<span>{{club.contactNumber}} </span>-->
+<!--</span>-->
+
+<!--<span flex style="    text-align: right;">-->
+<!--<span>-->
+<!--<ng-md-icon icon="edit" style="fill:gray" size="24" ng-click="editClub(club)"></ng-md-icon>-->
+<!--</span>-->
+<!--<span>-->
+<!--<ng-md-icon icon="close" style="fill:red" size="24" ng-click="removeClub($event,club)"></ng-md-icon>-->
+<!--</span>-->
+<!--</span>-->
+                                <!--</div>-->
+
+                            <!--</md-card>-->
+                        <!--</md-grid-tile>-->
+                    <!--</md-grid-list>-->
+                <!--</md-card-content>-->
+            <!--</md-card>-->
+        <!--</div>-->
+    <!--</md-content>-->
+<!--</div>-->
+

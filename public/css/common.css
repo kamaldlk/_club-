@@ -1,0 +1,602 @@
+/* Custom Fonts */
+@font-face {
+    font-family: Caviar_Dreams_Bold;
+    src: url('fonts/Caviar-Dreams/Caviar_Dreams_Bold.ttf');
+}
+
+@font-face {
+    font-family: CaviarDreams;
+    src: url('fonts/Caviar-Dreams/CaviarDreams.ttf');
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url('fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: Roboto-Thin;
+    src: url('fonts/roboto/Roboto-Thin.ttf');
+}
+
+@font-face {
+    font-family: tccsans-light-webfont;
+    src: url('fonts/TCC%20Sans%20Light-Webfont/Webfonts/tccsans_light_macroman/tccsans-light-webfont.ttf');
+}
+
+body, html {
+    font-family: 'Caviar_Dreams_Bold' !important;
+    background-color: #f5f5f5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto-Regular'
+}
+
+input {
+    text-overflow: ellipsis;
+    font-family: 'Caviar_Dreams_Bold' !important;
+}
+
+.bor-btm {
+    border-bottom: 1px solid #fff !important;
+}
+
+.bg-login {
+}
+
+/* width */
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.full_wid_ht {
+    width: 100%;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+    background: url('/images/login-bg.jpg') no-repeat fixed;
+}
+
+.wid-100 {
+    width: 100%;
+}
+
+/* padding */
+.padd-lr8 {
+    padding: 0px 8px;
+}
+
+/* margin */
+.nomarg {
+    margin: 0px;
+}
+
+/* font-color */
+.ft_fff {
+    color: #fff;
+}
+
+.ft_000 {
+    color: #000;
+}
+
+.ft_red {
+    color: #EF4A29;
+}
+
+.ft_forget_password_color {
+    color: #757575;
+}
+
+/* font-size */
+.ft_18 {
+    font-size: 18px;
+}
+
+.ft_16 {
+    font-size: 16px;
+}
+
+.ft-14 {
+    font-size: 14px !important;
+}
+
+.ft-2e {
+    font-size: 2.3rem;
+}
+
+.ft-12 {
+    font-size: 12px;
+}
+
+.ft-30 {
+    font-size: 30px;
+}
+
+/* font-style */
+.logout-button {
+    padding-left: 20px;
+    background: transparent;
+
+    padding: 0px 22px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border: 2px solid #fff;
+}
+
+.logout-button > span, .md-btn-nav span, .md-btn-nav {
+    font-size: 14px;
+    color: #fff;
+    opacity: 1 !important;
+}
+
+/* bg-color */
+.btn-lightyellow {
+    background-color: #fcd71d !important;
+}
+
+/* bg-img */
+.currency_avatar {
+}
+
+/* bg-color  #4DAF7C; */
+.bg-tran {
+    background-color: transparent;
+}
+
+.btn-login {
+    padding: 2px 60px;
+    color: #000;
+}
+
+.login_center {
+    width: 400px;
+    background-color: transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(40%, -50%);
+}
+
+.logo-img {
+}
+
+/*.md-block .md-input{border-color: cyan;}*/
+/*.md-block label{color:aqua;}*/
+/*.md-block .md-input:focus ,.md-block label:focus{border-color: cyan;color:aqua;}*/
+/*.md-block .md-default-theme.md-input-invalid, md-input-container.md-input-invalid .md-input{border-color: cyan;color:aqua;}*/
+/*.md-sidenav-left, md-sidenav{top:64px;}*/
+
+.dashboard-stats {
+    background-color: #FFFFFF;
+    position: relative;
+    min-height: 107px;
+    padding: 3px;
+    padding-left: 5%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    display: table;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.dashboard-stats .left {
+    float: left;
+    padding-top: 5px;
+}
+
+.dashboard-stats .left h3 {
+    font-size: 30px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.flatBluec {
+    color: #5d9bfb !important;
+}
+
+.dashboard-stats .left h4 {
+    font-size: 16px;
+    font-weight: 300;
+    color: #9398a0;
+    line-height: 24px;
+}
+
+.dashboard-stats .right {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 30%;
+    bottom: 3px;
+    border-radius: 2px;
+    font-size: 48px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.club_avatar {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    top: -80px;
+    left: 41%;
+    border-radius: 50%;
+    border: 8px solid #fff;
+}
+
+.manager_avatar {
+    width: 200px;
+    height: 200px;
+    padding: 6px;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 4px dashed gray;
+    cursor: pointer;
+}
+
+.manager_avatar :hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.club_managerCreate md-input-container {
+    padding-bottom: 10px;
+}
+
+.club_managerCreate .layout-margin {
+    margin: 0px 8px;
+}
+
+/* Search box style */
+
+.search_input:focus {
+    width: 200px;
+    height: 40px;
+    border-radius: 40px;
+    padding: 0 20px;
+    line-height: 2em;
+    font-weight: 100;
+    font-size: 16px;
+    cursor: auto;
+}
+
+.search_input {
+    float: right;
+    border: 2px solid #30aadb;
+    outline: none;
+    width: 25px;
+    cursor: pointer;
+
+    -webkit-transition: .2s all ease-in;
+    -moz-transition: .2s all ease-in;
+    transition: .2s all ease-in;
+    height: 25px;
+    color: #0c5a8e;
+    border-radius: 40px;
+    background: #fff;
+    font-size: 0;
+}
+
+.close span {
+    width: 2px;
+    height: 15px;
+    border-radius: 2px;
+    background: #30aadb;
+    display: inline-block;
+}
+
+.front {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    transform: rotate(-45deg);
+    opacity: 0;
+    animation-delay: 2s;
+    -webkit-transition: .2s all ease-in;
+    -moz-transition: .2s all ease-in;
+    transition: .2s all ease-in;
+    cursor: pointer;
+}
+
+.back {
+    position: absolute;
+    right: 0px;
+    top: 18px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    transition: .2s all ease-in;
+}
+
+.search_input:focus + div .front {
+    opacity: 1;
+    -webkit-transition-delay: .2s;
+    -moz-transition-delay: .2s;
+    transition-delay: .2s;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+
+}
+
+.search_input:focus + div .back {
+    right: 20px;
+    top: 12px;
+    cursor: pointer
+}
+
+.min-h60 {
+    min-height: 60px;
+}
+
+.ft_fff {
+    color: #fff !important;
+}
+
+.large-Modal .modal-dialog {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto
+}
+
+/* select box sty;e */
+
+.currency_list > md-select .md-select-value {
+    border: 0px !important;
+}
+
+.toolbar_color {
+    background: #30aadb !important;
+}
+
+.side-nav-arrow {
+    fill: #eebc1b;
+}
+
+.side-nav-list-item {
+    width: 260px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 50px !important;
+    min-height: 35px;
+}
+
+.svgheadercolor {
+    color: #EF4A29;
+    fill: #EF4A29;
+    float: left;
+}
+
+.padd-l5 {
+    padding-left: 5px;
+}
+
+.padd-r5 {
+    padding-right: 5px;
+}
+
+.padd-t3 {
+    padding-top: 3px;
+}
+
+.padd-tb0-lr24 {
+    padding: 0px 24px;
+}
+
+.create-button {
+    padding-left: 20px;
+    background: #0c5a8e;
+    color: #fff;
+    padding: 5px 22px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.search_style {
+    position: relative;
+    margin-right: 10px;
+}
+
+.bg-trans {
+    background-color: transparent !important;
+}
+
+.bor-white {
+    border: 2px solid #fff;
+}
+
+.currency-layout {
+    min-height: 325px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.offer-value {
+    border: 0px;
+    border-bottom: 1px solid #000;
+
+}
+
+.dd_currency {
+    height: auto;
+    padding: 10px;
+}
+
+.dd_currency .md-text {
+    width: 100%;
+
+}
+
+@media screen and (min-width: 620px) and (max-width: 1400px) {
+    .manager_avatar {
+        width: 100% !important;
+        height: 100%;
+    }
+}
+
+@media screen and (min-width: 620px) and (max-width: 1076px) {
+    .login_center {
+        transform: translate(-0%, -50%) !important;
+        width: 300px !important;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 619px) {
+    .login_center {
+        transform: translate(-50%, -50%) !important;
+        width: 270px !important;
+    }
+
+    .manager_avatar {
+        width: 180px !important;
+        height: 300px;
+        padding-top: 20px !important;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .login_center {
+        transform: translate(-50%, -85%) !important;
+        width: 200px !important;
+    }
+}
+
+.word-B {
+    word-break: break-all;
+}
+
+.md-btn-nav:hover {
+    background-color: #4FC3F7;
+    transition: background-color .3s;
+}
+
+/* DashBoard  */
+
+.testBlock {
+    display: block;
+    float: left;
+    height: 100%;
+    width: 100%;
+
+}
+
+.md-input-container.md-default-theme, md-input-container label, md-input-container.md-default-theme, md-input-container .md-placeholder {
+    color: gray !important;
+    font-size: 14px;
+}
+
+md-input-container > md-select {
+    color: gray !important;
+    font-size: 14px;
+}
+
+md-grid-list {
+    margin: 8px;
+}
+
+md-grid-tile {
+    transition: all 400ms ease-out 50ms;
+}
+
+.clublist-item:hover {
+    box-shadow: 0 8px 11px -5px rgba(0, 0, 0, .2), 0 17px 26px 2px rgba(0, 0, 0, .14), 0 6px 32px 5px rgba(0, 0, 0, .12);
+}
+
+.clubName {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.club-overlay {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.robothin {
+    font-family: 'Roboto-Regular'
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+md-input-container:not(.md-input-invalid) > md-icon.name {
+    color: dodgerblue;
+}
+
+.club_profile > span > md-input-container {
+    padding-bottom: 0px;
+}
+
+.toolbar-bg {
+    background: #00bcd4 !important;
+}
+
+.hori_line {
+    width: 1px;
+    min-height: 80%;
+    background: #ddd;
+    margin-bottom: 15px;
+}
+
+.padd-l36 {
+    padding-left: 36px !important
+}
+
+.marg-t10 {
+    margin-top: 10px;
+}
+
+/* padding */
+.padd-lr8 {
+    padding: 0px 8px;
+}
+
+.padd-t10 {
+    padding-top: 10px;
+}
+
+/* margin */
+.nomarg {
+    margin: 0px;
+}
+
+.marg-t10 {
+    margin-top: 10px;
+}
+.club_bg{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    bottom: -45px;
+    left: 3%;
+    border-radius: 50%;
+}

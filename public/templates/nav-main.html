@@ -1,0 +1,21 @@
+<md-toolbar class="md-whiteframe-4dp toolbar_color" style="z-index: 3;  position: fixed; top: 0;">
+    <div class="md-toolbar-tools md-toolbar-tools-fixed-position">
+        <md-button ng-class="{moveFabRight : !sidebarHidden, moveFabLeft : sidebarHidden}" aria-label="Open demo menu" class="md-icon-button" layout="column" layout-align="center" ng-click="toggleSidenav('left');dumpSidebar();">
+            <!-- <ng-md-icon class="icon-white svgmarg-t5" size="35" icon="menu"></ng-md-icon>  -->
+            <md-icon md-svg-icon="images/icons/menu.svg" style="color: #fff ! important;"></md-icon>
+        </md-button>
+        <div layout="row" layout-align="end" flex>
+
+            <div layout="row" class="md-toolbar-tools-bottom inset">
+
+                    <md-button aria-label="Open demo menu" class="md-icon-button marg-t10" >
+                        <img src="images/user2.jpg" height="54" width="54" />
+                    </md-button>
+                <span layout="column" layout-align="center" style="color: #fff;">Hello Admin</span>
+
+                <md-button class="logout-button" ng-click="logout()">LogOut</md-button>
+
+            </div>
+        </div>
+    </div>
+</md-toolbar>

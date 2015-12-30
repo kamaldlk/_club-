@@ -1,0 +1,63 @@
+<div class="full_wid_ht" >
+
+    <div layout="column" ng-cloak>
+
+        <md-card class="login_center">
+
+            <md-content layout-padding class="bg-tran ft_fff">
+                <form >
+                    <md-input-container md-no-float class="md-block">
+                        <input ng-model="user.userName" placeholder="Username" class="ft_fff bor-btm">
+                    </md-input-container>
+                    <md-input-container md-no-float class="md-block">
+                        <input ng-model="user.password" type="password" placeholder="Password" class="ft_fff bor-btm">
+                    </md-input-container>
+                </form>
+
+            </md-content>
+
+            <md-card-actions layout="row" layout-align="center center">
+                <md-button class="md-raised btn-lightyellow btn-login" ng-click="login(user)">Login</md-button>
+            </md-card-actions>
+
+               <span layout="column"  flex layout-padding layout-align="center end" flex class="ft_forget_password_color" ng-click="forgotPassword()"> Forgot Password ?</span>
+        </md-card>
+
+
+
+    </div>
+
+</div>
+
+
+<!--<md-card class="login_center">-->
+    <!--<md-card-title>-->
+        <!--<img src="images/sams-logo.png" class="logo-img" alt="Club">-->
+
+        <!--<span class="md-headline ft_grn">Login</span>-->
+
+    <!--</md-card-title>-->
+    <!--<md-content layout-padding class="bg-tran ft_fff">-->
+        <!--<form name="user">-->
+            <!--<md-input-container class="md-block">-->
+                <!--<label><ng-md-icon icon="face" class="svgiconstyle"></ng-md-icon> User Name</label>-->
+                <!--<input    ng-model="user.username">-->
+
+            <!--</md-input-container>-->
+            <!--<md-input-container class="md-block">-->
+                <!--<label><ng-md-icon icon="vpn_key" class="svgiconstyle"></ng-md-icon> Password </label>-->
+                <!--<input ng-model="user.password">-->
+
+            <!--</md-input-container>-->
+        <!--</form>-->
+
+    <!--</md-content>-->
+
+    <!--<md-card-actions layout="row" layout-align="center center">-->
+        <!--<md-button class="md-raised btn-lightyellow btn-login ft_fff" ng-click="login(user)">Login   &nbsp;<ng-md-icon icon="send" class="svgiconstylelogin"></ng-md-icon></md-button>-->
+    <!--</md-card-actions>-->
+<!--</md-card>-->
+
+
+
+

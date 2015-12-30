@@ -1,0 +1,326 @@
+<!--<div ng-init="getAllCurrencyList()">-->
+
+    <!--<md-toolbar style="min-height: 200px;background :url('images/tool_bar_header_bg.png');background-color: darkorange ">-->
+        <!--<div class="md-toolbar-tools">-->
+
+            <!--<h2>-->
+                <!--<span class="ft_fff">Create Club</span>-->
+            <!--</h2>-->
+
+        <!--</div>-->
+    <!--</md-toolbar>-->
+
+
+
+
+    <!--<md-card style="width: 80%;margin: 0px auto;margin-top: -60px;position: relative;z-index: 9;">-->
+
+        <!--<img ng-src="images/user_avatar.jpg" class="club_avatar">-->
+
+        <!--<div style="padding-top: 10%;" layout="column">-->
+
+            <!--<div layout="row" layout-sm="column" layout-margin>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>Club Name</label>-->
+              <!--<input ng-model="club.clubName" type="text">-->
+          <!--</md-input-container>-->
+           <!--</span>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>Currency</label>-->
+              <!--<md-select ng-model="club.currencyDetails" >-->
+                  <!--<md-option class="dd_currency"  ng-repeat="item in currencyData" ng-init="currency = item.currency" value="{{currency.code}}">-->
+                     <!--<div layout="row" layout-ailgn="start center" flex>-->
+                         <!--<div flex="70" layout="row" layout-ailgn="start center">-->
+                               <!--<img ng-src="{{currency.flag}}" class="md-avatar" style="width: 50px; height: 50px;border-radius: 50%" />-->
+
+                            <!--<div layout="column" style="padding-left:10px;">-->
+                                 <!--<span class="md-title">{{ currency.country }}</span>-->
+                                <!--<span class="md-subhead">{{ currency.currency }}</span>-->
+                            <!--</div>-->
+                         <!--</div>-->
+
+                         <!--<div layout="row" layout-align="center center" flex="30">-->
+
+                             <!--<span class="md-subhead">{{ currency.code }}</span>-->
+
+                         <!--</div>-->
+                     <!--</div>-->
+
+                  <!--</md-option>-->
+
+              <!--</md-select>-->
+          <!--</md-input-container>  </span>-->
+
+            <!--</div>-->
+            <!--<div layout="row" layout-sm="column" layout-margin>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>Address1</label>-->
+              <!--<input ng-model="club.address.address1" type="text">-->
+          <!--</md-input-container>-->
+           <!--</span>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>Address2</label>-->
+              <!--<input ng-model="club.address.address2" type="text">-->
+          <!--</md-input-container>   </span>-->
+
+            <!--</div>-->
+            <!--<div layout="row" layout-sm="column" layout-margin>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>City</label>-->
+              <!--<input ng-model="club.address.city" type="text">-->
+          <!--</md-input-container>-->
+           <!--</span>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>State</label>-->
+              <!--<input ng-model="club.address.state" type="text">-->
+          <!--</md-input-container>   </span>-->
+
+            <!--</div>-->
+            <!--<div layout="row" layout-sm="column" layout-margin>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>Country</label>-->
+              <!--<input ng-model="club.address.country" type="text">-->
+          <!--</md-input-container>-->
+           <!--</span>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>Pin</label>-->
+              <!--<input ng-model="club.address.pin" type="number">-->
+          <!--</md-input-container>   </span>-->
+
+            <!--</div>-->
+            <!--<div layout="row" layout-sm="column" layout-margin>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>Phone</label>-->
+              <!--<input ng-model="club.contactNumber" type="text">-->
+          <!--</md-input-container>-->
+           <!--</span>-->
+        <!--<span flex>-->
+          <!--<md-input-container>-->
+              <!--<label>E-mail</label>-->
+              <!--<input ng-model="club.mail" type="email">-->
+          <!--</md-input-container>   </span>-->
+
+            <!--</div>-->
+
+            <!--<div layout="row"  layout-margin layout-align="center center">-->
+        <!--<span >-->
+             <!--<md-button class="md-raised md-primary" ng-click="save(club)" ng-show="!updateButton">Save</md-button>-->
+             <!--<md-button class="md-raised md-primary" ng-click="updateClub(club)" ng-show="updateButton">Update</md-button>-->
+           <!--</span>-->
+        <!--<span >-->
+          <!--<md-button class="md-raised md-primary" ng-click="cancelCreate()">Cancel</md-button>-->
+           <!--</span>-->
+
+            <!--</div>-->
+
+
+
+
+
+        <!--</div>-->
+
+    <!--</md-card>-->
+
+
+    <!--<md-button class="md-fab" aria-label="Add User"-->
+               <!--style="position: absolute;bottom: 0px;right: 0px;width: 75px;height: 75px;background-color: #F50057 !important;"-->
+               <!--ng-click="createManager($event)">-->
+        <!--<md-icon md-svg-src="images/icons/addUser.svg" style="width: 50px ;height: 50px"></md-icon>-->
+    <!--</md-button>-->
+<!--</div>-->
+
+<div ng-init="getAllCurrencyList()">
+    <md-toolbar
+            style="min-height: 250px;background :url('images/tool_bar_header_bg.png');background-color: darkorange ">
+
+        <img ng-src="images/user_avatar.jpg" class="club_bg">
+        <md-button class="md-fab md-mini pointer" aria-label="Use visible" ng-click="clublist=false;"
+                   style="position: absolute;bottom: -25px;right: 0px;">
+            <label for="file-upload2">
+                <md-icon md-svg-src="img/icons/mail89.svg" style="margin:0px;" class="pointer"></md-icon>
+            </label>
+            <input id="file-upload2" type="file" ng-model="imgs.image" class="nodisplay " app-filereader
+                   ng-change="uploadFile('file-name2','file-upload2')"/>
+
+        </md-button>
+    </md-toolbar>
+
+    <md-card style="margin: 0px;">
+
+        <div layout="column">
+            <md-card class="md-whiteframe-2dp" style="min-height: 150px;;width: 80%;
+margin: 0px auto;">
+                <div layout="row" layout-sm="column" style="padding-top: 20px;" flex>
+                    <div layout="column" layout-sm="column" layout-margin flex class="club_profiletop">
+  <span flex>
+  <md-input-container>
+      <label class="">Club Name</label>
+      <input ng-model="club.clubName" type="text">
+  </md-input-container>
+  </span>
+  <span flex ng-hide="true">
+    <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon btm-mq">
+        <md-icon md-svg-src="img/icons/business60.svg" class="email nomarg"></md-icon>
+        <md-select ng-model="ctrl.userState" class="padd-l36">
+            <md-option selected value="Currency">
+                Manager
+            </md-option>
+            <md-option>
+                Habib
+            </md-option>
+            <md-option>
+                Gopi
+            </md-option>
+            <md-option>
+                Ramya
+            </md-option>
+
+        </md-select>
+    </md-input-container> </span>
+
+
+                    </div>
+
+                    <span class="hori_line" hide-sm></span>
+
+                    <div layout="column" layout-sm="column" layout-margin flex class="club_profiletop">
+  <span flex>
+    <md-input-container>
+        <label class="">Description</label>
+        <input ng-model="user.email" type="text">
+    </md-input-container>
+  </span>
+  <span flex>
+    <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+        <md-icon md-svg-src="img/icons/currency19.svg" class="email nomarg"></md-icon>
+        <md-select ng-model="club.currencyDetails" class="padd-l36">
+            <md-option class="dd_currency" ng-repeat="item in currencyData" ng-init="currency = item.currency"
+                       value="{{currency.code}}">
+                <div layout="row" layout-ailgn="start center" flex>
+                    <div flex="70" layout="row" layout-ailgn="start center">
+                        <img ng-src="{{currency.flag}}" class="md-avatar"
+                             style="width: 50px; height: 50px;border-radius: 50%"/>
+
+                        <div layout="column" style="padding-left:10px;">
+                            <span class="md-title">{{ currency.country }}</span>
+                            <span class="md-subhead">{{ currency.currency }}</span>
+                        </div>
+                    </div>
+
+                    <div layout="row" layout-align="center center" flex="30">
+
+                        <span class="md-subhead">{{ currency.code }}</span>
+
+                    </div>
+                </div>
+
+            </md-option>
+
+        </md-select>
+    </md-input-container> </span>
+
+                    </div>
+                </div>
+
+            </md-card>
+            <md-card class="marg-t10">
+                <md-toolbar class="toolbar-bg md-whiteframe-4dp">
+                    <div class="md-toolbar-tools" layout="row">
+                        <h3 layout-align="start" class="ft_fff">Club Profile : </h3>
+                    </div>
+                </md-toolbar>
+
+                <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/situation.svg" class="email nomarg"></md-icon>
+              <input ng-model="club.address.address1" type="text" placeholder="Address1">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/pin66.svg" class="email nomarg"></md-icon>
+              <input ng-model="club.address.address2" type="text" placeholder="Address2">
+          </md-input-container>   </span>
+
+                </div>
+                <div layout="row" layout-sm="column" layout-margin class="padd-t10 club_profile">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/city36.svg" class="email nomarg"></md-icon>
+              <input ng-model="club.address.city" type="text" placeholder="City">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/europe4.svg" class="email nomarg"></md-icon>
+              <input ng-model="club.address.state" type="text" placeholder="State">
+          </md-input-container>   </span>
+
+                </div>
+                <div layout="row" layout-sm="column" layout-margin class="padd-t10 club_profile">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/flag86.svg" class="email nomarg"></md-icon>
+              <input ng-model="club.address.country" type="text" placeholder="Country">
+          </md-input-container>
+           </span>
+        <span flex>
+            <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+                <md-icon md-svg-src="img/icons/parking29.svg" class="email nomarg"></md-icon>
+                <input ng-model="club.address.pin" type="text" placeholder="Pin">
+            </md-input-container>  </span>
+
+                </div>
+                <div layout="row" layout-sm="column" layout-margin class=" padd-t10 club_profile">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/phone21.svg" class="email nomarg"></md-icon>
+              <input ng-model="club.contactNumber" type="text" placeholder="phone">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/email19.svg" class="email nomarg"></md-icon>
+              <input ng-model="club.address.mail" type="text" placeholder="Email">
+          </md-input-container>   </span>
+
+                </div>
+
+
+                <div layout="row" layout-margin layout-align="center center">
+        <span>
+          <md-button class="md-raised md-primary" ng-click="save(club)" ng-show="!updateButton">Save</md-button>
+             <md-button class="md-raised md-primary" ng-click="updateClub(club)" ng-show="updateButton">Update
+             </md-button>
+           </span>
+        <span>
+          <md-button class="md-raised md-primary" ng-click="cancelCreate()">Cancel</md-button>
+           </span>
+
+                </div>
+
+
+            </md-card>
+
+
+        </div>
+
+    </md-card>
+
+
+    <!--<md-button class="md-fab" aria-label="Add User"-->
+    <!--style="position: absolute;bottom: 0px;right: 0px;width: 75px;height: 75px;background-color: #F50057 !important;"-->
+    <!--ng-click="createManager($event)">-->
+    <!--<md-icon md-svg-src="images/icons/addUser.svg" style="width: 50px ;height: 50px"></md-icon>-->
+    <!--</md-button>-->
+</div>

@@ -1,0 +1,16 @@
+<div ng-cloak>
+<md-content ng-init="countryList()">
+    <md-list>
+        <md-list-item class="md-3-line" ng-repeat="item in currencyData" ng-init="currency = item.currency">
+            <img ng-src="{{currency.flag}}" class="md-avatar" alt="{{item.who}}" />
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ currency.country }}</h3>
+                <h4>{{ currency.currency }}</h4>
+                <p>{{ currency.code }}</p>
+                <p>{{ currency.symbol}}</p>
+            </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        </md-list>
+    </md-content>
+    </div>

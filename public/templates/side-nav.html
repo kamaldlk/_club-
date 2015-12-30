@@ -1,0 +1,87 @@
+<md-sidenav
+	ng-class="{dumpedSideContainer : sidebarHidden, extractSideContainer : !sidebarHidden}"
+	layout="column" flex class="md-sidenav-left md-whiteframe-z1 "
+	md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
+	style="padding:0px !important; z-index:90px !important;">
+	<div style="background-color: rgb(63,81,181);">
+	    <md-toolbar
+		ng-class="{dumpedSideContainer : sidebarHidden}"
+		class="md-tall md-hue-2 cust-md-tool toolbar_color">
+		        <div layout="row" class="md-toolbar-tools-bottom inset">
+		             <img ng-src="images/clubImages/clublogo/party_logo.png" class="" style="border-radius:50px;width:35px; height: 35px;" />
+		      	 <h1 ng-hide="sidebarHidden" class="tool-h1 ft-18">Club Management System</h1>
+		        </div>    
+	    </md-toolbar>
+    </div>
+    <md-list class="slide-hover">
+
+        <div layout="row" layout-align="start center">
+            <span class="textOnMenu" ng-hide="sidebarHidden" style="color:#565a67 !important;">MAIN MENU</span>
+        </div>
+        <a ui-sref="home.dashboard" >
+            <md-list-item style="background-color: #fcd71d" class="side-nav-list-item">
+                <div flex layout="row" layout-align="space-between center">
+                    <span flex>
+                    <ng-md-icon icon="dashboard" class="svgicon_style"></ng-md-icon>
+                    <span class="textOnMenu" ng-hide="sidebarHidden">DashBoard</span>
+                    </span>
+                        <span flex="10">
+
+                    <!--<ng-md-icon icon="keyboard_arrow_right"  class="side-nav-arrow"></ng-md-icon>-->
+                        </span>
+                </div>
+            </md-list-item>
+        </a>
+        <md-divider></md-divider>
+        <a ui-sref="home.clublist" >
+            <md-list-item  class="side-nav-list-item">
+                <div flex layout="row" layout-align="space-between center">
+                    <span flex>
+                    <ng-md-icon icon="location_city" class="svgicon_style"></ng-md-icon>
+                    <span class="textOnMenu" ng-hide="sidebarHidden">Club List</span>
+                    </span>
+                        <span flex="10">
+
+                    <!--<ng-md-icon icon="keyboard_arrow_right"  class="side-nav-arrow"></ng-md-icon>-->
+                        </span>
+                </div>
+            </md-list-item>
+        </a>
+        <md-divider></md-divider>
+        <a ui-sref="home.clubmanager" >
+
+            <md-list-item  class="side-nav-list-item">
+                <div flex layout="row" layout-align="space-between center">
+                    <span flex>
+                    <ng-md-icon icon="supervisor_account" class="svgicon_style"></ng-md-icon>
+                    <span class="textOnMenu" ng-hide="sidebarHidden">Club Managers</span>
+                    </span>
+                        <span flex="10">
+
+                    <!--<ng-md-icon icon="keyboard_arrow_right"  class="side-nav-arrow"></ng-md-icon>-->
+                        </span>
+                </div>
+            </md-list-item>
+        </a>
+        <md-divider></md-divider>
+        <a ui-sref="home.currency" >
+            <md-list-item class="side-nav-list-item">
+                <div flex layout="row" layout-align="space-between center">
+                    <span flex>
+                    <ng-md-icon icon="settings" class="svgicon_style"></ng-md-icon>
+                    <span class="textOnMenu" ng-hide="sidebarHidden">Currency / Offer Config</span>
+                    </span>
+                        <span flex="10">
+
+                    <!--<ng-md-icon icon="keyboard_arrow_right"  class="side-nav-arrow"></ng-md-icon>-->
+                        </span>
+                </div>
+            </md-list-item>
+
+        </a>
+
+        <md-divider></md-divider>
+    </md-list>
+    
+      		 
+</md-sidenav>

@@ -1,0 +1,191 @@
+<div layout="column" flex class="nopadd" ng-init="getAllCurrencyList()">
+
+<md-toolbar class="md-default-theme" style="background-color:transparent;">
+    <div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding-left: 2px;">
+
+             <span layout layout-align="start start" flex>
+                    <h3 layout-align="start" class="ft_000">Currency conversion</h3>
+                     <ng-md-icon icon="attach_money" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon>
+                </span>
+
+
+        <md-button class="create-button" ng-click="createCurrency($event)">Create Currency</md-button>
+    </div>
+</md-toolbar>
+
+
+<md-content class="" layout="column" layout-wrap layout-align="none" layout-xs="column" flex>
+
+
+<div flex layout="column" class="wid-100">
+<section>
+<md-card class="nomarg">
+<md-card-content class="nopadd">
+    <md-list>
+        <md-item class="data-table-list ">
+            <md-item-content layout="row" class="tbl-header min-h60">
+                <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
+         	<span flex=25 flex-xs="100" layout-align="start center" layout>
+         	<span layout-padding class="shopname" class="padd-tr5-lb8 ft-18"><ng-md-icon icon="sync" class="svgheadercolor"></ng-md-icon>
+                <span class="svgheadercolor ft_16 padd-t3 padd-l5">From</span></span>
+
+           	</span>
+         	<span flex=20 flex-xs=100 layout-align="start center" layout>
+              <span class="ft_red">Amount</span>
+
+           	</span>
+                    <span flex=5 flex-xs=100 layout-align="start center" layout>
+              <span class="ft_red"></span>
+
+           	</span>
+
+           	<span flex=25 flex-xs=100 layout-align="center center" layout>
+               <span class="ft_red">To</span>
+             </span>
+             <span flex=10 flex-xs=100 layout-align="start center" layout>
+              <span class="ft_red">Amount</span>
+           	</span>
+						<span flex=15 flex-xs=100 layout-align="start center" layout>
+						 <span class="ft_red">Action</span>
+					 </span>
+                </div>
+            </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+    </md-list>
+           <div layout="column" flex class="currency-layout">
+               <md-list>
+                   <md-item class="listview" ng-repeat="currency in currencyArray">
+
+                       <md-item-content layout="row" class="tbl-header min-h90">
+                           <div layout="row" layout-align="space-between center" layout-wrap class="full_wid" ng-click="view = !view">
+                         <span flex=25 layout-align="start center" layout>
+                  <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18"><img ng-src="{{currency.fromCurrency.flag}}" class="avatar"></span>
+                   <span  layout="column"><span>{{currency.fromCurrency.country}}</span><span class="hash_color ft-12">{{currency.fromCurrency.code}}</span>
+                   <span class="hash_color ft-12">{{currency.createdOn}}</span></span>
+                  <span></span>
+                    </span>
+                            <span flex="20" layout-align="start center" layout>
+                               <span >1</span>
+
+                              </span>
+                              <span flex="5" layout-align="start center" layout>
+
+                                  <ng-md-icon icon="keyboard_backspace" style="fill:black;transform: rotate(180deg);" size="28"></ng-md-icon>
+                                </span>
+                              <span flex="25" layout-align="center center" layout>
+                                <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18"><img ng-src="{{currency.toCurrency[0].flag}}" class="avatar"></span>
+                                 <span  layout="column"><span>{{currency.toCurrency[0].country}}</span><span class=" ft-12 hash_color">{{currency.toCurrency[0].code}}</span></span>
+                                <span></span>
+                              </span>
+                              <span flex="10" layout-align="start center" layout>
+                               <span >{{currency.toCurrency[0].value}}</span>
+
+                              </span>
+                            <span flex="15" layout-align="start center" layout>
+
+                    <span layout-padding>
+                         <ng-md-icon icon="edit" style="fill:gray" size="24" ng-click="updateCurrency($event,currency)"></ng-md-icon>
+                    </span>
+                <span layout-padding>
+                        <ng-md-icon icon="close" style="fill:red" size="24" ng-click="remove()" ng-disabled="true"></ng-md-icon>
+                    </span>
+
+
+                           </span>
+                           </div>
+                       </md-item-content>
+                   </md-item>
+               </md-list>
+
+               <md-divider></md-divider>
+
+
+           </div>
+
+            </md-card-content>
+        </md-card>
+</section>
+
+
+
+
+
+    <section>
+
+        <md-toolbar class="md-default-theme" style="background-color:#e8ebf1;">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding-left: 2px;">
+
+             <span layout layout-align="start start" flex>
+                    <h3 layout-align="start" class="ft_000">Offer configuration</h3>
+                     <ng-md-icon icon="attach_money" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon>
+                </span>
+            </div>
+        </md-toolbar>
+
+
+        <md-content class="" layout="column" layout-wrap layout-align="none" layout-xs="column" flex>
+
+
+            <div flex layout="column" class="wid-100">
+                <md-card class="nomarg">
+                    <md-card-content class="nopadd">
+                <div layout="column" class="md-inline-form" style="width: 80%;
+margin: 1% auto ;">
+                    <md-content md-theme="docs-dark" layout-padding>
+                        <div layout="row" layout-align="start center">
+                            <div layout="row" flex="30">
+                                <img ng-src="images/offers_discount_saving.jpg" class="" style="width:280px;height:200px;">
+                            </div>
+                            <div layout="column" flex="70">
+                                <div layout="row" flex layout-padding>
+                                    <div flex="30" layout layout-align="start center">
+                                        <label>
+                                            <ng-md-icon icon="keyboard_alt" style="fill:gray;padding-right:5px;" size="24"></ng-md-icon>
+                                        </label>
+                                        <span class="md-body-1">New Customer</span>
+                                    </div>
+                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.newCustomer" aria-label="red" id="red-slider" class>
+                                    </md-slider>
+                                    <div flex="10" layout layout-align="center center">
+                                        <input flex ng-model="offer.newCustomer" aria-label="red" aria-controls="red-slider" class="offer-value"> %
+                                    </div>
+                                </div>
+                                <div layout="row" flex layout-padding>
+                                    <div flex="30" layout layout-align="start center">
+                                        <label>
+                                            <ng-md-icon icon="people" style="fill:gray;padding-right:5px;" size="24"></ng-md-icon>
+                                        </label>
+                                        <span class="md-body-1">Referral Customer</span>
+                                    </div>
+                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.referralCustomer" aria-label="red" id="red-slider" class>
+                                    </md-slider>
+                                    <div flex="10" layout layout-align="center center">
+                                        <input flex ng-model="offer.referralCustomer" aria-label="red" aria-controls="red-slider" class="offer-value"> %
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div layout="row" layout-align="center center" flex layout-padding>
+                            <md-button class="md-raised md-primary" ng-click="updateOffer($event,offer)">update</md-button>
+                        </div>
+
+
+                    </md-content>
+                </div>
+
+            </md-card-content>
+                    </md-card>
+                </div>
+            </md-content>
+
+    </section>
+
+</div>
+</md-content>
+</div>

@@ -1,0 +1,54 @@
+<div>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings">
+                <md-icon md-svg-icon="images/icons/menu.svg" ng-click="menuToggel()"></md-icon>
+            </md-button>
+            <h2>
+                <span>Club Management System</span>
+            </h2>
+
+        </div>
+    </md-toolbar>
+
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-md')"
+                    style="height:95% !important;position:absolute !important;top: 7%">
+
+            <md-content>
+                <md-list>
+
+                    <md-list-item class="md-3-line">
+                        <div class="md-list-item-text" layout="column">
+                            <h3>DashBoard</h3>
+                        </div>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    <md-list-item class="md-3-line">
+                        <div class="md-list-item-text" layout="column">
+                            <h3>User Details</h3>
+                        </div>
+                    </md-list-item>
+                    <md-divider></md-divider>
+
+                </md-list>
+
+            </md-content>
+        </md-sidenav>
+
+        <md-button class="md-fab" aria-label="Add User"
+                   style="position: absolute;bottom: 50px;right: 50px;width: 75px;height: 75px;background-color: #F50057 !important;"
+                   ng-click="showAdvanced($event)">
+            <md-icon md-svg-src="images/icons/addUser.svg" style="width: 50px ;height: 50px"></md-icon>
+        </md-button>
+
+
+</div>
+
+
+
+
+
+
+
