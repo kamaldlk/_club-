@@ -44,7 +44,7 @@ module.exports = {
 
     // get single member detail
     get: function (data, callback) {
-        db.customerUsers.findOne({'email': data.email}).populate([{path: 'club', select: '-_id clubName address contactNumber logo'}, {path: 'createdBy', select: '-_id userName profile address role'}]).exec(function(err, member) {
+        db.customerUsers.findOne({'email': data.email}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
             if(err) {
                 callback({
                     error: true,
@@ -59,6 +59,72 @@ module.exports = {
                 });
             }
             else if(member) {
+                callback(member)
+            }
+        });
+    },
+
+    // get all customers
+    getAll: function (data, callback) {
+        db.customerUsers.find({}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
+            if(err) {
+                callback({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else if(!member || member.length < 1) {
+                callback({
+                    error: true,
+                    errorCode: 'No member'
+                });
+            }
+            else {
+                callback(member)
+            }
+        });
+    },
+
+    // get club member detail
+    getByClub: function (data, callback) {
+        db.customerUsers.find({'club': data.club}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
+            if(err) {
+                callback({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else if(!member || member.length < 1) {
+                callback({
+                    error: true,
+                    errorCode: 'No member'
+                });
+            }
+            else {
+                callback(member)
+            }
+        });
+    },
+
+    // get club member detail
+    getByManager: function (data, callback) {
+        db.customerUsers.find({'createdBy': data.manager}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
+            if(err) {
+                callback({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else if(!member || member.length < 1) {
+                callback({
+                    error: true,
+                    errorCode: 'No member'
+                });
+            }
+            else {
                 callback(member)
             }
         });

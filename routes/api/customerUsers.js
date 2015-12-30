@@ -31,4 +31,32 @@ module.exports = function(router) {
     		res.send(data);
     	});
     });
+
+    // get details of all the  customer
+    router.get('/customerUsers/getAll', function (req, res) {
+    	var data = {}
+    	db.customerUsers.getAll(data, function (data) {
+    		res.send(data);
+    	});
+    });
+
+    // club members
+    router.get('/customerUsers/club/get', function (req, res) {
+    	var data = {
+    		club: req.query.club
+    	}
+    	db.customerUsers.getByClub(data, function (data) {
+    		res.send(data);
+    	});
+    });
+
+    // members added by given manager
+    router.get('/customerUsers/manager/get', function (req, res) {
+    	var data = {
+    		manager: req.query.manager
+    	}
+    	db.customerUsers.getByManager(data, function (data) {
+    		res.send(data);
+    	});
+    });
 };
