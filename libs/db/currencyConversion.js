@@ -32,11 +32,18 @@ module.exports = {
                 });
             }
     		else {
-                db.currencyConversion.update({'fromCurrency.code': data.fromCode}, {$push: {'toCurrency': {'value': data.toValue}}, $set: {'updatedOn': Date.now()}}, function (err, updated) {
-        			callback({
-        				success: true,
-        				message: 'Updated'
-        			});
+                db.currencyConversion.findOneAndUpdate({'fromCurrency.code': data.fromCode}, {$push: {'toCurrency': {'value': data.toValue}}, $set: {'updatedOn': Date.now()}}, {new: true}, function (err, updated) {
+        			if(err) {
+                        callback({
+                            error: true,
+                            errorCode: 'UNKNOWN_ERROR',
+                            stack: err
+                        });
+                    }
+                    else {
+                        updated.toCurrency = updated.toCurrency.pop();
+                        callback(updated);
+                    }
                 });
     		}
     	});

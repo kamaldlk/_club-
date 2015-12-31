@@ -11,7 +11,7 @@ module.exports = function(router) {
     		toValue: req.body.toValue
     	}
     	db.currencyConversion.update(data, function (data) {
-    		res.send(data);
+    		res.json(data);
     	});
     });
 
