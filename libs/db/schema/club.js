@@ -45,6 +45,7 @@ var club = new mongoose.Schema({
     currencyDetails: {type: Schema.Types.ObjectId, ref: 'currency'},
     address: mongoose.Schema.Types.Mixed,
     logo: {type: String, required: false},
+    coverPic: String,
     createdOn: {type: Date, default: Date.now },
     createdBy: String,
     updatedBy: String,

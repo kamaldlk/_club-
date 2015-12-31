@@ -24,6 +24,8 @@ module.exports = function (router) {
 				data.email = req.body.email;
 			if(req.body.description)
 				data.description = req.body.description;
+			if(req.body.coverPic)
+				data.coverPic = req.body.coverPic;
 			db.club.register(data, function (data) {
 				console.log('data ', data);
 				res.send(data);
