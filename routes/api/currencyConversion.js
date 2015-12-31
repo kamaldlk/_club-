@@ -30,4 +30,14 @@ module.exports = function(router) {
     		res.send(data);
     	});
     });
+
+    // remove currency rate
+    router.delete('/currencyConversion/remove', function (req, res) {
+        var data = {
+            code: req.query.code
+        }
+        db.currencyConversion.remove(data, function (data) {
+            res.json(data);
+        });
+    });
 };

@@ -94,5 +94,30 @@ module.exports = {
     			callback(currency);
     		}
     	});
+    },
+
+    // remove currency rate
+    remove: function (data, callback) {
+        db.currencyConversion.remove({'fromCurrency.code': data.code}, function (err, removed) {
+            if(err) {
+                callback({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else if(!removed) {
+                callback({
+                    error: true,
+                    errorCode: 'Not deleted'
+                });
+            }
+            else if(removed) {
+                callback({
+                    success: true,
+                    message: 'Deleted'
+                });
+            }
+        });
     }
 };
