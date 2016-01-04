@@ -7,21 +7,19 @@
  */
 angular.module ('cms.controllers')
 
-    .controller ("clubController", ["$scope", "$mdDialog", "$state", "api", "$stateParams","toastr", function ( $scope, $mdDialog, $state, api, $stateParams,toastr ) {
+    .controller ("clubController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", function ( $scope, $mdDialog, $state, api, $stateParams, toastr ) {
 
         $scope.view = true;
+        $scope.selectedMenu = 'clublist';
         $scope.updateButton = false;
         $scope.images = ["images/clubImages/drinks.jpg", "images/clubImages/club_dance_hands_blue.jpg", "images/clubImages/club_dance_hands_yellow.jpg", "images/clubImages/hand_beer.jpg", "images/clubImages/party_cheers.jpg", "images/clubImages/party_fun_all.jpeg"];
         $scope.clubId = $stateParams.clubId;
 
         if ( $stateParams.clubId ) {
             $scope.updateButton = true;
+            $scope.club = _.findWhere (api.Club.allClub, {_id: $stateParams.clubId});
+
         }
-
-        $scope.club = _.findWhere (api.Club.allClub, {_id: $stateParams.clubId});
-
-        console.log (" $scope.clubId: ", JSON.stringify ($scope.club));
-
 
         $scope.getAllClubList = function () {
 
@@ -51,13 +49,10 @@ angular.module ('cms.controllers')
 
 
         $scope.createClub = function () {
-
             $state.go ("home.createclub");
         }
 
         $scope.editClub = function ( club ) {
-
-
             $state.go ("home.createclub", {clubId: club._id});
             console.log ("edit Club", club.clubName);
         }
@@ -77,10 +72,10 @@ angular.module ('cms.controllers')
 
 
                     if ( data ) {
-                        toastr.success(data.message,"Successfully Removed");
-                        console.log(data);
-                    } else{
-                        toastr.error(err.message,"error Removed");
+                        toastr.success (data.message, "Successfully Removed");
+                        console.log (data);
+                    } else {
+                        toastr.error (err.message, "error Removed");
                     }
 
 
@@ -100,6 +95,7 @@ angular.module ('cms.controllers')
             $scope.club.logo = "logo";
             $scope.club.createdBy = "admin";
             $scope.club.netAmount = "0";
+            $scope.club.currencyDetails = "INR"
 
             console.log ("Club Details :", JSON.stringify (club));
 
@@ -107,12 +103,12 @@ angular.module ('cms.controllers')
 
 
                 if ( data ) {
-
-                    console.log (JSON.stringify (data));
+                    toastr.success (data.message, "Successfully Created");
                     $state.go ("home.clublist");
 
                 } else {
                     console.log (JSON.stringify (err));
+                    toastr.error (err.message, "Error Creating Club");
                 }
 
 
@@ -123,7 +119,7 @@ angular.module ('cms.controllers')
 
         $scope.updateClub = function ( club ) {
 
-            delete $scope.club.logo ;
+            delete $scope.club.logo;
             delete $scope.club.createdBy;
             delete $scope.club.netAmount;
             delete $scope.club.currencyDetails;
@@ -134,20 +130,18 @@ angular.module ('cms.controllers')
 
 
                 if ( data ) {
-
-                    console.log ("Updated :", JSON.stringify (data));
-                    toastr.success(data.message, 'Success');
+                    toastr.success (data.message, 'Success');
+                    $state.go ("home.clublist");
 
                 } else {
                     console.log ("Updated :", JSON.stringify (err));
-                    toastr.warning(err.errorCode, 'Warning');
+                    toastr.warning (err.errorCode, 'Warning');
                 }
 
 
             })
 
         }
-
 
 
         function DialogController ( $scope, $mdDialog ) {
@@ -161,51 +155,6 @@ angular.module ('cms.controllers')
                 $mdDialog.hide (answer);
             };
         }
-
-
-
-
-
-        $scope.managers = [
-            {
-                clubName: "Minus1 Pub",
-                managerID: 1,
-                location: "Chennai",
-                address: "14,sai nagar, chennai",
-                phone: "9677620054",
-                bg_image: "images/clubimages/party_fun_all.jpeg",
-                managerName: "Habibuzaman",
-                managerProfilePic: "images/user1.jpg",
-                updatedOn: "1stJAN 2:45"
-
-            },
-            {
-                clubName: "Dublin",
-                managerID: 2,
-                location: "Chennai",
-                address: "14,sai nagar, chennai",
-                phone: "9677620054",
-                bg_image: "images/clubimages/hand_beer.jpg",
-                managerName: "Raja",
-                managerProfilePic: "images/user2.jpg",
-                updatedOn: "1stJAN 2:45"
-
-            },
-            {
-                clubName: "Minus1 Pub",
-                managerID: 3,
-                location: "Chennai",
-                address: "14,sai nagar, chennai",
-                phone: "9677620054",
-                bg_image: "images/clubimages/club_dance_hands_yellow.jpg",
-                managerName: "Saravanan",
-                managerProfilePic: "images/user3.jpg",
-                updatedOn: "1stJAN 2:45"
-
-            }
-        ]
-
-
 
 
     }])

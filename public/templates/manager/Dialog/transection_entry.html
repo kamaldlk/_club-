@@ -1,0 +1,186 @@
+<div>
+
+    <md-toolbar style="min-height: 200px;background :url('images/managers/party-blur.jpg');background-color: rgba(0,0,0,0.6); ">
+        <div class="md-toolbar-tools">
+
+            <h2>
+                <span class="ft_fff">Transaction </span>
+            </h2>
+
+        </div>
+    </md-toolbar>
+
+
+
+
+    <md-card style="width: 92%;margin: 0px auto;margin-top: -60px;position: relative;z-index: 2;">
+        <div class="club_profile" layout="column"  flex>
+            <div layout="column" flex >
+                <md-card class="nomarg">
+                    <md-card-content>
+                 <span flex=100 layout="column" layout-align="center start" layout-padding>
+                     <span class="">Personal Checking</span>
+                   </span>
+                        <div layout="row" flex>
+               <span layout-padding flex>
+                 <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;" >
+                     <md-icon md-svg-src="img/icons/business60.svg" class="nomarg"></md-icon>
+                     <input ng-model="transaction.cardNo" type="text" placeholder="Customer Card No">
+                 </md-input-container>
+
+                  </span>
+
+                  <span flex layout="row" layout-align="center start">
+                    <md-switch ng-model="cardHolderValue" class="md-primary" ng-change="switch(cardHolderValue)">{{cardHolder}}</md-switch>
+                      <md-button class="md-raised" ng-click="searchUser(transaction.cardNo)">Search</md-button>
+                  </span>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <div layout="column" flex flex-sm="100" ng-show="!cardHolderValue">
+                    <md-card class="nomarg md-whiteframe-2dp">
+                        <md-card-content style="background:#081F2E;">
+                     <span flex=100 layout="column" layout-align="center start" layout-padding>
+                         <span class="ft_ligthblue md-subhead">Customer Details Entry</span>
+                       </span>
+                            <div layout="row" flex>
+                   <span layout-padding flex>
+                     <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;">
+                         <md-icon md-svg-src="img/icons/business60.svg" class="nomarg ft_ligthblue"></md-icon>
+                         <input ng-model="referedData.name" type="text" placeholder="Customer name"  class="ft_fff">
+                     </md-input-container>
+                      </span>
+                      <span layout-padding flex>
+                        <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;">
+                            <md-icon md-svg-src="images/icons/telephone.svg" class="nomarg ft_ligthblue"></md-icon>
+                            <input ng-model="referedData.mobile" type="text" placeholder="Mobile" class="ft_fff">
+                        </md-input-container>
+                         </span>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </div>
+
+                <div layout="row" layout-sm="column" flex class="ft-silver">
+                    <div layout="column" flex flex-sm="100" layout-padding>
+            <span flex=100 layout="column" layout-align="center start" layout-padding>
+                <span class="">Member Details</span>
+              </span>
+                        <div class="d-t">
+                            <div class="d-tr">
+                <span class="d-tc">
+                  Customer name
+                </span>
+                <span class="d-tc">
+                :  {{memberDetail.profile.firstName}} {{memberDetail.profile.lastName}}
+                </span>
+                            </div>
+                            <div class="d-tr">
+                <span class="d-tc">
+                  Mobile
+                </span>
+                <span class="d-tc">
+                :  {{memberDetail.mobileNo}}
+                </span>
+                            </div>
+                            <div class="d-tr">
+                <span class="d-tc">
+                Email
+                </span>
+               <span class="d-tc">
+                :  {{memberDetail.email}}
+                </span>
+                            </div>
+                            <div class="d-tr">
+                <span class="d-tc">
+                  Club name
+                </span>
+                <span class="d-tc">
+                :  {{memberDetail.club.clubName}}
+                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hori_line" style="margin-bottom:0px;">
+
+                    </div>
+
+                    <div layout="column" flex layout-padding>
+                <span flex=100 layout="column" layout-align="center start" layout-padding>
+                    <span class="">Wallet Amount</span>
+                  </span>
+                <span flex layout="column" layout-align="center center" layout-padding>
+              <span class="md-headline"> $ {{memberDetail.netAmount}}</span>
+              <span class="md-caption ft_grn">Balance Amount</span>
+        </span>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <div layout="row" flex hide-sm>
+
+                </div>
+                <div layout="column" flex layout-margin>
+                    <div class="d-t">
+                        <div class="d-tr">
+              <span class="d-tc">
+                Enter a Amount
+              </span>
+              <span class="d-tc text-right">
+                <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="width: 120px;float: right;padding-bottom: 0px;" >
+                    <md-icon md-svg-src="img/icons/currency19.svg" class="email nomarg"></md-icon>
+                    <input ng-model="transaction.spentAmount" type="number" placeholder="Amount" ng-keyup="calculate(transaction.spentAmount)">
+                </md-input-container>
+              </span>
+                        </div>
+                        <div class="d-tr">
+              <span class="d-tc">
+                Offer
+              </span>
+              <span class="d-tc text-right">
+               {{offerDetails}}%
+              </span>
+                        </div>
+                        <div class="d-tr">
+              <span class="d-tc ">
+                Save
+              </span>
+              <span class="d-tc text-right">
+                {{result}}
+              </span>
+                        </div>
+                        <div class="d-tr">
+              <span class="d-tc padd-t10">
+            </span>
+            <span class="d-tc padd-t10">
+            <md-divider></md-divider>
+          </span></div>
+                        <div class="d-tr">
+              <span class="d-tc ft_18">
+                Total
+              </span>
+              <span class="d-tc text-right ft_red ft_18">
+               $545.0
+              </span>
+                        </div>
+                        <div class="d-tr">
+              <span class="d-tc">
+            </span>
+            <span class="d-tc">
+            <md-divider></md-divider>
+          </span></div>
+                    </div>
+                </div>
+            </div>
+            <div layout="column" flex layout-padding>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md-raised md-primary" ng-click="createTransaction(transaction)">Save</md-button>
+                    <md-button class="md-raised md-primary" ng-click="cancel()" >Cancel</md-button>
+                </div>
+
+
+            </div>
+        </div>
+    </md-card>
+</div>

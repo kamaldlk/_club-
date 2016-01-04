@@ -9,7 +9,7 @@ angular.module('cms.controllers')
 
 .controller("homeController",["$scope","$mdDialog","$mdSidenav",function($scope,$mdDialog,$mdSidenav){
 
-
+         $scope.selectedMenu = 'dashboard';
          $scope.toggleLeft = buildDelayedToggler('left');
     function buildDelayedToggler(navID) {
       return function() {

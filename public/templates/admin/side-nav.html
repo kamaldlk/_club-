@@ -18,8 +18,8 @@
         <div layout="row" layout-align="start center">
             <span class="textOnMenu" ng-hide="sidebarHidden" style="color:#565a67 !important;">MAIN MENU</span>
         </div>
-        <a ui-sref="home.dashboard" >
-            <md-list-item style="background-color: #fcd71d" class="side-nav-list-item">
+        <a ng-click="selectedMenu = 'dashboard'"  ui-sref="home.dashboard" >
+            <md-list-item class="side-nav-list-item" ng-class="{'side-nav-active':(selectedMenu == 'dashboard')}">
                 <div flex layout="row" layout-align="space-between center">
                     <span flex>
                     <ng-md-icon icon="dashboard" class="svgicon_style"></ng-md-icon>
@@ -33,8 +33,8 @@
             </md-list-item>
         </a>
         <md-divider></md-divider>
-        <a ui-sref="home.clublist" >
-            <md-list-item  class="side-nav-list-item">
+        <a ng-click="selectedMenu = 'clublist'"  ui-sref="home.clublist">
+            <md-list-item  class="side-nav-list-item" ng-class="{'side-nav-active':(selectedMenu == 'clublist')}">
                 <div flex layout="row" layout-align="space-between center">
                     <span flex>
                     <ng-md-icon icon="location_city" class="svgicon_style"></ng-md-icon>
@@ -48,9 +48,9 @@
             </md-list-item>
         </a>
         <md-divider></md-divider>
-        <a ui-sref="home.clubmanager" >
+        <a ng-click="selectedMenu = 'clubmanager'" ui-sref="home.clubmanager" >
 
-            <md-list-item  class="side-nav-list-item">
+            <md-list-item  class="side-nav-list-item" ng-class="{'side-nav-active':(selectedMenu == 'clubmanager')}">
                 <div flex layout="row" layout-align="space-between center">
                     <span flex>
                     <ng-md-icon icon="supervisor_account" class="svgicon_style"></ng-md-icon>
@@ -64,8 +64,8 @@
             </md-list-item>
         </a>
         <md-divider></md-divider>
-        <a ui-sref="home.currency" >
-            <md-list-item class="side-nav-list-item">
+        <a ng-click="selectedMenu = 'currency'" ui-sref="home.currency" >
+            <md-list-item class="side-nav-list-item" ng-class="{'side-nav-active':(selectedMenu == 'currency')}">
                 <div flex layout="row" layout-align="space-between center">
                     <span flex>
                     <ng-md-icon icon="settings" class="svgicon_style"></ng-md-icon>

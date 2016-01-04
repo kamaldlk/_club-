@@ -6,7 +6,7 @@
             <ng-md-icon icon="face" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon>
          </span>
             <div class="search_style">
-                <input type="text" class="search_input"/>
+                <input type="text" class="search_input" ng-model="managerListFilter"/>
                 <div class="close">
                     <span class="front"></span>
                     <span class="back"></span>
@@ -30,7 +30,7 @@
                               </span>
                            </span>
                            <span flex=15 flex-xs=100 layout-align="start center" layout>
-                           <span class="ft_red">Manager ID</span>
+                           <span class="ft_red">User Name</span>
                            </span>
                            <span flex=20 flex-xs=100 layout-align="center center" layout>
                            <span class="ft_red">Club Name</span>
@@ -47,11 +47,11 @@
                         <md-divider></md-divider>
                     </md-list>
                     <md-list>
-                        <md-item class="listview" ng-repeat="manager in managers">
+                        <md-item class="listview" ng-repeat="manager in managers | filter :managerListFilter">
                             <md-item-content layout="row" class="tbl-header min-h90">
                                 <div layout="row" layout-wrap class="full_wid" ng-click="view = !view">
                            <span flex=35 layout-align="start center" layout>
-                           <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18"><img ng-src="images/user2.jpg" class="avatar"></span> <span class="hash_color">{{manager.userName}}</span>
+                           <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18"><img ng-src="images/user2.jpg" class="avatar"></span> <span class="hash_color">{{manager.profile.firstName}} {{manager.profile.lastName}}</span>
                            </span>
                            <span flex="15" layout-align="start center" layout>
                            <span >{{manager.userName}}</span>

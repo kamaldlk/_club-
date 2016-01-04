@@ -5,76 +5,88 @@
  * Time: 12:56 PM
  * To change this template use File | Settings | File Templates.
  */
-angular.module('cms.controllers')
+angular.module ('cms.controllers')
 
-    .controller("managerController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", function($scope, $mdDialog, $state, api, $stateParams, toastr) {
+    .controller ("managerController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", function ( $scope, $mdDialog, $state, api, $stateParams, toastr ) {
 
         $scope.view = true;
+        $scope.selectedMenu = 'managerlist';
+        $scope.getAllManager = function () {
 
-        $scope.getAllManager = function() {
-
-            api.Manager.getAllManager(function(err, data) {
-                if (data) {
+            api.Manager.getAllManager (function ( err, data ) {
+                if ( data ) {
                     $scope.managers = api.Manager.managers;
-                    console.log(" data: ", data);
+                    console.log (" data: ", data);
                 }
 
             });
         }
 
 
-        $scope.createManager = function(ev) {
+        $scope.createManager = function ( ev ) {
 
-            $mdDialog.show({
+            $mdDialog.show ({
                 controller: DialogController,
-                templateUrl: 'templates/dialog/create_manager.html',
+                templateUrl: 'templates/admin/dialog/create_manager.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             })
-                .then(function(answer) {
+                .then (function ( answer ) {
                     $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
+                }, function () {
                     $scope.status = 'You cancelled the dialog.';
                 });
         }
 
 
-        $scope.managerUpdate = function(ev, manager) {
+        $scope.managerUpdate = function ( ev, manager ) {
 
-            $mdDialog.show({
-                controller: function($scope, api) {
-                    api.Club.getAllClub(function(err, data) {
+            $mdDialog.show ({
+                controller: function ( $scope, api, manager ) {
+                    api.Club.getAllClub (function ( err, data ) {
 
-                        if (data) {
+                        if ( data ) {
+                            $scope.manager = manager;
                             $scope.clubs = api.Club.allClub;
-                            console.log(" data: ", data);
+                            console.log ('manager value is ', $scope.manager);
+                            console.log (" data: ", data);
                         }
 
                     });
 
-                    $scope.manager = manager;
+
                     $scope.updateButton = true;
 
-                    console.log($scope.manager);
+                    $scope.cancel = function () {
+                        $mdDialog.cancel ();
+                    };
 
-                    $scope.update = function(manager) {
-
+                    $scope.update = function ( manager ) {
 
 
                         $scope.manager.createdBy = "admin";
 
 
-                        api.Manager.updateManager(manager, function(err, data) {
+                        var userName = $scope.manager.userName;
+                        $scope.manager.clubName = $scope.manager.club.clubName;
+
+                        delete $scope.manager.userName;
+                        delete $scope.manager.club;
 
 
-                            if (data) {
+                        api.Manager.updateManager (manager, userName, function ( err, data ) {
 
-                                console.log("Updated :", JSON.stringify(data));
-                                toastr.success(data.message, 'Success');
+
+                            if ( data ) {
+
+                                console.log ("Updated :", JSON.stringify (data));
+                                toastr.success (data.message, 'Successfully Updated');
+                                $mdDialog.cancel ();
+
 
                             } else {
-                                console.log("Updated :", JSON.stringify(err));
-                                toastr.warning(err.errorCode, 'Warning');
+                                console.log ("Updated :", JSON.stringify (err));
+                                toastr.warning (err.errorCode, 'Warning');
                             }
 
 
@@ -83,42 +95,45 @@ angular.module('cms.controllers')
                     }
 
                 },
-                templateUrl: 'templates/dialog/create_manager.html',
+                templateUrl: 'templates/admin/dialog/create_manager.html',
                 targetEvent: ev,
-                clickOutsideToClose: true
+                clickOutsideToClose: true,
+                locals: {
+                    manager: manager
+                }
             })
-                .then(function(answer) {
+                .then (function ( answer ) {
                     $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
+                }, function () {
                     $scope.status = 'You cancelled the dialog.';
                 });
         }
-        $scope.managerRemove = function(ev, manager) {
+        $scope.managerRemove = function ( ev, manager ) {
 
 
             // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = $mdDialog.confirm();
-            confirm.title('Would you like to remove Manager?')
-            confirm.ariaLabel('Lucky day')
-            confirm.targetEvent(ev)
-            confirm.ok('Remove!')
-            confirm.cancel('Cancel');
-            $mdDialog.show(confirm).then(function() {
+            var confirm = $mdDialog.confirm ();
+            confirm.title ('Would you like to remove Manager?')
+            confirm.ariaLabel ('Lucky day')
+            confirm.targetEvent (ev)
+            confirm.ok ('Remove!')
+            confirm.cancel ('Cancel');
+            $mdDialog.show (confirm).then (function () {
 
-                api.Manager.removeManager(manager, function(err, data) {
+                api.Manager.removeManager (manager, function ( err, data ) {
 
 
-                    if (data) {
-                        toastr.success(data.message, "Successfully Removed");
-                        console.log(data);
+                    if ( data ) {
+                        toastr.success (data.message, "Successfully Removed");
+                        console.log (data);
                     } else {
-                        toastr.error(err.message, "error Removed");
+                        toastr.error (err.message, "error Removed");
                     }
 
 
                 })
 
-            }, function() {
+            }, function () {
 
 
             });
@@ -126,62 +141,82 @@ angular.module('cms.controllers')
 
         }
 
-        $scope.loggedDate = function(date) {
+        $scope.loggedDate = function ( date ) {
 
-            return date.substring(0, 10);
+            return date.substring (0, 10);
 
         }
 
 
-        function DialogController($scope, $mdDialog, api) {
+        function DialogController ( $scope, $mdDialog, api ) {
 
 
-
-            $scope.hide = function() {
-                $mdDialog.hide();
+            $scope.hide = function () {
+                $mdDialog.hide ();
             };
-            $scope.cancel = function() {
-                $mdDialog.cancel();
+            $scope.cancel = function () {
+                $mdDialog.cancel ();
             };
-            $scope.answer = function(answer) {
-                $mdDialog.hide(answer);
+            $scope.answer = function ( answer ) {
+                $mdDialog.hide (answer);
             };
 
-            $scope.getClubList = function() {
+            $scope.getClubList = function () {
                 $scope.updateButton = false;
-                api.Club.getAllClub(function(err, data) {
+                api.Club.getAllClub (function ( err, data ) {
 
-                    if (data) {
-                        $scope.clubs = api.Club.allClub;
-                        console.log(" data: ", data);
+                    if ( data ) {
+                        console.log ('managers ', api.Manager.managers);
+
+
+                        var tempClub, tempClubList = [];
+                        _.each(api.Manager.managers, function ( manager ) {
+
+                            tempClub = _.findWhere (api.Club.allClub, {clubName: manager.club.clubName});
+                            if ( tempClub )
+                                tempClubList.push (tempClub);
+
+                        });
+                        $scope.clubs = _.difference (api.Club.allClub, tempClubList);
+                        console.log (" filtered club: ", $scope.clubs);
                     }
 
                 });
             }
-            $scope.save = function(manager) {
-
+            $scope.save = function ( manager ) {
 
                 $scope.manager.createdBy = "admin";
 
-                console.log("Club Details :", JSON.stringify(manager));
+                $scope.manager.club =  "Dublin";
+                console.log ("Club Details :", JSON.stringify (manager));
 
-                api.Manager.createManager(manager, function(err, data) {
+                api.Manager.createManager (manager, function ( err, data ) {
 
 
-                    if (data) {
+                    if ( data ) {
 
-                        console.log(JSON.stringify(data));
-                        $scope.cancel();
+                        console.log (JSON.stringify (data));
+                        toastr.success (data.message, "Successfully Created");
+                        $scope.cancel ();
 
-                        $state.go("home.clubmanager");
+                        $state.go ("home.clubmanager");
 
                     } else {
-                        console.log(JSON.stringify(err));
+                        console.log (JSON.stringify (err));
+                        toastr.error (err.errorCode, "Error");
                     }
 
 
                 })
 
+//                if ( manager.profile.firstName || manager.profile.lastName || manager.profile.email || manager.profile.mobile ) {
+//
+//                    toastr.warning ("Fields required", "Warning");
+//                    console.log (manager);
+//
+//                } else {
+//
+//                }
 
             }
         }

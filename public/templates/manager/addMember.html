@@ -1,0 +1,136 @@
+<div>
+
+    <md-toolbar
+            style="min-height: 200px;background :url('images/tool_bar_header_bg.png');background-color: darkorange ">
+        <div class="md-toolbar-tools">
+
+            <h2>
+                <span class="ft_fff">Create Member</span>
+            </h2>
+
+        </div>
+    </md-toolbar>
+
+
+    <md-card style="width: 80%;margin: 0px auto;margin-top: -60px;position: relative;z-index: 9;">
+
+        <img ng-src="images/user_avatar.jpg" class="club_avatar">
+
+        <div style="padding-top: 10%;" layout="column">
+
+            <md-card class="nomarg ft-silver">
+                <md-card-content class="layout-padding">
+                    <div class="layout-column flex">
+
+                        <md-card class="marg-t10">
+                            <md-toolbar class="toolbar-bg md-whiteframe-4dp min-45">
+                                <div class="md-toolbar-tools" layout="row">
+                                    <h3 layout-align="start" class="ft_fff">Member Details : </h3>
+                                </div>
+                            </md-toolbar>
+                            <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="images/icons/user.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.profile.firstName" type="text" placeholder="First Name" required>
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="images/icons/user.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.profile.lastName" type="text" placeholder="Last Name" required>
+          </md-input-container>   </span>
+
+                            </div>
+
+                            <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/situation.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.address.address1" type="text" placeholder="Address Lane 1">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/pin66.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.address.address2" type="text" placeholder="Address Lane 2">
+          </md-input-container>   </span>
+
+                            </div>
+                            <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="images/icons/user.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.address.city" type="text" placeholder="City" required>
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="images/icons/user.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.address.state" type="text" placeholder="State" required>
+          </md-input-container>   </span>
+
+                            </div>
+
+                            <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/situation.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.address.country" type="text" placeholder="Country">
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/pin66.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.address.pin" type="text" placeholder="Pin">
+          </md-input-container>   </span>
+
+                            </div>
+                            <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="images/icons/user.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.email" type="email" placeholder="Email" required>
+          </md-input-container>
+           </span>
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="images/icons/user.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.mobileNo" type="text" placeholder="Mobile" required>
+          </md-input-container>   </span>
+
+
+                            </div>
+
+                            <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
+        <span flex>
+          <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
+              <md-icon md-svg-src="img/icons/situation.svg" class="email nomarg"></md-icon>
+              <input ng-model="member.cardNo" type="number" placeholder="Card Number">
+          </md-input-container>
+           </span>
+                                <h4>DOB :</h4>
+                                <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+
+                            </div>
+                        </md-card>
+
+                        <div layout="row" layout-align="center center">
+                            <md-button class="md-raised md-primary" ng-click="createMember(member)" ng-show="!updateView">Save</md-button>
+                            <md-button class="md-raised md-primary" ng-click="update(member)" ng-show="updateView">Update</md-button>
+                            <md-button class="md-raised md-primary" ng-click="cancel()" ng-show="!updateView">Cancel</md-button>
+                        </div>
+
+
+                    </div>
+                </md-card-content>
+
+            </md-card>
+
+
+        </div>
+
+    </md-card>
+
+
+</div>

@@ -5,7 +5,7 @@ angular.module('cms.directives').directive('mainNav', [
             return {
                 // scope: false,
                 restrict: 'E',
-                templateUrl: './templates/nav-main.html',
+                templateUrl: './templates/admin/nav-main.html',
                 replace: true,
                 link: function($scope, iElm, iAttrs, controller) {
                 	 $scope.sidebarHidden = false;

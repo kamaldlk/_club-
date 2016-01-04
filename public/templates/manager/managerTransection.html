@@ -1,0 +1,183 @@
+<div layout="column" flex class="nopadd" style="height:100%;background: #CCCCCB;">
+    <md-toolbar class="md-default-theme" style="background: url('images/managers/party-blur.jpg') no-repeat fixed center;background-size:cover;min-height: 120px;">
+        <div class="md-toolbar-tools">
+            <span class="ft_fff"> Transaction list</span>
+        </div>
+    </md-toolbar>
+
+    <div layout="row" flex style="width:85%;margin:0px auto;margin-top:-50px;position: relative;
+z-index: 100;">
+        <md-button class="md-fab" aria-label="Eat cake" ng-click="addTransaction($event)">
+            <md-icon md-svg-src="img/icons/cake.svg"></md-icon>
+        </md-button>
+        <div layout="column" flex class="" layout-margin>
+            <md-card class="nomarg">
+                <md-card-content layout-padding>
+                    <div layout="row" layout-padding flex>
+                    <div layout="column" layout-padding flex>
+                             <span layout="row" layout-align="space-between center"><p>Total Sales </p>
+                                 <md-menu style="z-index:100;">
+                                     <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                         <md-icon md-menu-origin md-svg-icon="img/icons/three-dots.svg"></md-icon>
+                                     </md-button>
+                                     <md-menu-content width="4" class="menu-dot_content">
+                                         <md-menu-item ng-repeat>
+                                             <md-button ng-click="ctrl.announceClick($index)">
+                                                 <div layout="row">
+                                                     <p flex>Quarterly sales</p>
+                                                     <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
+                                                 </div>
+                                             </md-button>
+                                         </md-menu-item>
+                                         <md-menu-item ng-repeat="item in [1, 2, 3]">
+                                             <md-button ng-click="ctrl.announceClick($index)">
+                                                 <div layout="row">
+                                                     <p flex>Monthly sales</p>
+                                                     <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
+                                                 </div>
+                                             </md-button>
+                                         </md-menu-item>
+                                         <md-menu-item ng-repeat="">
+                                             <md-button ng-click="ctrl.announceClick($index)">
+                                                 <div layout="row">
+                                                     <p flex>Weekly sales</p>
+                                                     <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
+                                                 </div>
+                                             </md-button>
+                                         </md-menu-item>
+                                     </md-menu-content>
+                                 </md-menu>
+
+                             </span>
+
+                        <span class="md-display-2 ft_grn"> $2343.43</span>
+                        <span layout="row">
+                        <span class="hash_color md-caption marg-r5"> Customer referrals </span>
+                            <span class="ft_grn md-caption"> $494.08</span>
+                        </span>
+                        <span layout="row">
+                        <span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>
+                        </span>
+                     </div>
+                     <div layout="column" layout-padding flex>
+                             <p>Today Sales</p>
+                         <span class="md-display-2 ft_grn"> $2343.43</span>
+                        <span layout="row">
+                        <span class="hash_color md-caption marg-r5"> Customer referrals </span>
+                            <span class="ft_grn md-caption"> $494.08</span>
+                        </span>
+                        <span layout="row">
+                        <span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>
+                        </span>
+                    </div>
+                    </div>
+                    </md-card-content>
+            </md-card>
+            <md-card class="nomarg">
+                <md-card-content layout-padding>
+
+                    <!--<md-data-table-container>-->
+                        <!--<table md-data-table class="data-table-list" md-progress="deferred">-->
+                            <!--<thead md-order="productStockPagination.order" md-trigger="onorderchange" class="full_wid  ">-->
+                            <!--<tr class="tbl-header">-->
+                                <!--<th name="Logo">asdf</th>-->
+                                <!--<th name="Name">asdfdfgd</th>-->
+                                <!--<th name="Address">dfgdf</th>-->
+                                <!--<th name="Contact Number">dsfgdf</th>-->
+                                <!--<th name="Actions">dfgdfg</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+                            <!--<tr ng-click="employeeDetails(employee)" ng-repeat="employee in data | filter:searchText:strict | orderBy: employeePagination.order | limitTo: employeePagination.limit: (employeePagination.page - 1) * employeePagination.limit">-->
+                                <!--<td>data</td>-->
+                                <!--<td>{{employee.name}}</td>-->
+                                <!--<td>{{employee.address.address1}}</td>-->
+                                <!--<td>{{employee.phoneNo}}</td>-->
+                                <!--<td layout="row">-->
+                                    <!--<ng-md-icon icon="mode_edit" size="20" class="icons hash_color btn-success padd-t10 action-buttons wid-40" ng-click="editEmployee(employee);$event.stopPropagation();"></ng-md-icon>-->
+                                    <!--<ng-md-icon icon="close" size="20" class="icons hash_color btn-danger padd-t10 action-buttons wid-40" ng-click="deleteEmployee(employee.userId);$event.stopPropagation();"></ng-md-icon>-->
+                                <!--</td>-->
+
+                            <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+
+                    <!--</md-data-table-container>-->
+
+                    <md-item class="data-table-list ">
+                        <md-item-content layout="row" class="tbl-header min-h60">
+                            <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
+                           <span flex=20 flex-xs="100" layout-align="start center" layout>
+                              <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18">
+                                 <ng-md-icon icon="face" class="svgheadercolor"></ng-md-icon>
+                                 <span class="svgheadercolor ft_16 padd-t3 padd-l5">Customer</span>
+                              </span>
+                           </span>
+
+                           <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">Transaction id</span>
+                           </span>
+                           <span flex=20 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">Referral </span>
+                           </span>
+                            <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red"> Offer</span>
+                           </span>
+                                <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red"> Amount</span>
+                           </span>
+                                <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">status</span>
+                           </span>
+                            </div>
+                        </md-item-content>
+                    </md-item>
+                    <md-item class="md-whiteframe-5dp ">
+                        <md-item-content layout="row" class="tbl-header min-h60">
+                            <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
+                           <span flex=20 flex-xs="100" layout-align="start center" layout>
+                              <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18">
+
+                                 <span class="ft_16 padd-t3 padd-l5">Habib</span>
+                                  <span layout="row">
+                        <span class="hash_color md-caption marg-r5"> Mobile : </span>
+                            <span class="ft_grn md-caption"> 98483-55543</span>
+                        </span>
+                              </span>
+                           </span>
+
+                           <span flex=15 flex-xs=100 layout-align="start center" layout>
+                           <span class="">TR-342</span>
+                           </span>
+                           <span flex=20 flex-xs=100 layout-align="center center" layout="column">
+                                <span class="ft_16 padd-t3 padd-l5">Raja</span>
+                                  <span layout="row">
+                        <span class="hash_color md-caption marg-r5"> Mobile : </span>
+                            <span class="ft_grn md-caption"> 98483-55543</span>
+                        </span>
+                              </span>
+                            <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5">id: </span>-->
+                            <!--<span class="ft_red md-caption">CB-2341 </span>-->
+                        <!--</span>-->
+
+                              </span>
+                           </span>
+                            <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red"> 20%</span>
+                           </span>
+                                <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_grn"> $45.3</span>
+                           </span>
+                                <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="">Process</span>
+                           </span>
+                            </div>
+                        </md-item-content>
+                    </md-item>
+
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>

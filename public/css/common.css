@@ -592,6 +592,7 @@ md-input-container:not(.md-input-invalid) > md-icon.name {
 .marg-t10 {
     margin-top: 10px;
 }
+.marg-r5{margin-right: 5px; !important}
 .club_bg{
     position: absolute;
     height: 100px;
@@ -600,3 +601,8 @@ md-input-container:not(.md-input-invalid) > md-icon.name {
     left: 3%;
     border-radius: 50%;
 }
+
+.side-nav-active{
+    background-color: #fcd71d
+}
+.menu-dot_content{}

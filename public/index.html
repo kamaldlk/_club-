@@ -5,8 +5,10 @@
 
     <!--CSS Designs-->
     <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+    <link rel="stylesheet" href="lib/md-data-table/md-data-table.min.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/manager.css">
     <link rel="stylesheet" type="text/css" href="lib/angular-toastr/dist/angular-toastr.css" />
 
     <!--Libraries-->
@@ -15,8 +17,11 @@
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/angular-aria/angular-aria.js"></script>
     <script src="lib/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="lib/md-data-table/md-data-table.min.js"></script>
     <script src="lib/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <script src="lib/underscore.js"></script>
+    <script src="lib/ngstorage/ngStorage.js"></script>
+
 
     <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
 
@@ -24,13 +29,16 @@
     <script src="js/app.config.js"></script>
 
     <!--Controllers-->
-    <script src="js/controllers/mainController.js"></script>
+    <script src="js/controllers/masterController.js"></script>
     <script src="js/controllers/authentication.js"></script>
     <script src="js/controllers/homeController.js"></script>
     <script src="js/controllers/clubController.js"></script>
     <script src="js/controllers/offerController.js"></script>
     <script src="js/controllers/currencyController.js"></script>
     <script src="js/controllers/managerController.js"></script>
+
+    <script src="js/controllers/manager/memberController.js"></script>
+    <script src="js/controllers/manager/transactionController.js"></script>
 
 
     <!--Directives-->
@@ -39,13 +47,17 @@
     <script src="js/directives/randomImageSrcDirective.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
 
+    <!--Factories-->
+
+    <script src="js/factories/currencyFactory.js"></script>
+
     <!--Providers-->
 
     <script src="js/providers/apiProvider.js"></script>
 
 
 </head>
-<body ng-controller="mainController">
+<body ng-controller="masterController">
 
 <div ui-view class="wrapper"></div>
 

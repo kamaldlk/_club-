@@ -7,51 +7,41 @@
  */
 angular.module ('cms.controllers')
 
-    .controller ("currencyController", ["$scope", "$mdDialog", "$state", "api", "toastr", function ( $scope, $mdDialog, $state, api, toastr ) {
+    .controller ("currencyController", ["$scope", "$mdDialog", "$state", "api", "toastr", "currency", function ( $scope, $mdDialog, $state, api, toastr, currency ) {
 
-
+        $scope.selectedMenu = 'currency';
+//        $scope.currencyData = currency.getAll();
+//        $scope.currencyArray =currency.getCurrencyList();
+        $scope.api = api;
         $scope.getAllCurrencyList = function () {
-
             api.Currency.getAll (function ( err, data ) {
-
                 if ( data ) {
-
                     $scope.currencyData = api.Currency.allCountries;
                     console.log ($scope.currencyData)
-
                     api.Currency.getDetails (function ( err, data ) {
-
                         if ( data ) {
-
-                            $scope.currencyArray = api.Currency.currencyArray;
+                            $scope.currencyArray = api.Currency.currencyConverstionArray;
                             console.log ($scope.currencyArray)
-
-
                             api.Offer.Get (function ( err, data ) {
-
                                 if ( data ) {
-
                                     $scope.offer = data;
-
                                 }
-
                             });
-
                         }
-
                     });
-
                 }
-
             });
         }
 
+        $scope.$watch ('currencyArray', function ( newVal, oldVal ) {
+            console.log ('changed currency data ', newVal, 'oldval ', oldVal);
+        });
 
         $scope.createCurrency = function ( ev ) {
 
             $mdDialog.show ({
                 controller: DialogController,
-                templateUrl: 'templates/dialog/add_currency.html',
+                templateUrl: 'templates/admin/dialog/add_currency.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             })
@@ -108,7 +98,7 @@ angular.module ('cms.controllers')
 
 
                 },
-                templateUrl: 'templates/dialog/add_currency.html',
+                templateUrl: 'templates/admin/dialog/add_currency.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
 
@@ -170,8 +160,8 @@ angular.module ('cms.controllers')
                         api.Currency.getDetails (function ( err, data ) {
                             if ( data ) {
 
-                                $scope.currencyArray = api.Currency.currencyArray;
-                                console.log ($scope.currencyArray)
+                                $scope.currencyArray = api.Currency.currencyConverstionArray;
+
                                 $mdDialog.hide ();
 
                             }
@@ -191,8 +181,21 @@ angular.module ('cms.controllers')
 
                     if ( data ) {
 
-                        $scope.currencyData = api.Currency.allCountries;
-                        console.log ($scope.currencyData)
+                        var tempCtry, tempCtryList = [] , currencyList;
+
+                        currencyList = _.pluck (api.Currency.allCountries, 'currency');
+
+                        _.each (api.Currency.currencyConverstionArray, function ( currencyConversion ) {
+                            tempCtry = _.findWhere (currencyList, {code: currencyConversion.fromCurrency.code});
+                            if ( tempCtry )
+                                tempCtryList.push (tempCtry);
+                        });
+
+
+                        $scope.currencyData = _.difference (currencyList, tempCtryList);
+
+
+                        console.log ('filtered currency list ', $scope.currencyData);
 
                     }
 

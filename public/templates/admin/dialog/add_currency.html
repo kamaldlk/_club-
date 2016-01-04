@@ -5,7 +5,7 @@
 
         <md-toolbar class=" toolbar-bg md-whiteframe-4dp">
             <div class="md-toolbar-tools" layout="row">
-                <h3 layout-align="start" class="ft_fff">Club Manager List </h3>
+                <h3 layout-align="start" class="ft_fff">Currency Converstion</h3>
             </div>
         </md-toolbar>
 
@@ -18,7 +18,7 @@
                         ng-show="!updateView">
         <md-icon md-svg-src="img/icons/currency19.svg" class="email nomarg"></md-icon>
         <md-select ng-model="currency.fromCode" class="padd-l36">
-            <md-option class="dd_currency" ng-repeat="item in currencyData" ng-init="currency = item.currency"
+            <md-option class="dd_currency" ng-repeat="currency in currencyData"
                        value="{{currency.code}}">
                 <div layout="row" layout-ailgn="start center" flex>
                     <div flex="70" layout="row" layout-ailgn="start center">
@@ -76,10 +76,26 @@
     <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="width: 85%;" ng-show="!updateView">
         <md-icon md-svg-src="img/icons/currency19.svg" class="email nomarg"></md-icon>
         <md-select ng-model="club" class="padd-l36">
-            <md-option class="dd_currency" value="USD">
-                USD
-            </md-option>
+            <md-option class="dd_currency"  value="USD">
+                <div layout="row" layout-ailgn="start center" flex>
+                    <div flex="70" layout="row" layout-ailgn="start center">
+                        <img ng-src="images/flags/unitedstates.png" class="md-avatar"
+                             style="width: 50px; height: 50px;border-radius: 50%"/>
 
+                        <div layout="column" style="padding-left:10px;">
+                            <span class="md-title">United States</span>
+                            <span class="md-subhead">Doller</span>
+                        </div>
+                    </div>
+
+                    <div layout="row" layout-align="center center" flex="30">
+
+                        <span class="md-subhead">USD</span>
+
+                    </div>
+                </div>
+
+            </md-option>
         </md-select>
     </md-input-container>
 
@@ -121,6 +137,7 @@
             <div layout="row" layout-align="center center">
                 <md-button class="md-raised md-primary" ng-click="save(currency)" ng-show="!updateView">Save</md-button>
                 <md-button class="md-raised md-primary" ng-click="update(currencyValue)" ng-show="updateView">Update</md-button>
+                <md-button class="md-raised md-primary" ng-click="cancel()" ng-show="!updateView">Cancel</md-button>
             </div>
 
         </md-content>

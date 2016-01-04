@@ -1,0 +1,45 @@
+<div class="full-height ng-scope" layout="column">
+
+    <div layout="column" flex layout class="relative" layout-fill role="main">
+        <md-toolbar style="position: relative;z-index: 90;">
+            <div class="md-toolbar-tools" layout="row" style="background-color:#2D3E4F;position: fixed;">
+      <span flex>
+         <img ng-src="images/user_avatar.jpg" class="" style="border-radius:50px;width:35px; height: 35px;"/>
+      </span>
+      <span flex style="height: 100%;">
+        <ul class="header_ul" flex layout="row" layout-align="center center">
+            <li flex  ui-sref="manager.transection">
+                <!-- <ng-md-icon icon="dashboard" class="svgicon_style"></ng-md-icon> -->
+                <span class="textOnMenu" ng-hide="sidebarHidden">Transection</span>
+            </li>
+            <li flex ui-sref="manager.memberlist">
+                <!-- <ng-md-icon icon="supervisor_account" class="svgicon_style"></ng-md-icon> -->
+                <span class="textOnMenu" ng-hide="sidebarHidden"  >Member Details</span>
+            </li>
+            <li flex ui-sref="manager.addmember">
+                <!-- <ng-md-icon icon="dashboard" class="svgicon_style"></ng-md-icon> -->
+                <span class="textOnMenu" ng-hide="sidebarHidden" >Add member</span>
+            </li>
+            <li flex ng-click="logout()">
+                <!-- <ng-md-icon icon="logout" class="svgicon_style"></ng-md-icon> -->
+                <span class="textOnMenu" ng-hide="sidebarHidden">logout</span>
+            </li>
+        </ul>
+      </span>
+            </div>
+            <!-- <div class="tweets-bar md-whiteframe-4dp"></div> -->
+        </md-toolbar>
+        <div layout="column" layout-fill flex md-scroll-y >
+
+
+                <ui-view layout="column" layout-fill flex >
+
+                </ui-view>
+
+
+        </div>
+
+    </div>
+    <footer-nav></footer-nav>
+
+</div>

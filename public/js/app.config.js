@@ -8,51 +8,73 @@
 
 angular.module ("cms")
 
-    .config (['$stateProvider', '$urlRouterProvider',"apiProvider", function ( $stateProvider, $urlRouterProvider,apiProvider ) {
+    .config (['$stateProvider', '$urlRouterProvider', "apiProvider", function ( $stateProvider, $urlRouterProvider, apiProvider ) {
 
-        $urlRouterProvider.otherwise ("/authentication");
+        $urlRouterProvider.otherwise ("authentication");
 
         $stateProvider
             .state ('authentication', {
             url: "/authentication",
             templateUrl: "templates/authentication.html",
-            controller: 'mainController'
+            controller: 'masterController'
         })
             .state ('home', {
             url: "/home",
-            templateUrl: "templates/main.html",
+            templateUrl: "templates/admin/main.html",
             controller: 'homeController'
         })
 
             .state ('home.dashboard', {
             url: "/dashboard",
-            templateUrl: "templates/dashboard.html",
+            templateUrl: "templates/admin/dashboard.html",
             controller: 'homeController'
         })
             .state ('home.clublist', {
             url: "/clublist",
-            templateUrl: "templates/club-list.html",
+            templateUrl: "templates/admin/club-list.html",
             controller: 'clubController'
         })
 
             .state ('home.clubmanager', {
             url: "/clubmanager",
-            templateUrl: "templates/club-manager.html",
+            templateUrl: "templates/admin/club-manager.html",
             controller: 'managerController'
         })
             .state ('home.createclub', {
             url: "/createclub/:clubId",
-            templateUrl: "templates/create_club.html",
+            templateUrl: "templates/admin/create_club.html",
             controller: 'clubController'
         })
             .state ('home.currency', {
             url: "/currency",
-            templateUrl: "templates/currency.html",
+            templateUrl: "templates/admin/currency.html",
             controller: 'currencyController'
         })
+            .state ('manager', {
+            url: "/manager",
+            templateUrl: "templates/manager/managerMain.html",
+            controller: 'masterController'
+        })
 
+            .state ('manager.memberlist', {
+            url: "/managerlist",
+            templateUrl: "templates/manager/memberList.html",
+            controller: 'memberController'
+        })
 
-        apiProvider.setApiUrl("http://192.168.1.100:3002/");
+            .state ('manager.transection', {
+            url: "/managertransection",
+            templateUrl: "templates/manager/dialog/transection_entry.html",
+            controller: 'transactionController'
+        })
+
+            .state ('manager.addmember', {
+            url: "/manageraddmember",
+            templateUrl: "templates/manager/addMember.html",
+            controller: 'memberController'
+        })
+
+        apiProvider.setApiUrl ("http://192.168.1.100:3002/");
 
 
     }])

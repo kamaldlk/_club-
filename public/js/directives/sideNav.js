@@ -4,7 +4,7 @@ angular.module('cms.directives').directive('sideNav', [
             return {
                 // scope: false,
                 restrict: 'E',
-                templateUrl: './templates/side-nav.html',
+                templateUrl: './templates/admin/side-nav.html',
                 replace: true,
                 link: function($scope, iElm, iAttrs, controller) {
 	        	  

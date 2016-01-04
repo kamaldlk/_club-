@@ -6,7 +6,7 @@
             <ng-md-icon icon="location_city" style="fill:#aaa;padding-left: 5px;" size="26"></ng-md-icon>
          </span>
             <div class="search_style">
-                <input type="text" class="search_input"/>
+                <input type="text" class="search_input" ng-model="clubListFilter"/>
                 <div class="close">
                     <span class="front"></span>
                     <span class="back"></span>
@@ -22,7 +22,7 @@
                     <md-grid-list md-cols="4" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="6" md-cols-lg="5"
                                   md-row-height-gt-md="1:1" md-row-height="2:2" md-row-height-gt-sm="2:2"
                                   md-gutter="2px" md-gutter-gt-sm="10px">
-                        <md-grid-tile ng-repeat="club in clubs" class="clublist-item md-whiteframe-1dp" md-rowspan="2"
+                        <md-grid-tile ng-repeat="club in clubs | filter:clubListFilter" class="clublist-item md-whiteframe-1dp" md-rowspan="2"
                                       md-colspan="2" md-colspan-xs="1">
                             <md-content flex layout-padding layout="column" style="position: absolute;top: 0;left: 0;;">
                                 <div layout="row" flex layout-padding style="padding:0px;position: relative;">
@@ -35,6 +35,7 @@
                                         <md-icon md-svg-src="images/icons/eye.svg" style="margin:0px;"></md-icon>
                                     </md-button>
                                 </div>
+
                                 <div layout="row" flex layout-padding style="padding-left:0px;padding-right:0px;">
                                     <img ng-src="images/user1.jpg" class="md-avatar"
                                          style="width:40px; height:40px;border-radius: 50%;"/>
@@ -63,14 +64,14 @@
                         </span>
                                 <span flex class="md-headline" style="font-weight: 600;"> {{club.clubName}}</span>
                         <span flex
-                              class="ft-12">Club Description Here is some more information about this card.</span>
+                              class="ft-12">{{club.description}}</span>
                         <span flex>
                            <ng-md-icon icon="perm_identity" style="fill:skyblue" size="18"></ng-md-icon>
                            <span class="ft-14"> {{club.managers[0].profile.firstName}}  {{club.managers[0].profile.lastName  }}</span>
                         </span>
                         <span flex>
                            <ng-md-icon icon="email" style="fill:skyblue" size="16"></ng-md-icon>
-                           <span class="ft-14"> {{club.managers[0].profile.email}}</span>
+                           <span class="ft-14"> {{club.email}}</span>
                         </span>
                         <span flex>
                            <ng-md-icon icon="cake" style="fill:skyblue" size="16"></ng-md-icon>

@@ -1,0 +1,177 @@
+
+<div layout="column" flex class="nopadd" style="height:100%;background: #CCCCCB;" ng-init="getAllMember()">
+    <md-toolbar class="md-default-theme" style="background: url('images/managers/party-blur.jpg') no-repeat fixed center;background-size:cover;min-height: 120px;">
+        <div class="md-toolbar-tools">
+            <span class="ft_fff"> Member list</span>
+        </div>
+    </md-toolbar>
+    <div layout="row" flex style="width:85%;margin:0px auto;margin-top:-50px;position: relative;
+z-index: 100;">
+        <div layout="column" flex="40" class="" layout-margin>
+            <md-card class="nomarg">
+                <md-card-content layout-padding>
+                    <div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding:0px;">
+             <span layout="column" layout-align="start start" flex>
+                <h3 layout-align="start" class="ft_000">{{memberLength}}</h3>
+                <span class="md-caption hash_color">Members</span>
+             </span>
+                        <div class="search_style marg-r5">
+                            <input type="text" class="search_input bcolor-hash" ng-model="cardNo"/>
+                            <div class="close">
+                                <span class="front bg-hash"></span>
+                                <span class="back bg-hash"></span>
+                            </div>
+                        </div>
+                        <!-- <md-list style="min-height:45px;">
+
+                          <div class="search_style">
+                             <input type="text" class="search_input bcolor-hash"/>
+                             <div class="close">
+                                <span class="front bg-hash"></span>
+                                <span class="back bg-hash"></span>
+                             </div>
+                          </div>
+                        </md-list> -->
+                    </div>
+                </md-card-content>
+                <md-divider></md-divider>
+            </md-card>
+
+            <md-card class="nomarg ">
+                <md-card-content class="nopadd">
+                    <md-list ng-repeat="member in memberList | filter:cardNo" ng-click="member2(member)" class="list_member">
+                        <md-item-content layout="row" class="tbl-header min-h60">
+                            <div layout="row" layout-xs="column" flex layout-padding class="full_wid">
+                    <span flex=15 flex-xs=100 layout-align="start center" layout>
+                    <span class="ft_red">  <img ng-src="images/user1.jpg" class="md-avatar"
+                                                style="width:40px; height:40px;border-radius: 50%;"/></span>
+                    </span>
+                    <span flex=55 flex-xs=100 layout="column" layout-align="center start" layout>
+                    <span class="md-subhead">{{member.profile.firstName}} {{member.profile.lastName}}</span>
+                      <span class="md-caption hash_color"><strong>Id : </strong>{{member.cardNo}} </span>
+                    </span>
+                    <span flex=30 flex-xs=100 layout-align="end center" layout>
+                    <span class="ft_red">  <md-chips><md-chip class="bal_amt"> $ {{member.netAmount}}</md-chip></md-chips></span>
+                    </span>
+                            </div>
+                            </md-item-content>
+                        <md-divider></md-divider>
+                    </md-list>
+
+                </md-card-content>
+            </md-card>
+
+        </div>
+        <div layout="column" flex="60" layout-margin>
+            <md-card class="nomarg">
+                <div class="" layout="row" layout-xs="column" flex>
+       <span flex=25 flex-xs=100 layout-align="start center" layout-padding>
+        <span> <img ng-src="images/user1.jpg" class="md-avatar"
+                    style="width:100px; height:100px;border-radius: 50%;"/></span>
+        </span>
+        <span flex=55 flex-xs=100 layout="column" layout-align="center start" layout-padding>
+          <span>
+            <ng-md-icon icon="perm_identity" style="fill:#0097a7;" size="22"></ng-md-icon>
+            <span class="md-title"> {{memberDetail.profile.firstName}} {{memberDetail.profile.lastName}}</span>
+          </span>
+          <span>
+            <ng-md-icon icon="account_circle" style="fill:#0097a7;" size="20"></ng-md-icon>
+            <span class="md-body-2 hash_color">id : {{memberDetail.cardNo}}</span>
+          </span>
+          <span>
+            <ng-md-icon icon="grid_on" style="fill:#0097a7;" size="20"></ng-md-icon>
+            <span class="md-caption hash_color">Start date : {{memberDetail.createdOn}}</span>
+          </span>
+        </span>
+        <span flex=20 flex-xs=100 layout="column" layout-align="center center" layout-padding>
+              <span class="md-headline"> $ {{memberDetail.netAmount}}</span>
+              <span class="md-caption ft_grn">Balance Amount</span>
+        </span>
+                </div>
+            </md-card>
+            <md-card class="nomarg ft-silver">
+                <md-card-content layout-padding>
+                    <div layout="column" flex>
+                        <span class="md-subhead txt-dec txt-upper">Club Details :</span>
+
+                        <div layout="row" flex layout-padding>
+        <span flex>
+          <ng-md-icon icon="location_city" style="fill:#0097a7;" class="pull-left padd-lr5" size="20"></ng-md-icon>
+          <span class="md-body-1 hash_color"> {{memberDetail.club.clubName}}</span>
+        </span>
+                            <span class="hori_line"></span>
+        <span flex>
+          <ng-md-icon icon="phone" style="fill:#0097a7;" class="pull-left padd-lr5" size="20"></ng-md-icon>
+          <span class="md-body-1 hash_color"> {{memberDetail.club.contactNumber}}</span>
+        </span>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card class="nomarg">
+                <md-card-content layout-padding>
+                    <div layout="column" class="" flex>
+                        <span class="md-subhead txt-dec txt-upper">Member Details :</span>
+                        <div layout="row" flex>
+                            <div layout="column" flex class="marg-10">
+            <span flex>
+              <!-- <ng-md-icon icon="location_city" style="fill:#0097a7;" size="20"></ng-md-icon> -->
+              <span class="md-body-1">Address :</span>
+            </span>
+                                <span class="md-body-1 hash_color padd-l18 ">{{memberDetail.address.address1}}, {{memberDetail.address.address2}}, {{memberDetail.address.country}}</span>
+                            </div>
+
+                            <div layout="column" flex class="marg-10">
+          <span flex>
+            <!-- <ng-md-icon icon="account_circle" style="fill:#0097a7;" size="20"></ng-md-icon> -->
+            <span class="md-body-1">DOB :</span>
+            <span class="md-body-1 hash_color padd-l18 ">12-Dec-15</span>
+            </span>
+
+                            </div>
+
+                        </div>
+                        <div layout="row" flex>
+                            <div layout="column" flex layout-algn="start none" class="marg-10">
+          <span flex>
+            <!-- <ng-md-icon icon="account_circle" style="fill:#0097a7;" size="20"></ng-md-icon> -->
+            <span class="md-body-1">Mobile :</span>
+            <span class="md-body-1 hash_color padd-l18  ">{{memberDetail.mobileNo}}</span>
+          </span>
+
+                            </div>
+                            <div layout="column" flex class="marg-10">
+        <span flex>
+          <!-- <ng-md-icon icon="account_circle" style="fill:#0097a7;" size="20"></ng-md-icon> -->
+          <span class="md-body-1">Gender :</span> <span class="md-body-1 hash_color padd-l18 ">Male</span>
+          </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <!--<md-card class="nomarg ft-silver">-->
+                <!--<md-card-content layout-padding>-->
+                    <!--<div layout="column" flex>-->
+                        <!--<span class="md-subhead txt-dec txt-upper">Nominee Details :</span>-->
+
+                        <!--<div layout="row" flex layout-padding>-->
+        <!--<span flex>-->
+          <!--<ng-md-icon icon="account_circle" style="fill:#0097a7;" size="20" class="pull-left padd-lr5"></ng-md-icon>-->
+          <!--<span class="md-body-1">Nominee name :</span> <span class="md-body-1 hash_color padd-l18 ">Habib</span>-->
+          <!--</span>-->
+                            <!--<span class="hori_line"></span>-->
+        <!--<span flex>-->
+          <!--<ng-md-icon icon="group" style="fill:#0097a7;" size="20" class="pull-left padd-lr5"></ng-md-icon>-->
+          <!--<span class="md-body-1">Relationship :</span> <span class="md-body-1 hash_color padd-l18 ">Father</span>-->
+          <!--</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</md-card-content>-->
+            <!--</md-card>-->
+        </div>
+
+
+    </div>
+</div>

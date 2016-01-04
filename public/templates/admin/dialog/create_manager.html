@@ -18,7 +18,7 @@
                                  <span flex class="padd">
                      <md-input-container>
                          <label>User Name</label>
-                         <input ng-model="manager.userName" type="text">
+                         <input ng-model="manager.userName" type="text" required>
                      </md-input-container>
                   </span>
                         <span flex>
@@ -33,8 +33,8 @@
                          <span flex>
                      <md-input-container>
                          <label>Select Club</label>
-                         <md-select ng-model="manager.club">
-                             <md-option ng-repeat="club in clubs" value="{{club.clubName}}">
+                         <md-select ng-model="manager.club" ng-model-options="{trackBy: '$value.clubName'}">
+                             <md-option ng-repeat="club in clubs" ng-value="club">
                                  {{club.clubName}}
                              </md-option>
 
@@ -64,14 +64,14 @@
                     <div layout="row" layout-sm="column" layout-margin class="club_profile padd-t10">
         <span flex>
           <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
-              <md-icon md-svg-src="img/icons/situation.svg" class="email nomarg"></md-icon>
-              <input ng-model="manager.profile.firstName" type="text" placeholder="First Name">
+              <md-icon md-svg-src="images/icons/user.svg" class="email nomarg"></md-icon>
+              <input ng-model="manager.profile.firstName" type="text" placeholder="First Name" required>
           </md-input-container>
            </span>
         <span flex>
           <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
-              <md-icon md-svg-src="img/icons/pin66.svg" class="email nomarg"></md-icon>
-              <input ng-model="manager.profile.lastName" type="text" placeholder="Last Name">
+              <md-icon md-svg-src="images/icons/user.svg"  class="email nomarg"></md-icon>
+              <input ng-model="manager.profile.lastName" type="text" placeholder="Last Name" required>
           </md-input-container>   </span>
 
                     </div>
@@ -122,13 +122,13 @@
         <span flex>
           <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
               <md-icon md-svg-src="img/icons/phone21.svg" class="email nomarg"></md-icon>
-              <input ng-model="manager.profile.mobile" type="text" placeholder="phone">
+              <input ng-model="manager.profile.mobile" type="text" placeholder="phone" required>
           </md-input-container>
            </span>
         <span flex>
           <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
               <md-icon md-svg-src="img/icons/email19.svg" class="email nomarg"></md-icon>
-              <input ng-model="manager.profile.email" type="text" placeholder="Email">
+              <input ng-model="manager.profile.email" type="text" placeholder="Email" required>
           </md-input-container>   </span>
 
                     </div>
