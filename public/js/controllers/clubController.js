@@ -95,7 +95,7 @@ angular.module ('cms.controllers')
             $scope.club.logo = "logo";
             $scope.club.createdBy = "admin";
             $scope.club.netAmount = "0";
-            $scope.club.currencyDetails = "INR"
+            $scope.club.currencyDetails = club.currencyDetails.currency.code;
 
             console.log ("Club Details :", JSON.stringify (club));
 

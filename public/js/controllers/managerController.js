@@ -187,7 +187,7 @@ angular.module ('cms.controllers')
 
                 $scope.manager.createdBy = "admin";
 
-                $scope.manager.club =  "Dublin";
+                $scope.manager.club = manager.club.clubName;
                 console.log ("Club Details :", JSON.stringify (manager));
 
                 api.Manager.createManager (manager, function ( err, data ) {
