@@ -65,6 +65,11 @@ angular.module ('cms.controllers')
 
                     console.log ("currency", currency);
 
+                    $scope.cancel = function () {
+                        $mdDialog.cancel ();
+                    };
+
+
                     $scope.update = function ( currencyValue ) {
 
                         $scope.updateCurrency = {};
@@ -137,6 +142,7 @@ angular.module ('cms.controllers')
 
             });
         }
+
 
         function DialogController ( $scope, $mdDialog, api ) {
             $scope.updateView = false;

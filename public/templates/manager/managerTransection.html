@@ -7,69 +7,69 @@
 
     <div layout="row" flex style="width:85%;margin:0px auto;margin-top:-50px;position: relative;
 z-index: 100;">
-        <md-button class="md-fab" aria-label="Eat cake" ng-click="addTransaction($event)">
-            <md-icon md-svg-src="img/icons/cake.svg"></md-icon>
+        <md-button class="md-fab transaction_fab" aria-label="Eat cake" ng-click="addTransaction($event)" style="">
+            <md-icon md-svg-src="img/icons/plus79.svg" class="nomarg"></md-icon>
         </md-button>
         <div layout="column" flex class="" layout-margin>
             <md-card class="nomarg">
                 <md-card-content layout-padding>
                     <div layout="row" layout-padding flex>
                     <div layout="column" layout-padding flex>
-                             <span layout="row" layout-align="space-between center"><p>Total Sales </p>
-                                 <md-menu style="z-index:100;">
-                                     <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                                         <md-icon md-menu-origin md-svg-icon="img/icons/three-dots.svg"></md-icon>
-                                     </md-button>
-                                     <md-menu-content width="4" class="menu-dot_content">
-                                         <md-menu-item ng-repeat>
-                                             <md-button ng-click="ctrl.announceClick($index)">
-                                                 <div layout="row">
-                                                     <p flex>Quarterly sales</p>
-                                                     <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
-                                                 </div>
-                                             </md-button>
-                                         </md-menu-item>
-                                         <md-menu-item ng-repeat="item in [1, 2, 3]">
-                                             <md-button ng-click="ctrl.announceClick($index)">
-                                                 <div layout="row">
-                                                     <p flex>Monthly sales</p>
-                                                     <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
-                                                 </div>
-                                             </md-button>
-                                         </md-menu-item>
-                                         <md-menu-item ng-repeat="">
-                                             <md-button ng-click="ctrl.announceClick($index)">
-                                                 <div layout="row">
-                                                     <p flex>Weekly sales</p>
-                                                     <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
-                                                 </div>
-                                             </md-button>
-                                         </md-menu-item>
-                                     </md-menu-content>
-                                 </md-menu>
+                             <!--<span layout="row" layout-align="space-between center"><p>Total Sales </p>-->
+                                 <!--<md-menu style="z-index:100;">-->
+                                     <!--<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">-->
+                                         <!--<md-icon md-menu-origin md-svg-icon="img/icons/three-dots.svg"></md-icon>-->
+                                     <!--</md-button>-->
+                                     <!--<md-menu-content width="4" class="menu-dot_content">-->
+                                         <!--<md-menu-item ng-repeat>-->
+                                             <!--<md-button ng-click="ctrl.announceClick($index)">-->
+                                                 <!--<div layout="row">-->
+                                                     <!--<p flex>Quarterly sales</p>-->
+                                                     <!--<md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>-->
+                                                 <!--</div>-->
+                                             <!--</md-button>-->
+                                         <!--</md-menu-item>-->
+                                         <!--<md-menu-item ng-repeat="item in [1, 2, 3]">-->
+                                             <!--<md-button ng-click="ctrl.announceClick($index)">-->
+                                                 <!--<div layout="row">-->
+                                                     <!--<p flex>Monthly sales</p>-->
+                                                     <!--<md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>-->
+                                                 <!--</div>-->
+                                             <!--</md-button>-->
+                                         <!--</md-menu-item>-->
+                                         <!--<md-menu-item ng-repeat="">-->
+                                             <!--<md-button ng-click="ctrl.announceClick($index)">-->
+                                                 <!--<div layout="row">-->
+                                                     <!--<p flex>Weekly sales</p>-->
+                                                     <!--<md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>-->
+                                                 <!--</div>-->
+                                             <!--</md-button>-->
+                                         <!--</md-menu-item>-->
+                                     <!--</md-menu-content>-->
+                                 <!--</md-menu>-->
 
                              </span>
 
-                        <span class="md-display-2 ft_grn"> $2343.43</span>
-                        <span layout="row">
-                        <span class="hash_color md-caption marg-r5"> Customer referrals </span>
-                            <span class="ft_grn md-caption"> $494.08</span>
-                        </span>
-                        <span layout="row">
-                        <span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>
-                        </span>
+                        <!--<span class="md-display-2 ft_grn"> $2343.43</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5"> Customer referrals </span>-->
+                            <!--<span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
                      </div>
-                     <div layout="column" layout-padding flex>
-                             <p>Today Sales</p>
-                         <span class="md-display-2 ft_grn"> $2343.43</span>
-                        <span layout="row">
-                        <span class="hash_color md-caption marg-r5"> Customer referrals </span>
-                            <span class="ft_grn md-caption"> $494.08</span>
-                        </span>
-                        <span layout="row">
-                        <span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>
-                        </span>
-                    </div>
+                     <!--<div layout="column" layout-padding flex>-->
+                             <!--<p>Today Sales</p>-->
+                         <!--<span class="md-display-2 ft_grn"> $2343.43</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5"> Customer referrals </span>-->
+                            <!--<span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
+                    <!--</div>-->
                     </div>
                     </md-card-content>
             </md-card>
@@ -110,12 +110,12 @@ z-index: 100;">
                            <span flex=20 flex-xs="100" layout-align="start center" layout>
                               <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18">
                                  <ng-md-icon icon="face" class="svgheadercolor"></ng-md-icon>
-                                 <span class="svgheadercolor ft_16 padd-t3 padd-l5">Customer</span>
+                                 <span class="svgheadercolor ft_16 padd-t3 padd-l5">Card Holder</span>
                               </span>
                            </span>
 
                            <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red">Transaction id</span>
+                           <span class="ft_red">Card no</span>
                            </span>
                            <span flex=20 flex-xs=100 layout-align="center center" layout>
                            <span class="ft_red">Referral </span>
@@ -127,33 +127,40 @@ z-index: 100;">
                            <span class="ft_red"> Amount</span>
                            </span>
                                 <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red">status</span>
+                           <span class="ft_red">Transaction Date</span>
                            </span>
                             </div>
                         </md-item-content>
                     </md-item>
-                    <md-item class="md-whiteframe-5dp ">
+                    <md-item class="md-whiteframe-5dp " ng-repeat = "transaction in transactionHistory">
                         <md-item-content layout="row" class="tbl-header min-h60">
                             <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
                            <span flex=20 flex-xs="100" layout-align="start center" layout>
                               <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18">
 
-                                 <span class="ft_16 padd-t3 padd-l5">Habib</span>
+                                 <span class="ft_16 padd-t3 padd-l5">{{transaction.cardOwner.profile.firstName}} {{transaction.cardOwner.profile.lastName}}</span>
                                   <span layout="row">
-                        <span class="hash_color md-caption marg-r5"> Mobile : </span>
-                            <span class="ft_grn md-caption"> 98483-55543</span>
+                        <span class="hash_color md-caption padd-l5 marg-r5"> Mobile : </span>
+                            <span class="ft_grn md-caption"> {{transaction.cardOwner.mobileNo}}</span>
                         </span>
                               </span>
                            </span>
 
                            <span flex=15 flex-xs=100 layout-align="start center" layout>
-                           <span class="">TR-342</span>
+                           <span class="">{{transaction.cardNo}}</span>
                            </span>
-                           <span flex=20 flex-xs=100 layout-align="center center" layout="column">
-                                <span class="ft_16 padd-t3 padd-l5">Raja</span>
+                           <span flex=20 flex-xs=100 layout-align="center center" layout="column" ng-show="!transaction.usedByCardholder">
+                                <span class="ft_16 padd-t3 padd-l5">{{transaction.customerDetails.name}}</span>
                                   <span layout="row">
-                        <span class="hash_color md-caption marg-r5"> Mobile : </span>
-                            <span class="ft_grn md-caption"> 98483-55543</span>
+                        <span class="hash_color md-caption marg-r5" > Mobile : </span>
+                            <span class="ft_grn md-caption"> {{transaction.customerDetails.mobile}}</span>
+                        </span>
+                              </span>
+                                 <span flex=20 flex-xs=100 layout-align="center center" layout="column" ng-show="transaction.usedByCardholder">
+                                <span class="ft_16 padd-t3 padd-l5">-</span>
+                                  <span layout="row">
+                        <span class="hash_color md-caption marg-r5" ng-show="!transaction.usedByCardholder"> Mobile : </span>
+                            <span class="ft_grn md-caption" ng-show="!transaction.usedByCardholder"> - </span>
                         </span>
                               </span>
                             <!--<span layout="row">-->
@@ -164,13 +171,13 @@ z-index: 100;">
                               </span>
                            </span>
                             <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red"> 20%</span>
+                           <span class="ft_red"> {{transaction.amount.offer}}%</span>
                            </span>
                                 <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_grn"> $45.3</span>
+                           <span class="ft_grn"> ${{transaction.amount.saved}}</span>
                            </span>
                                 <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="">Process</span>
+                           <span class="">{{loggedDate(transaction.transactionDate)}}</span>
                            </span>
                             </div>
                         </md-item-content>

@@ -28,7 +28,7 @@ angular.module ('cms.controllers')
 
                         api.Offer.Get(function(err,data){})
 
-                        $state.go ("manager.memberlist");
+                        $state.go ("manager.transection");
                         console.log(api.Offer.offers)
 
                     }

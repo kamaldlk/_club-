@@ -41,33 +41,21 @@ angular.module ('cms.controllers')
 
             $scope.result = parseInt (totalValue) * parseInt ($scope.offerDetails) / 100;
 
+            $scope.totalAmount = totalValue - $scope.result;
 
         }
 
 
-        api.Offer.Get (function ( err, data ) {})
-        api.Member.getAll (function ( err, data ) {})
+        $scope.addTransaction = function () {
 
-        $scope.addTransaction = function ( ev ) {
+            $state.go ('manager.transectionentery');
 
-            $mdDialog.show ({
-                controller: DialogController,
-                templateUrl: 'templates/manager/dialog/transection_entry.html',
-                targetEvent: ev,
-                clickOutsideToClose: true
-
-            })
-                .then (function ( answer ) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function () {
-                $scope.status = 'You cancelled the dialog.';
-            });
         }
 
 
         $scope.createTransaction = function ( transaction ) {
 
-            $scope.transaction.clubId = "568a3f991239ce5c6de272c3";
+            $scope.transaction.clubId = $scope.$storage.adminUsers.club._id;
             $scope.transaction.code = "INR";
             $scope.transaction.currency = $scope.$storage.adminUsers.club.currencyDetails;
             $scope.transaction.usedByCardholder = $scope.cardHolderValue;
@@ -77,6 +65,8 @@ angular.module ('cms.controllers')
                 $scope.transaction.referredBy = $scope.memberDetail._id;
                 $scope.transaction.customerDetails = $scope.referedData;
                 console.log ($scope.transaction)
+
+
             }
 
 
@@ -84,6 +74,7 @@ angular.module ('cms.controllers')
 
                 if ( data ) {
                     toastr.success (data.message, "Successfully Added");
+                    $state.go ('manager.transection');
                     console.log (data);
                 } else {
                     toastr.error (err.message, "error Removed");
@@ -94,19 +85,25 @@ angular.module ('cms.controllers')
 
         }
 
+        $scope.loggedDate = function ( date ) {
 
-        function DialogController ( $scope, $mdDialog, api ) {
-
-
-            $scope.hide = function () {
-                $mdDialog.hide ();
-            };
-            $scope.cancel = function () {
-                $mdDialog.cancel ();
-            };
-            $scope.answer = function ( answer ) {
-                $mdDialog.hide (answer);
-            };
+            return date.substring (0, 10);
 
         }
+
+        $scope.cancelTransaction = function () {
+            $state.go ('manager.transection');
+        };
+
+        api.Offer.Get (function ( err, data ) {})
+        api.Member.getAll (function ( err, data ) {})
+        api.Member.GetClubTransaction ($scope.$storage.adminUsers.club._id, function ( err, data ) {
+
+            if ( data ) {
+                $scope.transactionHistory = data;
+                console.log (data);
+            } else {
+                console.log ("GetAllTransaction Error")
+            }
+        })
     }]);

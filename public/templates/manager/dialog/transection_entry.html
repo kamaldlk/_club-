@@ -1,4 +1,4 @@
-<div>
+<div >
 
     <md-toolbar style="min-height: 200px;background :url('images/managers/party-blur.jpg');background-color: rgba(0,0,0,0.6); ">
         <div class="md-toolbar-tools">
@@ -19,41 +19,44 @@
                 <md-card class="nomarg">
                     <md-card-content>
                  <span flex=100 layout="column" layout-align="center start" layout-padding>
-                     <span class="">Personal Checking</span>
+                     <span class="md-subhead txt-dec txt-upper">Personal Checking</span>
                    </span>
                         <div layout="row" flex>
                <span layout-padding flex>
-                 <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;" >
+                 <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;position:relative;" >
                      <md-icon md-svg-src="img/icons/business60.svg" class="nomarg"></md-icon>
                      <input ng-model="transaction.cardNo" type="text" placeholder="Customer Card No">
+                     <md-button class="md-icon-button search-trans-btn" aria-label="More" ng-click="searchUser(transaction.cardNo)">
+                         <md-icon md-svg-icon="images/icons/search.svg"></md-icon>
+                     </md-button>
                  </md-input-container>
 
                   </span>
 
                   <span flex layout="row" layout-align="center start">
                     <md-switch ng-model="cardHolderValue" class="md-primary" ng-change="switch(cardHolderValue)">{{cardHolder}}</md-switch>
-                      <md-button class="md-raised" ng-click="searchUser(transaction.cardNo)">Search</md-button>
+
                   </span>
                         </div>
                     </md-card-content>
                 </md-card>
-                <div layout="column" flex flex-sm="100" ng-show="!cardHolderValue">
+                <div layout="column" flex flex-sm="100" ng-show="!cardHolderValue" class="animated " ng-class="{'flipInX':!cardHolderValue, 'flipOutX':cardHolderValue}">
                     <md-card class="nomarg md-whiteframe-2dp">
                         <md-card-content style="background:#081F2E;">
                      <span flex=100 layout="column" layout-align="center start" layout-padding>
-                         <span class="ft_ligthblue md-subhead">Customer Details Entry</span>
+                         <span class="ft_ligthblue md-subhead txt-dec txt-upper">Customer Details Entry</span>
                        </span>
                             <div layout="row" flex>
                    <span layout-padding flex>
                      <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;">
                          <md-icon md-svg-src="img/icons/business60.svg" class="nomarg ft_ligthblue"></md-icon>
-                         <input ng-model="referedData.name" type="text" placeholder="Customer name"  class="ft_fff">
+                         <input ng-model="referedData.name" type="text" placeholder="Customer name"  class="ft_fff border-color-aqua">
                      </md-input-container>
                       </span>
                       <span layout-padding flex>
                         <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;">
                             <md-icon md-svg-src="images/icons/telephone.svg" class="nomarg ft_ligthblue"></md-icon>
-                            <input ng-model="referedData.mobile" type="text" placeholder="Mobile" class="ft_fff">
+                            <input ng-model="referedData.mobile" type="text" placeholder="Mobile" class="ft_fff border-color-aqua">
                         </md-input-container>
                          </span>
                             </div>
@@ -64,7 +67,7 @@
                 <div layout="row" layout-sm="column" flex class="ft-silver">
                     <div layout="column" flex flex-sm="100" layout-padding>
             <span flex=100 layout="column" layout-align="center start" layout-padding>
-                <span class="">Member Details</span>
+                <span class="md-subhead txt-dec txt-upper">Member Details</span>
               </span>
                         <div class="d-t">
                             <div class="d-tr">
@@ -107,7 +110,7 @@
 
                     <div layout="column" flex layout-padding>
                 <span flex=100 layout="column" layout-align="center start" layout-padding>
-                    <span class="">Wallet Amount</span>
+                    <span class="md-subhead txt-dec txt-upper">Wallet Amount</span>
                   </span>
                 <span flex layout="column" layout-align="center center" layout-padding>
               <span class="md-headline"> $ {{memberDetail.netAmount}}</span>
@@ -117,10 +120,21 @@
                 </div>
             </div>
             <md-divider></md-divider>
-            <div layout="row">
-                <div layout="row" flex hide-sm>
+            <div layout="column">
+                <span flex=100 layout="column" layout-align="center start" layout-padding>
+                     <span class="md-subhead txt-dec txt-upper layout-padding">Transaction Details</span>
+                   </span>
+                <!--<span class="md-subhead txt-dec txt-upper hash_color" layout-padding>Transaction Details</span>-->
+                <div layout="row" flex >
+                    <div layout="column" flex layout-margin>
 
-                </div>
+                        <div flex-xs flex="50" ng-show="false">
+                            <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                                Use Wallet amount
+                            </md-checkbox>
+                        </div>
+                    </div>
+
                 <div layout="column" flex layout-margin>
                     <div class="d-t">
                         <div class="d-tr">
@@ -134,7 +148,7 @@
                 </md-input-container>
               </span>
                         </div>
-                        <div class="d-tr">
+                        <div class="d-tr"  ng-show="!cardHolderValue">
               <span class="d-tc">
                 Offer
               </span>
@@ -142,7 +156,7 @@
                {{offerDetails}}%
               </span>
                         </div>
-                        <div class="d-tr">
+                        <div class="d-tr"  ng-show="!cardHolderValue">
               <span class="d-tc ">
                 Save
               </span>
@@ -154,14 +168,14 @@
               <span class="d-tc padd-t10">
             </span>
             <span class="d-tc padd-t10">
-            <md-divider></md-divider>
+            <md-divider  ng-show="!cardHolderValue"></md-divider>
           </span></div>
-                        <div class="d-tr">
+                        <div class="d-tr"  ng-show="!cardHolderValue">
               <span class="d-tc ft_18">
                 Total
               </span>
               <span class="d-tc text-right ft_red ft_18">
-               $545.0
+               {{totalAmount}}
               </span>
                         </div>
                         <div class="d-tr">
@@ -172,11 +186,12 @@
           </span></div>
                     </div>
                 </div>
+                    </div>
             </div>
             <div layout="column" flex layout-padding>
                 <div layout="row" layout-align="center center">
                     <md-button class="md-raised md-primary" ng-click="createTransaction(transaction)">Save</md-button>
-                    <md-button class="md-raised md-primary" ng-click="cancel()" >Cancel</md-button>
+                    <md-button class="md-raised md-primary" ng-click="cancelTransaction()" >Cancel</md-button>
                 </div>
 
 

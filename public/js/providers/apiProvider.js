@@ -355,6 +355,9 @@ angular.module ('cms.providers')
 
             apiClass.Member.allMember = [];
 
+            apiClass.Member.allClubMember = [];
+            apiClass.Member.AllTransaction = [];
+
             apiClass.Member.Register = function ( member, callback ) {
 
                 httpRequest ("POST", "api/customerUsers/register", member, function ( err, data ) {
@@ -381,6 +384,21 @@ angular.module ('cms.providers')
                     }
                 });
             }
+
+            apiClass.Member.getAllClubMembers = function ( clubId, callback ) {
+
+                httpRequest ("GET", "api/customerUsers/club/get?club=" + clubId, null, function ( err, data ) {
+                    if ( err ) {
+                        console.log (' Member getall error ', err)
+                        callback (err, null);
+                    } else {
+                        console.log (' Member getall success ', data)
+                        callback (null, data);
+                        apiClass.Member.allClubMember = data;
+                    }
+                });
+            }
+
             apiClass.Member.CreateTransection = function ( transaction, callback ) {
 
                 httpRequest ("POST", "api/transaction/create", transaction, function ( err, data ) {
@@ -391,6 +409,34 @@ angular.module ('cms.providers')
                         console.log (' Member getall success ', data)
                         callback (null, data);
                         apiClass.Member.allMember = data;
+                    }
+                });
+            }
+            apiClass.Member.GetAllTransaction = function ( callback ) {
+
+                httpRequest ("GET", "api/transaction/getAll", null, function ( err, data ) {
+                    if ( err ) {
+                        console.log (' Error Get all Transaction ', err)
+                        callback (err, null);
+                    } else {
+                        console.log (' Success Get all Transaction', data)
+                        apiClass.Member.AllTransaction = data;
+                        callback (null, data);
+
+                    }
+                });
+            }
+            apiClass.Member.GetClubTransaction = function (clubId, callback ) {
+
+                httpRequest ("GET", "api/transaction/getClub?club="+clubId, null, function ( err, data ) {
+                    if ( err ) {
+                        console.log (' Error Get all Transaction ', err)
+                        callback (err, null);
+                    } else {
+                        console.log (' Success Get all Transaction', data)
+                        apiClass.Member.AllTransaction = data;
+                        callback (null, data);
+
                     }
                 });
             }

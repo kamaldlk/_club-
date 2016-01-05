@@ -62,3 +62,15 @@ max-height: 45px;}
 .d-t{display:table;width: 100%;border-spacing: 10px;}
 .d-tr{display:table-row;}
 .d-tc{display:table-cell;}
+.transaction_fab{right: 15px;
+    top: -25px;
+    position: absolute;}
+.search-trans-btn{    position: absolute;
+    right: 0px;
+    top: -10px;}
+.border-color-aqua {
+    border-bottom-color: #53BACA !important;
+}
+.createmember_avatar
+{height: 100px !important;width: 100px !important;top: -54px !important;left: 2% !important;
+}

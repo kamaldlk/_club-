@@ -24,7 +24,7 @@
                         <span flex>
                      <md-input-container>
                          <label>Password</label>
-                         <input ng-model="manager.password" type="password">
+                         <input ng-model="manager.password" type="password" ng-disabled="updateButton">
                      </md-input-container>
                   </span>
                         </div>
@@ -33,8 +33,8 @@
                          <span flex>
                      <md-input-container>
                          <label>Select Club</label>
-                         <md-select ng-model="manager.club" ng-model-options="{trackBy: '$value.clubName'}">
-                             <md-option ng-repeat="club in clubs" ng-value="club">
+                         <md-select ng-model="manager.club" ng-model-options="{trackBy: '$value.clubName'}" ng-disabled="updateButton">
+                             <md-option ng-repeat="club in clubs" ng-value="club" >
                                  {{club.clubName}}
                              </md-option>
 

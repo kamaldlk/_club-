@@ -80,7 +80,7 @@ z-index: 100;">
           </span>
           <span>
             <ng-md-icon icon="grid_on" style="fill:#0097a7;" size="20"></ng-md-icon>
-            <span class="md-caption hash_color">Start date : {{memberDetail.createdOn}}</span>
+            <span class="md-caption hash_color">Start date : {{loggedDate(memberDetail.createdOn)}}</span>
           </span>
         </span>
         <span flex=20 flex-xs=100 layout="column" layout-align="center center" layout-padding>
@@ -124,8 +124,8 @@ z-index: 100;">
                             <div layout="column" flex class="marg-10">
           <span flex>
             <!-- <ng-md-icon icon="account_circle" style="fill:#0097a7;" size="20"></ng-md-icon> -->
-            <span class="md-body-1">DOB :</span>
-            <span class="md-body-1 hash_color padd-l18 ">12-Dec-15</span>
+            <span class="md-body-1">Updated On :</span>
+            <span class="md-body-1 hash_color padd-l18 ">{{loggedDate(memberDetail.updated.on)}}</span>
             </span>
 
                             </div>
@@ -143,7 +143,7 @@ z-index: 100;">
                             <div layout="column" flex class="marg-10">
         <span flex>
           <!-- <ng-md-icon icon="account_circle" style="fill:#0097a7;" size="20"></ng-md-icon> -->
-          <span class="md-body-1">Gender :</span> <span class="md-body-1 hash_color padd-l18 ">Male</span>
+          <span class="md-body-1">Email :</span> <span class="md-body-1 hash_color padd-l18 ">{{memberDetail.email}}</span>
           </span>
 
                             </div>

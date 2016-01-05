@@ -13,16 +13,19 @@ angular.module ('cms.controllers')
 
         $scope.$storage = $localStorage;
 
+        $scope.clubName =    $scope.$storage.adminUsers.club.clubName;
+
         $scope.member2 = function ( member ) {
 
             $scope.memberDetail = member;
+
         }
 
         $scope.createMember = function ( member ) {
 
             //console.log($scope.$storage.adminUsers.club);
 
-            $scope.member.club = "568a3f991239ce5c6de272c3";
+            $scope.member.club = $scope.$storage.adminUsers.club._id;
             $scope.member.createdBy = $scope.$storage.adminUsers.club.managers[0];
 
             api.Member.Register (member, function ( err, data ) {
@@ -30,35 +33,40 @@ angular.module ('cms.controllers')
                 if ( data ) {
                     toastr.success (data.message, "Successfully Added");
                     console.log (data);
-                    $state.go("manager.memberlist");
+                    $state.go ("manager.memberlist");
                 } else {
                     toastr.error (err.message, "error Removed");
                 }
             })
         }
 
-        $scope.cancel = function(){
-            $state.go("manager.memberlist");
+        $scope.cancel = function () {
+            $state.go ("manager.memberlist");
         }
 
         $scope.getAllMember = function () {
 
-            api.Member.getAll (function ( err, data ) {
+            api.Member.getAllClubMembers ($scope.$storage.adminUsers.club._id, function ( err, data ) {
 
                 if ( data ) {
-                    $scope.memberList = api.Member.allMember;
-                    $scope.memberLength = api.Member.allMember.length;
-                    console.log ("$scope.$storage.adminUsers :", JSON.stringify ($scope.$storage.adminUsers));
-
+                    $scope.memberList = api.Member.allClubMember;
+                    $scope.memberLength = api.Member.allClubMember.length;
+                    $scope.memberDetail = $scope.memberList[0];
 
                 } else {
-                   console.log("getAllMember error")
+                    console.log ("getAllMember error")
                 }
             })
+
+        }
+
+        $scope.loggedDate = function ( date ) {
+
+            return date.substring (0, 10);
+
         }
 
         $scope.getAllMember ();
 
 
-    }])
-;
+    }]);

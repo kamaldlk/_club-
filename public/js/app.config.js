@@ -61,9 +61,14 @@ angular.module ("cms")
             templateUrl: "templates/manager/memberList.html",
             controller: 'memberController'
         })
-
             .state ('manager.transection', {
             url: "/managertransection",
+            templateUrl: "templates/manager/managerTransection.html",
+            controller: 'transactionController'
+        })
+
+            .state ('manager.transectionentery', {
+            url: "/transectionentery",
             templateUrl: "templates/manager/dialog/transection_entry.html",
             controller: 'transactionController'
         })
