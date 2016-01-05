@@ -39,4 +39,22 @@ module.exports = function(router) {
             });
         }
     });
+
+    // get all transaction details
+    router.get('/transaction/getAll', function (req, res) {
+        var data = {};
+        db.transaction.getAll(data, function (data) {
+            res.send(data);
+        });
+    });
+
+    // get all transaction details in the club
+    router.get('/transaction/getClub', function (req, res) {
+        var data = {
+            clubId: req.query.club
+        };
+        db.transaction.getClub(data, function (data) {
+            res.send(data);
+        });
+    });
 };

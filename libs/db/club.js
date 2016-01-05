@@ -51,7 +51,7 @@ module.exports = {
 
     // get single club details
     get: function(data, callback) {
-    	db.club.findOne({'clubName': data.clubName}).populate([{path:'currencyDetails', select:'-_id -createdOn'}, {path:'managers', select: '-password -club'}]).exec(function (err, club) {
+    	db.club.findOne({'clubName': data.clubName}).populate([{path:'currencyDetails', select:'-createdOn'}, {path:'managers', select: '-password -club'}]).exec(function (err, club) {
     		if(err) {
     			callback({
     				error: true,
@@ -73,7 +73,7 @@ module.exports = {
 
     // get all club details
     getAll: function (data, callback) {
-    	db.club.find({}).populate([{path:'currencyDetails', select:'-_id -createdOn'}, {path:'managers', select: '-password -club'}]).exec(function (err, club) {
+    	db.club.find({}).populate([{path:'currencyDetails', select:'-createdOn'}, {path:'managers', select: '-password -club'}]).exec(function (err, club) {
     		if(err) {
     			callback({
     				error: true,

@@ -1,4 +1,6 @@
 var db = require("../../libs/db/index.js");
+var multer = require('multer');
+var upload = multer({ dest: './public/images/clubImages/clublogo/'}).single('userPhoto');
 
 module.exports = function (router) {
 	// create new club
@@ -75,6 +77,32 @@ module.exports = function (router) {
 		};
 		db.club.remove(data, function (data) {
 			res.send(data);
+		});
+	});
+
+	// to get the file
+	router.get('/fileUpload',function(req,res){
+	    res.sendFile(__dirname + "/index.html");
+	});
+	
+	// logo upload
+	router.post('/club/logo', function(req,res, next) {
+		upload(req, res, function(err) {
+			if(err) {
+				res.json({
+					error: true,
+					errorCode: 'UNKNOWN_ERROR',
+					stack: err
+				});
+			}
+			else {
+				var path = (res.req.file.path).replace('public/', '');
+				res.json({
+					success: true,
+					message: 'Image uploaded successfully',
+					path: path
+				});
+			}	
 		});
 	});
 }

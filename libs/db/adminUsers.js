@@ -68,7 +68,7 @@ module.exports = {
     }, 
 
     login: function(data, callback) {    
-        db.adminUsers.findOne({userName: data.userName}, '-_id').populate('club', '-_id').exec(function(err, user) {        
+        db.adminUsers.findOne({userName: data.userName}).populate({path: 'club', populate: {path: 'club.currencyDetails'}}) .exec(function(err, user) {        
             if (user) {
                 if(bcrypt.compareSync(data.password, user.password)) {
                     user = user.toObject();
@@ -86,7 +86,7 @@ module.exports = {
                 callback({
                     error: true,
                     errorCode: 'NOT_EXISTS'
-                })
+                });
             }
        });  
     },
@@ -146,7 +146,7 @@ module.exports = {
 
     // get single manager
     get: function (data, callback) {
-        db.adminUsers.findOne({'userName': data.userName}, '-password').populate('club', '-_id').exec(function (err, manager) {
+        db.adminUsers.findOne({'userName': data.userName}, '-password').populate('club').exec(function (err, manager) {
             if(err) {
                 callback({
                     error: true,
@@ -168,7 +168,7 @@ module.exports = {
 
     // get all managers
     getAll: function (data, callback) {
-        db.adminUsers.find({'role': 'manager'}, '-password').populate('club', '-_id').exec(function (err, managers) {
+        db.adminUsers.find({'role': 'manager'}, '-password').populate('club').exec(function (err, managers) {
             if(err) {
                 callback({
                     error: true,

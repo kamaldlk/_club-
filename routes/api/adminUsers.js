@@ -6,6 +6,8 @@ var db = require("../../libs/db/index.js"),
     bcrypt = require('bcrypt'),    
     salt = bcrypt.genSaltSync(10);
 
+var multer = require('multer');
+var upload = multer({ dest: './public/images/adminUsers/profilePicture/'}).single('userPhoto');
 
 module.exports = function(router) {
     // register a new manager   
@@ -168,4 +170,24 @@ module.exports = function(router) {
         });
     });
     
+    // profile pic upload
+    router.post('/adminUsers/profilePic', function(req,res, next) {
+        upload(req, res, function(err) {
+            if(err) {
+                res.json({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else {
+                var path = (res.req.file.path).replace('public/', '');
+                res.json({
+                    success: true,
+                    message: 'Image uploaded successfully',
+                    path: path
+                });
+            }   
+        });
+    });
 };

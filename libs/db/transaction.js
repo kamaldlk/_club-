@@ -65,7 +65,7 @@ module.exports = {
                             create();
                     });
                 }
-                function create ()  {  
+                function create () {  
                     var addToNetAmount;
                     if(data.usedByCardholder)
                         addToNetAmount = data.amount.saved;
@@ -86,6 +86,76 @@ module.exports = {
                             }
                         });
                     });
+                }
+            }
+        });
+    },
+
+    // get all the transaction details
+    getAll: function (data, callback) {
+        db.transaction.find({}).populate([{path: 'clubId', select: '-status -createdOn -managers'}, {path: 'currency', select: '-status -createdOn'}]).exec(function (err, transactions) {
+            if(err) {
+                callback({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else if(!transactions || transactions.length < 1) {
+                callback({
+                    error: true,
+                    errorCode: 'No transactions'
+                });
+            }
+            else {
+                var result = [];
+                ownerInfo(0);
+                function ownerInfo(i) {
+                    if(i >= transactions.length) 
+                        callback(result);
+                    else {
+                        var transaction = transactions[i].toObject();
+                        db.customerUsers.findOne({'cardNo': transaction.cardNo}, 'profile mobileNo email', function (err, customer) {
+                            transaction.cardOwner = customer;
+                            result.push(transaction);
+                            ownerInfo(i + 1);
+                        });
+                    }
+                }
+            }
+        });
+    },
+
+    // get all the transaction in the single club
+    getClub: function (data, callback) {
+        db.transaction.find({'clubId': data.clubId}).populate([{path: 'clubId', select: '-status -createdOn -managers'}, {path: 'currency', select: '-status -createdOn'}]).exec(function (err, transactions) {
+            if(err) {
+                callback({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else if(!transactions || transactions.length < 1) {
+                callback({
+                    error: true,
+                    errorCode: 'No transactions'
+                });
+            }
+            else {
+                var result = [];
+                ownerInfo(0);
+                function ownerInfo(i) {
+                    if(i >= transactions.length) 
+                        callback(result);
+                    else {
+                        var transaction = transactions[i].toObject();
+                        db.customerUsers.findOne({'cardNo': transaction.cardNo}, 'profile mobileNo email', function (err, customer) {
+                            transaction.cardOwner = customer;
+                            result.push(transaction);
+                            ownerInfo(i + 1);
+                        });
+                    }
                 }
             }
         });

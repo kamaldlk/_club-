@@ -25,18 +25,34 @@ module.exports = {
                 var customer = new db.customerUsers(data);
                 customer.save(function(err, user) {
                     console.log(data.createdBy, user);
-                    db.adminUsers.update({'_id': data.createdBy}, {$push:{'members': user._id}}, function (err, updated) {
-                        if(err) {
-                            console.log(err);
-                            callback({
-                                error: true,
-                                errorCode: 'UNKNOWN_ERROR',
-                                stack: err
-                            });
-                        }
-                        else
-                            callback(user);                            
-                    });
+                    if(err) {
+                        console.log(err);
+                        callback({
+                            error: true,
+                            errorCode: 'UNKNOWN_ERROR',
+                            stack: err
+                        });
+                    }
+                    else if(!user) {
+                        callback({
+                            error: true,
+                            errorCode: 'Not able to create'
+                        });
+                    }
+                    else if(user) {
+                        db.adminUsers.update({'_id': data.createdBy}, {$push:{'members': user._id}}, function (err, updated) {
+                            if(err) {
+                                console.log(err);
+                                callback({
+                                    error: true,
+                                    errorCode: 'UNKNOWN_ERROR',
+                                    stack: err
+                                });
+                            }
+                            else
+                                callback(user);                            
+                        });
+                    }
                 });
             }
         });
@@ -44,7 +60,7 @@ module.exports = {
 
     // get single member detail
     get: function (data, callback) {
-        db.customerUsers.findOne({'email': data.email}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
+        db.customerUsers.findOne({'email': data.email}).populate([{path: 'club', select: 'clubName address contactNumber logo'}, {path: 'createdBy', select: 'userName profile address role'}]).exec(function(err, member) {
             if(err) {
                 callback({
                     error: true,
@@ -66,7 +82,7 @@ module.exports = {
 
     // get all customers
     getAll: function (data, callback) {
-        db.customerUsers.find({}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
+        db.customerUsers.find({}).populate([{path: 'club', select: 'clubName address contactNumber logo'}, {path: 'createdBy', select: 'userName profile address role'}]).exec(function(err, member) {
             if(err) {
                 callback({
                     error: true,
@@ -88,7 +104,7 @@ module.exports = {
 
     // get club member detail
     getByClub: function (data, callback) {
-        db.customerUsers.find({'club': data.club}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
+        db.customerUsers.find({'club': data.club}).populate([{path: 'club', select: 'clubName address contactNumber logo'}, {path: 'createdBy', select: 'userName profile address role'}]).exec(function(err, member) {
             if(err) {
                 callback({
                     error: true,
@@ -110,7 +126,7 @@ module.exports = {
 
     // get club member detail
     getByManager: function (data, callback) {
-        db.customerUsers.find({'createdBy': data.manager}).populate([{path: 'club', select: '_id clubName address contactNumber logo'}, {path: 'createdBy', select: '_id userName profile address role'}]).exec(function(err, member) {
+        db.customerUsers.find({'createdBy': data.manager}).populate([{path: 'club', select: 'clubName address contactNumber logo'}, {path: 'createdBy', select: 'userName profile address role'}]).exec(function(err, member) {
             if(err) {
                 callback({
                     error: true,

@@ -24,11 +24,18 @@ module.exports = {
                     }
                 }
                 var newcurrency = new db.currencyConversion(newCurrency);
-                newcurrency.save(function () {
-                    callback({
-                        success: true,
-                        message: 'Created'
-                    });
+                newcurrency.save(function (err, created) {
+                    if(err) {
+                        callback({
+                            error: true,
+                            errorCode: 'UNKNOWN_ERROR',
+                            stack: err
+                        });
+                    }
+                    else {
+                        created.toCurrency = created.toCurrency.pop();
+                        callback(created);
+                    }
                 });
             }
     		else {
