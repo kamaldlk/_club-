@@ -9,8 +9,10 @@ angular.module ('cms.controllers')
 
     .controller ("managerController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", "Upload", function ( $scope, $mdDialog, $state, api, $stateParams, toastr, Upload ) {
 
+        $scope.api = api;
         $scope.view = true;
         $scope.selectedMenu = 'managerlist';
+        $scope.managers = [];
         $scope.getAllManager = function () {
 
             api.Manager.getAllManager (function ( err, data ) {
@@ -48,11 +50,28 @@ angular.module ('cms.controllers')
                         if ( data ) {
                             $scope.manager = manager;
                             $scope.clubs = api.Club.allClub;
-                            console.log ('manager value is ', $scope.manager);
-                            console.log (" data: ", data);
+
                         }
 
                     });
+                    $scope.manager = {
+                        profile: {}
+                    };
+
+                    $scope.uploadFile = function () {
+                        api.ProfilePic.adminUserUpload ($scope.file, function ( error, data ) {
+
+                            if ( data ) {
+                                $scope.manager.profile.profilePic = data.data.filePath;
+                                console.log (data);
+                            } else {
+
+                            }
+
+                        })
+
+                    };
+
 
 
                     $scope.updateButton = true;
@@ -148,7 +167,7 @@ angular.module ('cms.controllers')
         }
 
 
-        function DialogController ( $scope, $mdDialog, api ,Upload) {
+        function DialogController ( $scope, $mdDialog, api, Upload ) {
 
 
             $scope.hide = function () {
@@ -159,6 +178,10 @@ angular.module ('cms.controllers')
             };
             $scope.answer = function ( answer ) {
                 $mdDialog.hide (answer);
+            };
+
+            $scope.manager = {
+                profile: {}
             };
 
             $scope.getClubList = function () {
@@ -184,28 +207,18 @@ angular.module ('cms.controllers')
                 });
             }
 
-            $scope.submit = function () {
-                if ( $scope.userPhoto ) {
-                    console.log($scope.userPhoto);
-                   // $scope.upload($scope.userPhoto);
-                }
-                console.log("file",$scope.userPhoto);
-            };
+            $scope.uploadFile = function () {
+                api.ProfilePic.adminUserUpload ($scope.file, function ( error, data ) {
 
-            // upload on file select or drop
-            $scope.upload = function ( file ) {
-                Upload.upload ({
-                    url: 'http://192.168.1.100:3002/api/adminUsers/profilePic',
-                    data: {file: file, 'name': "userPhoto"}
-                }).then (function ( resp ) {
-                   // console.log ('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-                    console.log(resp);
-                }, function ( resp ) {
-                    console.log ('Error status: ' + resp.status);
-                }, function ( evt ) {
-                    var progressPercentage = parseInt (100.0 * evt.loaded / evt.total);
-                    console.log ('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                });
+                    if ( data ) {
+                        $scope.manager.profile.profilePic = data.data.filePath;
+                        console.log (data);
+                    } else {
+
+                    }
+
+                })
+
             };
 
 
@@ -223,6 +236,14 @@ angular.module ('cms.controllers')
 
                         console.log (JSON.stringify (data));
                         toastr.success (data.message, "Successfully Created");
+                        api.Manager.getAllManager (function ( err, data ) {
+                            if ( data ) {
+                                $scope.managers = api.Manager.managers;
+                                console.log (" data: ", data);
+                            }
+
+                        });
+
                         $scope.cancel ();
 
                         $state.go ("home.clubmanager");
@@ -247,8 +268,6 @@ angular.module ('cms.controllers')
 
             }
         }
-
-
 
 
     }])

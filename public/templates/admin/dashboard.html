@@ -1,349 +1,265 @@
+<style>
+text {
+    font: 12px sans-serif;
+}
 
-<!--<div layout layout="row" layout-padding>-->
-    <!--<div layout layout="row" class="">-->
-         <!--<div layout layout="row" class="" layout-margin>-->
-            <!--<div class="dashboard-stats">-->
-                <!--<div class="left">-->
-                    <!--<h3 class="flatBluec counter" data-to="7684" data-speed="4000">7684</h3>-->
-                    <!--<h4>Monthly User</h4>-->
-                <!--</div>-->
-                <!--<div class="right flatBlue">-->
-                    <!--<ng-md-icon icon="favorite_outline"></ng-md-icon>-->
-                <!--</div>-->
-            <!--</div>-->
-    <!--</div>-->
-         <!--<div layout layout="row" class="" layout-margin>-->
-            <!--<div class="dashboard-stats">-->
-                <!--<div class="left">-->
-                    <!--<h3 class="flatGreenc counter" data-to="6433" data-speed="4000">6433</h3>-->
-                    <!--<h4>peoples in circles</h4>-->
-                <!--</div>-->
-                <!--<div class="right flatGreen">-->
-                    <!--<ng-md-icon icon="dashboard" class="svgicon_style"></ng-md-icon>-->
-                <!--</div>-->
-            <!--</div>-->
-    <!--</div>-->
-         <!--<div layout layout="row" class="" layout-margin>-->
-        <!---->
-    <!--</div>-->
-         <!--<div layout layout="row" class="" layout-margin>-->
-        <!---->
-    <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+.testBlock {
+    display: block;
+    float: left;
+    height: 100%;
+    width: 100%;
+}
 
-<!--<style>-->
-<!--text {-->
-    <!--font: 12px sans-serif;-->
-<!--}-->
+text {
+    font: 12px sans-serif;
+}
 
-<!--.testBlock {-->
-    <!--display: block;-->
-    <!--float: left;-->
-    <!--height: 100%;-->
-    <!--width: 100%;-->
-<!--}-->
+.nvd3.nv-pie.nv-chart-donut2 .nv-pie-title {
+    fill: gray;
+}
 
-<!--text {-->
-    <!--font: 12px sans-serif;-->
-<!--}-->
+.nvd3.nv-pie.nv-chart-donut1 .nv-pie-title {
+    opacity: 0.4;
+    fill: green;
+}
 
-<!--.nvd3.nv-pie.nv-chart-donut2 .nv-pie-title {-->
-    <!--fill: gray;-->
-<!--}-->
+.svgss {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
 
-<!--.nvd3.nv-pie.nv-chart-donut1 .nv-pie-title {-->
-    <!--opacity: 0.4;-->
-    <!--fill: green;-->
-<!--}-->
+#chart2 {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
 
-<!--.svgss {-->
-    <!--display: block;-->
-    <!--margin: 0px;-->
-    <!--padding: 0px;-->
-    <!--height: 100%;-->
-    <!--width: 100%;-->
-<!--}-->
+#barChart2 {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
 
-<!--#chart2 {-->
-    <!--margin: 0px;-->
-    <!--padding: 0px;-->
-    <!--height: 100%;-->
-    <!--width: 100%;-->
-<!--}-->
+h3 {
+    margin: 0;
+    color: #fff;
+}
 
-<!--#barChart2 {-->
-    <!--margin: 0px;-->
-    <!--padding: 0px;-->
-    <!--height: 100%;-->
-    <!--width: 100%;-->
-<!--}-->
+#barId {
+    float: left ! important;
+    width: 100%;
+}
 
-<!--h3 {-->
-    <!--margin: 0;-->
-    <!--color: #fff;-->
-<!--}-->
+#pieId {
+    width: 100%;
+}
 
-<!--#barId {-->
-    <!--float: left ! important;-->
-    <!--width: 100%;-->
-<!--}-->
+#areaId {
+    width: 100%;
+}
 
-<!--#pieId {-->
-    <!--width: 100%;-->
-<!--}-->
+span {
+    color: grey;
+    font-size: 20px;
+    font-weight: bold
+}
 
-<!--#areaId {-->
-    <!--width: 100%;-->
-<!--}-->
+.card {
+    color: #fff;
+    overflow: hidden;
+    margin: 10px 5px;
+    text-align: center;
+}
 
-<!--span {-->
-    <!--color: grey;-->
-    <!--font-size: 20px;-->
-    <!--font-weight: bold-->
-<!--}-->
+.fab_iconstyle {
+    position: relative;
+    top: -17px;
+}
 
-<!--.card {-->
-    <!--color: #fff;-->
-    <!--overflow: hidden;-->
-    <!--margin: 10px 5px;-->
-    <!--text-align: center;-->
-<!--}-->
+.grey {
+    background-color: #607d8b !important;
+}
 
-<!--.fab_iconstyle {-->
-    <!--position: relative;-->
-    <!--top: -17px;-->
-<!--}-->
+.green {
+    background: #4CAF50 !important
+}
 
-<!--.grey {-->
-    <!--background-color: #607d8b !important;-->
-<!--}-->
+.purple {
+    background: #9c27b0 !important
+}
 
-<!--.green {-->
-    <!--background: #4CAF50 !important-->
-<!--}-->
+.pink {
+    background: #f06292 !important
+}
 
-<!--.purple {-->
-    <!--background: #9c27b0 !important-->
-<!--}-->
+.white-text {
+    color: #fff ! important;
+}
 
-<!--.pink {-->
-    <!--background: #f06292 !important-->
-<!--}-->
+.skyblue {
+    background: #3ca2e0 !important
+}
 
-<!--.white-text {-->
-    <!--color: #fff ! important;-->
-<!--}-->
+.ft-green {
+    color
+}
 
-<!--.skyblue {-->
-    <!--background: #3ca2e0 !important-->
-<!--}-->
+.info-box {
+    display: block;
+    min-height: 90px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    margin: 10px 0px;
+}
 
-<!--.ft-green {-->
-    <!--color-->
-<!--}-->
+.info-box:hover {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+}
 
-<!--.info-box {-->
-    <!--display: block;-->
-    <!--min-height: 90px;-->
-    <!--background: #fff;-->
-    <!--width: 100%;-->
-    <!--box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);-->
-    <!--border-radius: 2px;-->
-    <!--margin: 10px 0px;-->
-<!--}-->
+.info-box-icon {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 2px;
+    display: block;
+    float: left;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    background: rgba(0, 0, 0, 0.2);
+}
 
-<!--.info-box:hover {-->
-    <!--box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);-->
-<!--}-->
+.info-box-icon img {
+    margin-top: 15px;
+    width: 60px;
+}
 
-<!--.info-box-icon {-->
-    <!--border-top-left-radius: 2px;-->
-    <!--border-top-right-radius: 0;-->
-    <!--border-bottom-right-radius: 0;-->
-    <!--border-bottom-left-radius: 2px;-->
-    <!--display: block;-->
-    <!--float: left;-->
-    <!--height: 90px;-->
-    <!--width: 90px;-->
-    <!--text-align: center;-->
-    <!--font-size: 45px;-->
-    <!--line-height: 90px;-->
-    <!--background: rgba(0, 0, 0, 0.2);-->
-<!--}-->
+.info-box-text {
+    display: block;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-<!--.info-box-icon img {-->
-    <!--margin-top: 15px;-->
-    <!--width: 60px;-->
-<!--}-->
+.info-box-number {
+    display: block;
+    font-weight: lighter;
+    font-size: 26px;
+    color: #30363E ! important;
+}
 
-<!--.info-box-text {-->
-    <!--display: block;-->
-    <!--font-size: 14px;-->
-    <!--white-space: nowrap;-->
-    <!--overflow: hidden;-->
-    <!--text-overflow: ellipsis;-->
-<!--}-->
+.info-box-content {
+    padding: 5px 10px;
+    margin-left: 90px;
+}
 
-<!--.info-box-number {-->
-    <!--display: block;-->
-    <!--font-weight: lighter;-->
-    <!--font-size: 26px;-->
-    <!--color: #30363E ! important;-->
-<!--}-->
+.bg-aqua {
+    background-color: #00c0ef !important;
+    color: #fff !important;
+}
 
-<!--.info-box-content {-->
-    <!--padding: 5px 10px;-->
-    <!--margin-left: 90px;-->
-<!--}-->
+.bg-red {
+    background-color: red !important;
+    color: #fff !important;
+}
 
-<!--.bg-aqua {-->
-    <!--background-color: #00c0ef !important;-->
-    <!--color: #fff !important;-->
-<!--}-->
+.bg-green {
+    background-color: #00c0ef !important;
+    color: #fff !important;
+}
 
-<!--.bg-red {-->
-    <!--background-color: red !important;-->
-    <!--color: #fff !important;-->
-<!--}-->
+.bg-yellow {
+    background-color: #f39c12 !important;
+    color: #fff !important;
+}
 
-<!--.bg-green {-->
-    <!--background-color: #00c0ef !important;-->
-    <!--color: #fff !important;-->
-<!--}-->
+.card_top {
+    margin: 5px;
+    padding: 5px;
+}
 
-<!--.bg-yellow {-->
-    <!--background-color: #f39c12 !important;-->
-    <!--color: #fff !important;-->
-<!--}-->
+.card_top h1 {
+    font-size: 30px;
+    font-weight: 100;
+    color: #ddd;
+}
 
-<!--.card_top {-->
-    <!--margin: 5px;-->
-    <!--padding: 5px;-->
-<!--}-->
+.card_top .card-stats-title {
+    color: #388E3C;
+    text-transform: uppercase;
+    font-size: 16px;
+}
 
-<!--.card_top h1 {-->
-    <!--font-size: 30px;-->
-    <!--font-weight: 100;-->
-    <!--color: #ddd;-->
-<!--}-->
+.card_top .card-stats-title span {
+    font-weight: 600;
+    color: #4CAF50;
+    font-size: 16px;
+}
 
-<!--.card_top .card-stats-title {-->
-    <!--color: #388E3C;-->
-    <!--text-transform: uppercase;-->
-    <!--font-size: 16px;-->
-<!--}-->
+.hr_line {
+    margin-top: 5%;
+    height: 55px;
+}
 
-<!--.card_top .card-stats-title span {-->
-    <!--font-weight: 600;-->
-    <!--color: #4CAF50;-->
-    <!--font-size: 16px;-->
-<!--}-->
+.br_red {
+    border-top: 3px inset red;
+}
 
-<!--.hr_line {-->
-    <!--margin-top: 5%;-->
-    <!--height: 55px;-->
-<!--}-->
+.br_green {
+    border-top: 3px solid #00a65a;
+}
 
-<!--.br_red {-->
-    <!--border-top: 3px inset red;-->
-<!--}-->
+.br_yellow {
+    border-top: 3px solid #f39c12 !important;
+}
 
-<!--.br_green {-->
-    <!--border-top: 3px solid #00a65a;-->
-<!--}-->
+.br_blue {
+    border-top: 3px solid #00c0ef !important;
+}
 
-<!--.br_yellow {-->
-    <!--border-top: 3px solid #f39c12 !important;-->
-<!--}-->
+.br_gray {
+    border-top: 3px solid #607d8b !important;
+}
 
-<!--.br_blue {-->
-    <!--border-top: 3px solid #00c0ef !important;-->
-<!--}-->
+.br_pink {
+    border-top: 3px solid #f06292 !important;
+}
 
-<!--.br_gray {-->
-    <!--border-top: 3px solid #607d8b !important;-->
-<!--}-->
+.nomarg {
+    margin: 0px;
+}
 
-<!--.br_pink {-->
-    <!--border-top: 3px solid #f06292 !important;-->
-<!--}-->
+.marg-t10 {
+    margin-top: 10px;
+}
 
-<!--.nomarg {-->
-    <!--margin: 0px;-->
-<!--}-->
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
 
-<!--.marg-t10 {-->
-    <!--margin-top: 10px;-->
-<!--}-->
+form {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
 
-<!--.axis path,-->
-<!--.axis line {-->
-    <!--fill: none;-->
-    <!--stroke: #000;-->
-    <!--shape-rendering: crispEdges;-->
-<!--}-->
-
-<!--form {-->
-    <!--position: absolute;-->
-    <!--right: 10px;-->
-    <!--top: 10px;-->
-<!--}-->
-
-<!--</style>-->
-<!--<div ng-cloak class="testBlock applyFlatUI commonBackground">-->
-    <!--<md-card class="nomarg marg-t10 applyFlatUI">-->
-        <!--<md-card-title class="dashboardHeader" style="background-color: #E2E4E5 !important;">-->
-            <!--<md-card-title-text >-->
-                <!--<h2 layout-padding layout-margin style="float:left;font-family:Roboto;font-weight: 800;" class="ft-black"> Dashboard </h2>-->
-            <!--</md-card-title-text>-->
-
-        <!--</md-card-title>-->
-    <!--</md-card>-->
-
-    <!--<div layout="row" layout-sm="column" class="md-whiteframe-1dp applyFlatUI" >-->
-        <!--<div class="card green" flex flex-sm="100">-->
-            <!--<div class="card-content  green white-text applyFlatUI">-->
-                <!--<p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Clubs</p>-->
-                <!--<h4 class="card-stats-number">{{totalMerchants}}</h4>-->
-                <!--<p class="card-stats-compare" style="line-height: 3; background: #388E3C; margin: 0px;"><i class="mdi-hardware-keyboard-arrow-up"></i> 20-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="card pink" flex flex-sm="100">-->
-            <!--<div class="card-content white-text applyFlatUI">-->
-                <!--<p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Customers</p>-->
-                <!--<h4 class="card-stats-number">{{totalStores}}</h4>-->
-                <!--<p class="card-stats-compare" style="line-height: 3; background: #c2185b; margin: 0px;"><i class="mdi-hardware-keyboard-arrow-up"></i> 150-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="card purple" flex flex-sm="100">-->
-            <!--<div class="card-content white-text applyFlatUI">-->
-                <!--<p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Managers</p>-->
-                <!--<h4 class="card-stats-number">{{totalCustomers}}</h4>-->
-                <!--<p class="card-stats-compare" style="line-height: 3; background: #7b1fa2; margin: 0px;"><i class="mdi-hardware-keyboard-arrow-up"></i> 25-->
-                <!--</p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-        <!--<div class="card skyblue" flex flex-sm="100">-->
-            <!--<div class="card-content white-text applyFlatUI">-->
-                <!--<p class="card-stats-title"><i class="mdi-social-group-add"></i> Total Sales Commition</p>-->
-                <!--<h4 class="card-stats-number">{{totalSales}}</h4>-->
-                <!--<p class="card-stats-compare" style="line-height: 3; background: #2B84BA; margin: 0px;"><i class="mdi-hardware-keyboard-arrow-up"></i>-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
-
-    <!--</div>-->
+</style>
 
 
-
-<!--</div>-->
-
-
-<div layout="column" flex class="nopadd">
+<div layout="column" flex class="nopadd" ng-init="dashboardInit()">
     <md-toolbar class="md-default-theme" style="background-color:transparent;">
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding-left: 2px;">
          <span layout layout-align="start start" flex>
@@ -351,18 +267,62 @@
               <md-icon md-svg-icon="images/icons/dashboard.svg" style="padding-left: 5px;"></md-icon>
             <!-- <ng-md-icon icon="location_city" style="fill:#aaa;padding-left: 5px;" size="26"></ng-md-icon> -->
          </span>
-            <div class="search_style">
-                <input type="text" class="search_input"/>
-                <div class="close">
-                    <span class="front"></span>
-                    <span class="back"></span>
-                </div>
-            </div>
+            <!--<div class="search_style">-->
+            <!--<input type="text" class="search_input"/>-->
+            <!--<div class="close">-->
+            <!--<span class="front"></span>-->
+            <!--<span class="back"></span>-->
+            <!--</div>-->
+            <!--</div>-->
         </div>
     </md-toolbar>
-    <md-content class="" layout="column" layout-wrap layout-align="none" layout-xs="column" flex>
+    <md-content layout="column" layout-wrap layout-align="none" layout-xs="column" flex ng-cloak
+                class="testBlock applyFlatUI commonBackground">
 
-        Coming Soon
+        <div layout="row" layout-sm="column" class="md-whiteframe-1dp applyFlatUI">
+            <div class="card green" flex flex-sm="100">
+                <div class="card-content  green white-text applyFlatUI">
+                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Clubs</p>
+                    <h4 class="card-stats-number"></h4>
+
+                    <p class="card-stats-compare" style="line-height: 3; background: #388E3C; margin: 0px;"><i
+                            class="mdi-hardware-keyboard-arrow-up"></i> {{api.Club.allClub.length}}
+                    </p>
+                </div>
+            </div>
+            <div class="card pink" flex flex-sm="100">
+                <div class="card-content white-text applyFlatUI">
+                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Customers</p>
+                    <h4 class="card-stats-number">{{totalStores}}</h4>
+
+                    <p class="card-stats-compare" style="line-height: 3; background: #c2185b; margin: 0px;"><i
+                            class="mdi-hardware-keyboard-arrow-up"></i> {{api.Member.allMember.length}}
+                    </p>
+                </div>
+            </div>
+            <div class="card purple" flex flex-sm="100">
+                <div class="card-content white-text applyFlatUI">
+                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Managers</p>
+                    <h4 class="card-stats-number">{{totalCustomers}}</h4>
+
+                    <p class="card-stats-compare" style="line-height: 3; background: #7b1fa2; margin: 0px;"><i
+                            class="mdi-hardware-keyboard-arrow-up"></i> {{api.Manager.managers.length}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="card skyblue" flex flex-sm="100">
+                <div class="card-content white-text applyFlatUI">
+                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total Sales Commition</p>
+                    <h4 class="card-stats-number">{{totalSales}}</h4>
+
+                    <p class="card-stats-compare" style="line-height: 3; background: #2B84BA; margin: 0px;"><i
+                            class="mdi-hardware-keyboard-arrow-up"></i>
+                    </p>
+                </div>
+            </div>
+
+        </div>
 
 
     </md-content>

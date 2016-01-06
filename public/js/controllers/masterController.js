@@ -21,7 +21,29 @@ angular.module ('cms.controllers')
                     toastr.success ("Loggedin", 'Success');
                     if ( data.role === "admin" ) {
                         $scope.$storage.adminUsers = data;
-                        $state.go ("home.clublist");
+
+                        api.Club.getAllClub ( function ( err, data ) {
+                            if ( data !== null ) {
+                                api.Manager.getAllManager( function ( err, data ) {
+                                    if ( data !== null ) {
+                                        api.Member.getAll ( function ( err, data ) {
+                                            if ( data !== null ) {
+                                                $state.go ("home.dashboard");
+                                            } else {
+                                            }
+
+                                        });
+                                    } else {
+                                    }
+
+                                });
+                            } else {
+                            }
+
+                        });
+
+
+
 
                     } else {
                         $scope.$storage.adminUsers = data;

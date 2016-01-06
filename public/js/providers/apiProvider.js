@@ -49,7 +49,7 @@ angular.module ('cms.providers')
     var rootScope = null;
 
 
-    this.$get = ['$injector', '$http', function ( $injector, $http ) {
+    this.$get = ['$injector', '$http', 'Upload', function ( $injector, $http, FileUpload ) {
         rootScope = $injector.get ('$rootScope');
         http = $http;
         var apiClass = {};
@@ -265,8 +265,10 @@ angular.module ('cms.providers')
                         console.log ('error Creating Manager ', err)
                         callback (err, null);
                     } else {
-                        console.log ('Manager Created', data)
-                        apiClass.Manager.managers.push (data);
+                        console.log ('Manager Created B4', apiClass.Manager.managers.length)
+                        //apiClass.Manager.managers.push (data);
+                        console.log ('Manager Created after', apiClass.Manager.managers.length)
+
                         callback (null, data);
                     }
                 });
@@ -426,9 +428,9 @@ angular.module ('cms.providers')
                     }
                 });
             }
-            apiClass.Member.GetClubTransaction = function (clubId, callback ) {
+            apiClass.Member.GetClubTransaction = function ( clubId, callback ) {
 
-                httpRequest ("GET", "api/transaction/getClub?club="+clubId, null, function ( err, data ) {
+                httpRequest ("GET", "api/transaction/getClub?club=" + clubId, null, function ( err, data ) {
                     if ( err ) {
                         console.log (' Error Get all Transaction ', err)
                         callback (err, null);
@@ -447,19 +449,37 @@ angular.module ('cms.providers')
         {
             apiClass.ProfilePic = function () {}
 
-            apiClass.ProfilePic.Upload = function (file, callback ) {
+            apiClass.ProfilePic.adminUserUpload = function ( file, callback ) {
 
-                httpRequest ("POST", "api/adminUsers/profilePic", null, function ( err, data ) {
-                    if ( err ) {
-                        console.log (' Error Get all Transaction ', err)
-                        callback (err, null);
-                    } else {
-                        console.log (' Success Get all Transaction', data)
-                        apiClass.Member.AllTransaction = data;
-                        callback (null, data);
+                FileUpload.upload ({
+                    url: _apiUrl + 'api/adminUsers/profilePic',
+                    data: {file: file}
+                }).then (function ( resp ) {
 
-                    }
+                    callback (null, resp);
+                }, function ( resp ) {
+                    console.log ('Error status: ' + resp.status);
+                }, function ( evt ) {
+                    var progressPercentage = parseInt (100.0 * evt.loaded / evt.total);
+                    console.log ('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 });
+
+            }
+            apiClass.ProfilePic.clubLogoUpload = function ( file, callback ) {
+
+                FileUpload.upload ({
+                    url: _apiUrl + 'api/club/logo',
+                    data: {file: file}
+                }).then (function ( resp ) {
+
+                    callback (null, resp);
+                }, function ( resp ) {
+                    console.log ('Error status: ' + resp.status);
+                }, function ( evt ) {
+                    var progressPercentage = parseInt (100.0 * evt.loaded / evt.total);
+                    console.log ('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                });
+
             }
         }
 

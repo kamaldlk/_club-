@@ -8,12 +8,14 @@
 angular.module ('cms.controllers')
 
     .controller ("clubController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", function ( $scope, $mdDialog, $state, api, $stateParams, toastr ) {
-
+        $scope.api = api;
         $scope.view = true;
         $scope.selectedMenu = 'clublist';
         $scope.updateButton = false;
         $scope.images = ["images/clubImages/drinks.jpg", "images/clubImages/club_dance_hands_blue.jpg", "images/clubImages/club_dance_hands_yellow.jpg", "images/clubImages/hand_beer.jpg", "images/clubImages/party_cheers.jpg", "images/clubImages/party_fun_all.jpeg"];
         $scope.clubId = $stateParams.clubId;
+
+       $scope.club = {};
 
         if ( $stateParams.clubId ) {
             $scope.updateButton = true;
@@ -27,6 +29,7 @@ angular.module ('cms.controllers')
 
                 if ( data ) {
                     $scope.clubs = api.Club.allClub;
+
                     console.log (" data: ", data);
                 }
 
@@ -142,6 +145,20 @@ angular.module ('cms.controllers')
             })
 
         }
+
+        $scope.uploadFile = function () {
+            api.ProfilePic.clubLogoUpload ($scope.file, function ( error, data ) {
+
+                if ( data ) {
+                    $scope.club.logo = data.data.filePath;
+                    console.log (data);
+                } else {
+
+                }
+
+            })
+
+        };
 
 
         function DialogController ( $scope, $mdDialog ) {

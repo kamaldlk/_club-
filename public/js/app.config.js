@@ -27,7 +27,7 @@ angular.module ("cms")
             .state ('home.dashboard', {
             url: "/dashboard",
             templateUrl: "templates/admin/dashboard.html",
-            controller: 'homeController'
+            controller: 'dashboardController'
         })
             .state ('home.clublist', {
             url: "/clublist",
