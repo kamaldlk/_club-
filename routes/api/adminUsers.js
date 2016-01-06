@@ -5,9 +5,10 @@ var db = require("../../libs/db/index.js"),
     _constants = require("../../libs/constants/constants.js"),
     bcrypt = require('bcrypt'),    
     salt = bcrypt.genSaltSync(10);
+var path = require('path');
 
-var multer = require('multer');
-var upload = multer({ dest: './public/images/adminUsers/profilePicture/'}).single('userPhoto');
+var multiparty = require('connect-multiparty'),
+    multipartyMiddleware = multiparty({ uploadDir : path.join(__dirname, '../../public/images/adminUsers/profilePicture/')});
 
 module.exports = function(router) {
     // register a new manager   
@@ -171,23 +172,14 @@ module.exports = function(router) {
     });
     
     // profile pic upload
-    router.post('/adminUsers/profilePic', function(req,res, next) {
-        upload(req, res, function(err) {
-            if(err) {
-                res.json({
-                    error: true,
-                    errorCode: 'UNKNOWN_ERROR',
-                    stack: err
-                });
-            }
-            else {
-                var path = (res.req.file.path).replace('public/', '');
-                res.json({
-                    success: true,
-                    message: 'Image uploaded successfully',
-                    path: path
-                });
-            }   
+    router.post('/adminUsers/profilePic', multipartyMiddleware, function(req,res, next) {
+        var path = req.files.file.path;
+        var pattern = 'public/'        
+        var output = path.substr(path.indexOf(pattern) + pattern.length, path.length);
+        res.json ({
+            success: true,
+            filePath: output,
+            message: 'Image uploaded'
         });
     });
 };

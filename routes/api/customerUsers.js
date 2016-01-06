@@ -2,8 +2,9 @@ var db = require("../../libs/db/index.js");
 var _ = require("underscore")._;
 var uuid = require('node-uuid');
 var _constants = require("../../libs/constants/constants.js");
-var multer = require('multer');
-var upload = multer({ dest: './public/images/customerUsers/profilePicture/'}).single('userPhoto');
+var path = require('path');
+var multiparty = require('connect-multiparty'),
+    multipartyMiddleware = multiparty({ uploadDir : path.join(__dirname, '../../public/images/customerUsers/profilePicture/')});
 
 module.exports = function(router) {
     // register the user
@@ -63,23 +64,14 @@ module.exports = function(router) {
     });
 
     // profile picture upload    
-    router.post('/customerUsers/profilePic', function(req,res, next) {
-        upload(req, res, function(err) {
-            if(err) {
-                res.json({
-                    error: true,
-                    errorCode: 'UNKNOWN_ERROR',
-                    stack: err
-                });
-            }
-            else {
-                var path = (res.req.file.path).replace('public/', '');
-                res.json({
-                    success: true,
-                    message: 'Image uploaded successfully',
-                    path: path
-                });
-            }   
+    router.post('/customerUsers/profilePic', multipartyMiddleware, function(req,res, next) {
+        var path = req.files.file.path;
+        var pattern = 'public/'        
+        var output = path.substr(path.indexOf(pattern) + pattern.length, path.length);
+        res.json ({
+            success: true,
+            filePath: output,
+            message: 'Image uploaded'
         });
     });
 };

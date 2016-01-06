@@ -1,6 +1,7 @@
 var db = require("../../libs/db/index.js");
-var multer = require('multer');
-var upload = multer({ dest: './public/images/clubImages/clublogo/'}).single('userPhoto');
+var path = require('path');
+var multiparty = require('connect-multiparty'),
+    multipartyMiddleware = multiparty({ uploadDir : path.join(__dirname, '../../public/images/clubImages/clublogo/')});
 
 module.exports = function (router) {
 	// create new club
@@ -86,23 +87,14 @@ module.exports = function (router) {
 	});
 	
 	// logo upload
-	router.post('/club/logo', function(req,res, next) {
-		upload(req, res, function(err) {
-			if(err) {
-				res.json({
-					error: true,
-					errorCode: 'UNKNOWN_ERROR',
-					stack: err
-				});
-			}
-			else {
-				var path = (res.req.file.path).replace('public/', '');
-				res.json({
-					success: true,
-					message: 'Image uploaded successfully',
-					path: path
-				});
-			}	
-		});
+	router.post('/club/logo', multipartyMiddleware, function(req,res, next) {
+		var path = req.files.file.path;
+        var pattern = 'public/'        
+        var output = path.substr(path.indexOf(pattern) + pattern.length, path.length);
+        res.json ({
+            success: true,
+            filePath: output,
+            message: 'Image uploaded'
+        });
 	});
 }

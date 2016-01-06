@@ -53,7 +53,9 @@
                            </label>
                            <!--<input id="file-upload2" type="file" ng-model="imgs.image" class="nodisplay" app-filereader-->
                            <!--ng-change="uploadFile('file-name2','file-upload2')" />-->
-                           <input type="file" ngf-select="" ng-model="userPhoto" name="file" ngf-accept="'image/*'" required="">
+                           <input type="file"ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" 
+    ngf-resize="{width: 100, height: 100}">
                            <button type="submit" ng-click="submit()">submit</button>
                        </form>
 

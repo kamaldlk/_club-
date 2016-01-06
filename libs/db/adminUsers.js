@@ -3,6 +3,8 @@ var db = require("./schema/index.js"),
     uuid = require('node-uuid'),
     _ = require("underscore")._,
     bcrypt = require('bcrypt');
+var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 module.exports = {
     register: function(data, callback) {
@@ -68,7 +70,7 @@ module.exports = {
     }, 
 
     login: function(data, callback) {    
-        db.adminUsers.findOne({userName: data.userName}).populate({path: 'club', populate: {path: 'club.currencyDetails'}}) .exec(function(err, user) {        
+        db.adminUsers.findOne({userName: data.userName}).deepPopulate('club.currencyDetails') .exec(function(err, user) {        
             if (user) {
                 if(bcrypt.compareSync(data.password, user.password)) {
                     user = user.toObject();
