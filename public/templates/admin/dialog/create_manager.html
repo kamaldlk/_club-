@@ -47,11 +47,15 @@
                     </div>
 
                     <div layout="column" layout-margin layout-align-sm="center center" flex="25" flex-sm="100">
-                        <label for="file-upload2">
-                            <img ng-src="images/user_avatar.jpg" class="manager_avatar  ">
-                        </label>
-                        <input id="file-upload2" type="file" ng-model="imgs.image" class="nodisplay" app-filereader
-                               ng-change="uploadFile('file-name2','file-upload2')"/>
+                       <form name="form">
+                           <label for="file-upload2">
+                               <img ng-src="images/user_avatar.jpg" class="manager_avatar  ">
+                           </label>
+                           <!--<input id="file-upload2" type="file" ng-model="imgs.image" class="nodisplay" app-filereader-->
+                           <!--ng-change="uploadFile('file-name2','file-upload2')" />-->
+                           <input type="file" ngf-select="" ng-model="userPhoto" name="file" ngf-accept="'image/*'" required="">
+                           <button type="submit" ng-click="submit()">submit</button>
+                       </form>
 
                     </div>
                 </div>

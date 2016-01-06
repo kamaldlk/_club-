@@ -444,6 +444,25 @@ angular.module ('cms.providers')
 
         }
 
+        {
+            apiClass.ProfilePic = function () {}
+
+            apiClass.ProfilePic.Upload = function (file, callback ) {
+
+                httpRequest ("POST", "api/adminUsers/profilePic", null, function ( err, data ) {
+                    if ( err ) {
+                        console.log (' Error Get all Transaction ', err)
+                        callback (err, null);
+                    } else {
+                        console.log (' Success Get all Transaction', data)
+                        apiClass.Member.AllTransaction = data;
+                        callback (null, data);
+
+                    }
+                });
+            }
+        }
+
 
         return apiClass;
     }];

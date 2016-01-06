@@ -7,7 +7,7 @@
  */
 angular.module ('cms.controllers')
 
-    .controller ("managerController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", function ( $scope, $mdDialog, $state, api, $stateParams, toastr ) {
+    .controller ("managerController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", "Upload", function ( $scope, $mdDialog, $state, api, $stateParams, toastr, Upload ) {
 
         $scope.view = true;
         $scope.selectedMenu = 'managerlist';
@@ -32,10 +32,10 @@ angular.module ('cms.controllers')
                 clickOutsideToClose: true
             })
                 .then (function ( answer ) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function () {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
         }
 
 
@@ -103,10 +103,10 @@ angular.module ('cms.controllers')
                 }
             })
                 .then (function ( answer ) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function () {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
         }
         $scope.managerRemove = function ( ev, manager ) {
 
@@ -148,7 +148,7 @@ angular.module ('cms.controllers')
         }
 
 
-        function DialogController ( $scope, $mdDialog, api ) {
+        function DialogController ( $scope, $mdDialog, api ,Upload) {
 
 
             $scope.hide = function () {
@@ -170,7 +170,7 @@ angular.module ('cms.controllers')
 
 
                         var tempClub, tempClubList = [];
-                        _.each(api.Manager.managers, function ( manager ) {
+                        _.each (api.Manager.managers, function ( manager ) {
 
                             tempClub = _.findWhere (api.Club.allClub, {clubName: manager.club.clubName});
                             if ( tempClub )
@@ -183,6 +183,32 @@ angular.module ('cms.controllers')
 
                 });
             }
+
+            $scope.submit = function () {
+                if ( $scope.userPhoto ) {
+                    console.log($scope.userPhoto);
+                   // $scope.upload($scope.userPhoto);
+                }
+                console.log("file",$scope.userPhoto);
+            };
+
+            // upload on file select or drop
+            $scope.upload = function ( file ) {
+                Upload.upload ({
+                    url: 'http://192.168.1.100:3002/api/adminUsers/profilePic',
+                    data: {file: file, 'name': "userPhoto"}
+                }).then (function ( resp ) {
+                   // console.log ('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                    console.log(resp);
+                }, function ( resp ) {
+                    console.log ('Error status: ' + resp.status);
+                }, function ( evt ) {
+                    var progressPercentage = parseInt (100.0 * evt.loaded / evt.total);
+                    console.log ('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                });
+            };
+
+
             $scope.save = function ( manager ) {
 
                 $scope.manager.createdBy = "admin";
@@ -209,6 +235,7 @@ angular.module ('cms.controllers')
 
                 })
 
+
 //                if ( manager.profile.firstName || manager.profile.lastName || manager.profile.email || manager.profile.mobile ) {
 //
 //                    toastr.warning ("Fields required", "Warning");
@@ -220,6 +247,8 @@ angular.module ('cms.controllers')
 
             }
         }
+
+
 
 
     }])
