@@ -70,12 +70,22 @@ module.exports = {
     }, 
 
     login: function(data, callback) {    
-        db.adminUsers.findOne({userName: data.userName}).deepPopulate('club.currencyDetails') .exec(function(err, user) {        
-            if (user) {
+        db.adminUsers.findOne({userName: data.userName}).populate('club') .exec(function(err, user) { 
+            if(err) {
+                callback({
+                    error: true,
+                    errorCode: 'UNKNOWN_ERROR',
+                    stack: err
+                });
+            }
+            else if (user) {
                 if(bcrypt.compareSync(data.password, user.password)) {
                     user = user.toObject();
                     delete user.password;
-                    callback(user);
+                    db.currency.findOne({'_id': user.club.currencyDetails}, function (err, currency) {
+                        user.club.currencyDetails = currency;
+                        callback(user);
+                    });
                 }
                 else{
                     callback({
@@ -84,7 +94,7 @@ module.exports = {
                     });       
                 }        
             }
-            else {
+            else if(!user) {
                 callback({
                     error: true,
                     errorCode: 'NOT_EXISTS'

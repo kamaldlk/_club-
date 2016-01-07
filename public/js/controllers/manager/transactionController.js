@@ -56,8 +56,8 @@ angular.module ('cms.controllers')
         $scope.createTransaction = function ( transaction ) {
 
             $scope.transaction.clubId = $scope.$storage.adminUsers.club._id;
-            $scope.transaction.code = "INR";
-            $scope.transaction.currency = $scope.$storage.adminUsers.club.currencyDetails;
+            $scope.transaction.code = $scope.$storage.adminUsers.club.currencyDetails.currency.code;
+            $scope.transaction.currency = $scope.$storage.adminUsers.club.currencyDetails._id;
             $scope.transaction.usedByCardholder = $scope.cardHolderValue;
             $scope.transaction.createdBy = $scope.$storage.adminUsers.club.managers[0];
 

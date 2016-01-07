@@ -53,24 +53,38 @@ module.exports = {
                         off = offer.referralCustomer;
                     data.amount.offer = off;                    
                     db.currencyConversion.findOne({'fromCurrency.code': data.currencyCode}, 'toCurrency', function (err, currency) {
-                        delete data.currencyCode;
-                        currency = currency.toCurrency.pop();
-                        data.amount.saved = (parseInt(data.amount.spent) * (parseInt(off) / 100) * currency.value).toFixed(3);
-                        if(!data.usedByCardholder) {
-                            data.reference.offer = off;
-                            data.reference.offerAmount = data.amount.saved;
-                            create();
+                        if(err) {
+                            callback({
+                                error: true,
+                                errorCode: 'UNKNOWN_ERROR',
+                                stack: err
+                            });
                         }
-                        else
-                            create();
+                        else {
+                            delete data.currencyCode;
+                            if(currency) {
+                                currency = currency.toCurrency.pop();
+                                currency = parseInt(currency.value);
+                            }
+                            else if(!currency)
+                                currency = parseInt(1);
+                            data.amount.saved = (parseInt(data.amount.spent) * (parseInt(off) / 100) * currency).toFixed(3);
+                            if(!data.usedByCardholder) {
+                                data.reference.offer = off;
+                                data.reference.offerAmount = data.amount.saved;
+                                create();
+                            }
+                            else
+                                create();
+                        }
                     });
                 }
                 function create () {  
                     var addToNetAmount;
                     if(data.usedByCardholder)
-                        addToNetAmount = data.amount.saved;
+                        addToNetAmount = parseInt(data.amount.saved);
                     else 
-                        addToNetAmount = data.reference.offerAmount;
+                        addToNetAmount = parseInt(data.reference.offerAmount);
                     var transctn = new db.transaction(data);
                     transctn.save(function(err, transaction) {
                         db.customerUsers.update({'cardNo': data.cardNo}, {$inc: {'netAmount': addToNetAmount}}, function (err, updated) {
@@ -82,6 +96,7 @@ module.exports = {
                                 }); 
                             }
                             else {
+                                console.log(updated);
                                 callback(transaction);
                             }
                         });
