@@ -63,8 +63,8 @@ module.exports = {
                         else {
                             delete data.currencyCode;
                             if(currency) {
-                                currency = currency.toCurrency.pop();
-                                currency = parseInt(currency.value);
+                                var currencyObject = currency.toCurrency.pop();
+                                currency = currencyObject.value;
                             }
                             else if(!currency)
                                 currency = parseInt(1);

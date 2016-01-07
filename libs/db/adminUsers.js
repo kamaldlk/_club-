@@ -3,8 +3,6 @@ var db = require("./schema/index.js"),
     uuid = require('node-uuid'),
     _ = require("underscore")._,
     bcrypt = require('bcrypt');
-var mongoose = require('mongoose');
-var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 module.exports = {
     register: function(data, callback) {
@@ -82,10 +80,14 @@ module.exports = {
                 if(bcrypt.compareSync(data.password, user.password)) {
                     user = user.toObject();
                     delete user.password;
-                    db.currency.findOne({'_id': user.club.currencyDetails}, function (err, currency) {
-                        user.club.currencyDetails = currency;
+                    if(user.club) {
+                        db.currency.findOne({'_id': user.club.currencyDetails}, function (err, currency) {
+                            user.club.currencyDetails = currency;
+                            callback(user);
+                        });
+                    }
+                    else
                         callback(user);
-                    });
                 }
                 else{
                     callback({
