@@ -12,7 +12,7 @@ angular.module ('cms.controllers')
         $scope.api = api;
         $scope.view = true;
         $scope.selectedMenu = 'managerlist';
-        $scope.managers = [];
+
         $scope.getAllManager = function () {
 
             api.Manager.getAllManager (function ( err, data ) {
@@ -23,6 +23,8 @@ angular.module ('cms.controllers')
 
             });
         }
+
+
 
 
         $scope.createManager = function ( ev ) {
@@ -71,7 +73,6 @@ angular.module ('cms.controllers')
                         })
 
                     };
-
 
 
                     $scope.updateButton = true;
@@ -228,6 +229,10 @@ angular.module ('cms.controllers')
 
                 $scope.manager.club = manager.club.clubName;
                 console.log ("Club Details :", JSON.stringify (manager));
+
+                if(!$scope.manager.profile.profilePic){
+                    $scope.manager.profile.profilePic = "images/user_avatar.jpg";
+                }
 
                 api.Manager.createManager (manager, function ( err, data ) {
 

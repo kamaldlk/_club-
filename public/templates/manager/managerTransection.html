@@ -2,7 +2,17 @@
     <md-toolbar class="md-default-theme" style="background: url('images/managers/party-blur.jpg') no-repeat fixed center;background-size:cover;min-height: 120px;">
         <div class="md-toolbar-tools">
             <span class="ft_fff"> Transaction list</span>
+
+            <div class="search_style">
+                <input type="text" class="search_input" ng-model="transactionListFilter"/>
+                <div class="close">
+                    <span class="front"></span>
+                    <span class="back"></span>
+                </div>
+            </div>
         </div>
+
+
     </md-toolbar>
 
     <div layout="row" flex style="width:85%;margin:0px auto;margin-top:-50px;position: relative;
@@ -118,21 +128,25 @@ z-index: 100;">
                            <span class="ft_red">Card no</span>
                            </span>
                            <span flex=20 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red">Referral </span>
+                           <span class="ft_red">Used By </span>
+                           </span>
+                                  <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">Transaction Date</span>
                            </span>
                             <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red"> Offer</span>
-                           </span>
-                                <span flex=15 flex-xs=100 layout-align="center center" layout>
                            <span class="ft_red"> Amount</span>
                            </span>
                                 <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red">Transaction Date</span>
+                           <span class="ft_red"> Card Holder Offer</span>
                            </span>
+                                 <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red"> Referral Offer</span>
+                           </span>
+
                             </div>
                         </md-item-content>
                     </md-item>
-                    <md-item class="md-whiteframe-5dp " ng-repeat = "transaction in transactionHistory">
+                    <md-item class="md-whiteframe-5dp " ng-repeat = "transaction in transactionHistory | filter:transactionListFilter | orderBy:'-transaction.transactionDate' ">
                         <md-item-content layout="row" class="tbl-header min-h60">
                             <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
                            <span flex=20 flex-xs="100" layout-align="start center" layout>
@@ -157,7 +171,7 @@ z-index: 100;">
                         </span>
                               </span>
                                  <span flex=20 flex-xs=100 layout-align="center center" layout="column" ng-show="transaction.usedByCardholder">
-                                <span class="ft_16 padd-t3 padd-l5">-</span>
+                                <span class="ft_16 padd-t3 padd-l5">Own</span>
                                   <span layout="row">
                         <span class="hash_color md-caption marg-r5" ng-show="!transaction.usedByCardholder"> Mobile : </span>
                             <span class="ft_grn md-caption" ng-show="!transaction.usedByCardholder"> - </span>
@@ -188,3 +202,4 @@ z-index: 100;">
             </div>
         </div>
     </div>
+

@@ -290,16 +290,6 @@ form {
                     </p>
                 </div>
             </div>
-            <div class="card pink" flex flex-sm="100">
-                <div class="card-content white-text applyFlatUI">
-                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Customers</p>
-                    <h4 class="card-stats-number">{{totalStores}}</h4>
-
-                    <p class="card-stats-compare" style="line-height: 3; background: #c2185b; margin: 0px;"><i
-                            class="mdi-hardware-keyboard-arrow-up"></i> {{api.Member.allMember.length}}
-                    </p>
-                </div>
-            </div>
             <div class="card purple" flex flex-sm="100">
                 <div class="card-content white-text applyFlatUI">
                     <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Managers</p>
@@ -311,13 +301,24 @@ form {
                 </div>
 
             </div>
+            <div class="card pink" flex flex-sm="100">
+                <div class="card-content white-text applyFlatUI">
+                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total no of Customers</p>
+                    <h4 class="card-stats-number">{{totalStores}}</h4>
+
+                    <p class="card-stats-compare" style="line-height: 3; background: #c2185b; margin: 0px;"><i
+                            class="mdi-hardware-keyboard-arrow-up"></i> {{api.Member.allMember.length}}
+                    </p>
+                </div>
+            </div>
+
             <div class="card skyblue" flex flex-sm="100">
                 <div class="card-content white-text applyFlatUI">
-                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total Sales Commition</p>
+                    <p class="card-stats-title"><i class="mdi-social-group-add"></i> Total Club Revenue</p>
                     <h4 class="card-stats-number">{{totalSales}}</h4>
 
                     <p class="card-stats-compare" style="line-height: 3; background: #2B84BA; margin: 0px;"><i
-                            class="mdi-hardware-keyboard-arrow-up"></i>
+                            class="mdi-hardware-keyboard-arrow-up"></i>     $6576
                     </p>
                 </div>
             </div>

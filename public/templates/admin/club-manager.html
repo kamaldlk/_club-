@@ -65,7 +65,7 @@
                            <span flex="15" layout-align="start center" layout>
                            <span >{{manager.profile.mobile}}</span>
                            </span>
-                                    <div layout="column" layout-padding layout-wrap class="full_wid ft-14 hash_color" ng-hide="view">
+                                    <div layout="column" layout-padding layout-wrap class="full_wid ft-14 hash_color animated" style="background-color:#f5f6f8" ng-hide="view"  ng-class="{'bounceIn':!view, 'bounceOut':view}">
                                         <div layout="row">
                                  <span flex flex-sm="100">
                                  <label>Address1 : <span class="hash_color">{{manager.address.address1}}</span> </label>
