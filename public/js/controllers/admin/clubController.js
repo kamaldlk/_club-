@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 angular.module ('cms.controllers')
-
     .controller ("clubController", ["$scope", "$mdDialog", "$state", "api", "$stateParams", "toastr", function ( $scope, $mdDialog, $state, api, $stateParams, toastr ) {
         $scope.api = api;
         $scope.view = true;
@@ -14,39 +13,29 @@ angular.module ('cms.controllers')
         $scope.updateButton = false;
         $scope.images = ["images/clubImages/drinks.jpg", "images/clubImages/club_dance_hands_blue.jpg", "images/clubImages/club_dance_hands_yellow.jpg", "images/clubImages/hand_beer.jpg", "images/clubImages/party_cheers.jpg", "images/clubImages/party_fun_all.jpeg"];
         $scope.clubId = $stateParams.clubId;
-
-       $scope.club = {};
+        $scope.club = {};  
+        $scope.submit = false; 
 
         if ( $stateParams.clubId ) {
             $scope.updateButton = true;
             $scope.club = _.findWhere (api.Club.allClub, {_id: $stateParams.clubId});
-
         }
 
         $scope.getAllClubList = function () {
-
             api.Club.getAllClub (function ( err, data ) {
-
                 if ( data ) {
                     $scope.clubs = api.Club.allClub;
-
                     console.log (" data: ", data);
                 }
-
             });
         }
 
         $scope.getAllCurrencyList = function () {
-
             api.Currency.getAll (function ( err, data ) {
-
                 if ( data ) {
-
                     $scope.currencyData = api.Currency.allCountries;
                     console.log ($scope.currencyData)
-
                 }
-
             });
         }
 
@@ -70,24 +59,15 @@ angular.module ('cms.controllers')
             confirm.ok ('Remove!')
             confirm.cancel ('Cancel');
             $mdDialog.show (confirm).then (function () {
-
                 api.Club.removeClub (club, function ( err, data ) {
-
-
                     if ( data ) {
                         toastr.success (data.message, "Successfully Removed");
                         console.log (data);
                     } else {
                         toastr.error (err.message, "error Removed");
                     }
-
-
                 })
-
-            }, function () {
-
-
-            });
+            }, function () {});
         };
 
         $scope.cancelCreate = function () {
@@ -95,71 +75,56 @@ angular.module ('cms.controllers')
         }
 
         $scope.save = function ( club ) {
-            $scope.club.logo = "logo";
-            $scope.club.createdBy = "admin";
-            $scope.club.netAmount = "0";
-            $scope.club.currencyDetails = club.currencyDetails.currency.code;
-
-            console.log ("Club Details :", JSON.stringify (club));
-
-            api.Club.createClub (club, function ( err, data ) {
-
-
-                if ( data ) {
-                    toastr.success (data.message, "Successfully Created");
-                    $state.go ("home.clublist");
-
-                } else {
-                    console.log (JSON.stringify (err));
-                    toastr.error (err.message, "Error Creating Club");
-                }
-
-
-            })
-
-
+            if(!club.clubName || !club.description || !club.address.address1 || !club.address.address2 || !club.address.city || !club.address.state || !club.address.country || !club.contactNumber || !club.email)
+                toastr.warning ("Fields shouldn't be empty", "Warning");
+            else {
+                $scope.club.logo = "logo";
+                $scope.club.createdBy = "admin";
+                $scope.club.netAmount = "0";
+                $scope.club.currencyDetails = club.currencyDetails.currency.code;
+                console.log ("Club Details :", JSON.stringify (club));
+                api.Club.createClub (club, function ( err, data ) {
+                    if ( data ) {
+                        toastr.success (data.message, "Successfully Created");
+                        $state.go ("home.clublist");
+                    } else {
+                        console.log (JSON.stringify (err));
+                        toastr.error (err.message, "Error Creating Club");
+                    }
+                })
+            }
         }
 
         $scope.updateClub = function ( club ) {
-
-            delete $scope.club.logo;
-            delete $scope.club.createdBy;
-            delete $scope.club.netAmount;
-            delete $scope.club.currencyDetails;
-
-            console.log ("Club Details :", JSON.stringify (club));
-
-            api.Club.updateClub (club, function ( err, data ) {
-
-
-                if ( data ) {
-                    toastr.success (data.message, 'Success');
-                    $state.go ("home.clublist");
-
-                } else {
-                    console.log ("Updated :", JSON.stringify (err));
-                    toastr.warning (err.errorCode, 'Warning');
-                }
-
-
-            })
-
+            if(!club.clubName || !club.description || !club.address.address1 || !club.address.address2 || !club.address.city || !club.address.state || !club.address.country || !club.address.pin || !club.contactNumber || !club.email)
+                toastr.warning ("Fields shouldn't be empty", "Warning");
+            else {
+                delete $scope.club.logo;
+                delete $scope.club.createdBy;
+                delete $scope.club.netAmount;
+                delete $scope.club.currencyDetails;
+                console.log ("Club Details :", JSON.stringify (club));
+                api.Club.updateClub (club, function ( err, data ) {
+                    if ( data ) {
+                        toastr.success (data.message, 'Success');
+                        $state.go ("home.clublist");
+                    } else {
+                        console.log ("Updated :", JSON.stringify (err));
+                        toastr.warning (err.errorCode, 'Warning');
+                    }
+                });
+            }
         }
 
         $scope.uploadFile = function () {
             api.ProfilePic.clubLogoUpload ($scope.file, function ( error, data ) {
-
                 if ( data ) {
                     $scope.club.logo = data.data.filePath;
                     console.log (data);
                 } else {
-
                 }
-
             })
-
         };
-
 
         function DialogController ( $scope, $mdDialog ) {
             $scope.hide = function () {
@@ -172,8 +137,6 @@ angular.module ('cms.controllers')
                 $mdDialog.hide (answer);
             };
         }
-
-
     }])
 
 

@@ -121,7 +121,7 @@ margin: 0px auto;">
         <span flex>
             <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
                 <md-icon md-svg-src="img/icons/parking29.svg" class="email nomarg"></md-icon>
-                <input ng-model="club.address.pin" type="text" placeholder="Pin">
+                <input ng-model="club.address.pin" onkeypress="return isNumber(event)" maxlength="7" minlength="5"  placeholder="Pin">
             </md-input-container>  </span>
 
                 </div>
@@ -129,7 +129,7 @@ margin: 0px auto;">
         <span flex>
           <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
               <md-icon md-svg-src="img/icons/phone21.svg" class="email nomarg"></md-icon>
-              <input ng-model="club.contactNumber" type="text" placeholder="phone">
+              <input ng-model="club.contactNumber" onkeypress="return isNumber(event)" minlength="10" maxlength="15" placeholder="Phone">
           </md-input-container>
            </span>
         <span flex>

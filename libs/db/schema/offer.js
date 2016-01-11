@@ -1,12 +1,16 @@
 var mongoose = require('mongoose');
 
 module.exports.offerSchema = new mongoose.Schema({   
-     newCustomer: [{
+    usedByHolder: [{
      	'percentage': Number,
      	'date': {type: Date, default: Date.now}
-     }],
-     referralCustomer: [{
+    }],
+    toReference: [{
      	'percentage': Number,
      	'date': {type: Date, default: Date.now}
-     }]
+    }],
+    toUser: [{
+     	'percentage': Number,
+     	'date': {type: Date, default: Date.now}
+    }]
 });

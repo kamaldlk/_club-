@@ -116,7 +116,7 @@
         <span flex>
             <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
                 <md-icon md-svg-src="img/icons/parking29.svg" class="email nomarg"></md-icon>
-                <input ng-model="manager.address.pin" type="text" placeholder="Pin">
+                <input ng-model="manager.address.pin" onkeypress="return isNumber(event)" minlength="5" maxlength="7" placeholder="Pin">
             </md-input-container>  </span>
 
                     </div>
@@ -124,7 +124,7 @@
         <span flex>
           <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon">
               <md-icon md-svg-src="img/icons/phone21.svg" class="email nomarg"></md-icon>
-              <input ng-model="manager.profile.mobile" type="text" placeholder="phone" required>
+              <input ng-model="manager.profile.mobile" onkeypress="return isNumber(event)" minlength="10" maxlength="15" placeholder="phone" required>
           </md-input-container>
            </span>
         <span flex>

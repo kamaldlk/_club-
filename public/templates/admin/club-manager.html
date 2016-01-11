@@ -85,7 +85,7 @@
                                  <label>Location : <span class="hash_color">{{manager.address.city}}</span> </label>
                                  </span>
                                  <span flex flex-sm="100" layout="row">
-                                    <label>Last logged date : <span class="hash_color">{{loggedDate(manager.lastLoggedOn)}}</span> </label>
+                                    <label>Last logged date : <span class="hash_color" ng-show="{{loggedDate(manager.lastLoggedOn)}}">{{loggedDate(manager.lastLoggedOn)}}</span> </label>
                                     <span flex style="text-align: right;">
                                        <span>
                                           <ng-md-icon icon="edit" style="fill:gray" size="24" ng-click="managerUpdate($event,manager);$event.stopPropagation();"></ng-md-icon>

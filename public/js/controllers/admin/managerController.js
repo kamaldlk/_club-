@@ -82,36 +82,27 @@ angular.module ('cms.controllers')
                     };
 
                     $scope.update = function ( manager ) {
+                        if(!manager.profile.firstName || !manager.profile.lastName || !manager.userName || !manager.password || !manager.club.clubName || !manager.address.address1 || !manager.address.address2 || !manager.address.city || !manager.address.state || !manager.address.country || !manager.address.pin || !manager.profile.mobile || !manager.profile.email)
+                            toastr.warning ("Fields shouldn't be empty", "Warning");
+                        else {
+                            $scope.manager.createdBy = "admin";
+                            var userName = $scope.manager.userName;
+                            $scope.manager.clubName = $scope.manager.club.clubName;
+                            delete $scope.manager.userName;
+                            delete $scope.manager.club;
+                            api.Manager.updateManager (manager, userName, function ( err, data ) {
+                                if ( data ) {
+                                    console.log ("Updated :", JSON.stringify (data));
+                                    toastr.success (data.message, 'Successfully Updated');
+                                    $mdDialog.cancel ();
 
+                                } else {
+                                    console.log ("Updated :", JSON.stringify (err));
+                                    toastr.warning (err.errorCode, 'Warning');
+                                }
 
-                        $scope.manager.createdBy = "admin";
-
-
-                        var userName = $scope.manager.userName;
-                        $scope.manager.clubName = $scope.manager.club.clubName;
-
-                        delete $scope.manager.userName;
-                        delete $scope.manager.club;
-
-
-                        api.Manager.updateManager (manager, userName, function ( err, data ) {
-
-
-                            if ( data ) {
-
-                                console.log ("Updated :", JSON.stringify (data));
-                                toastr.success (data.message, 'Successfully Updated');
-                                $mdDialog.cancel ();
-
-
-                            } else {
-                                console.log ("Updated :", JSON.stringify (err));
-                                toastr.warning (err.errorCode, 'Warning');
-                            }
-
-
-                        })
-
+                            })
+                        }
                     }
 
                 },
@@ -224,52 +215,34 @@ angular.module ('cms.controllers')
 
 
             $scope.save = function ( manager ) {
-
-                $scope.manager.createdBy = "admin";
-
-                $scope.manager.club = manager.club.clubName;
-                console.log ("Club Details :", JSON.stringify (manager));
-
-                if(!$scope.manager.profile.profilePic){
-                    $scope.manager.profile.profilePic = "images/user_avatar.jpg";
-                }
-
-                api.Manager.createManager (manager, function ( err, data ) {
-
-
-                    if ( data ) {
-
-                        console.log (JSON.stringify (data));
-                        toastr.success (data.message, "Successfully Created");
-                        api.Manager.getAllManager (function ( err, data ) {
-                            if ( data ) {
-                                $scope.managers = api.Manager.managers;
-                                console.log (" data: ", data);
-                            }
-
-                        });
-
-                        $scope.cancel ();
-
-                        $state.go ("home.clubmanager");
-
-                    } else {
-                        console.log (JSON.stringify (err));
-                        toastr.error (err.errorCode, "Error");
+                if(!manager.profile.firstName || !manager.profile.lastName || !manager.userName || !manager.password || !manager.club.clubName || !manager.address.address1 || !manager.address.address2 || !manager.address.city || !manager.address.state || !manager.address.country || !manager.address.pin || !manager.profile.mobile || !manager.profile.email)
+                    toastr.warning ("Fields shouldn't be empty", "Warning");
+                else {
+                    $scope.manager.createdBy = "admin";
+                    $scope.manager.club = manager.club.clubName;
+                    console.log ("Club Details :", JSON.stringify (manager));
+                    if(!$scope.manager.profile.profilePic){
+                        $scope.manager.profile.profilePic = "images/user_avatar.jpg";
                     }
-
-
-                })
-
-
-//                if ( manager.profile.firstName || manager.profile.lastName || manager.profile.email || manager.profile.mobile ) {
-//
-//                    toastr.warning ("Fields required", "Warning");
-//                    console.log (manager);
-//
-//                } else {
-//
-//                }
+                    api.Manager.createManager (manager, function ( err, data ) {
+                        if ( data ) {
+                            console.log (JSON.stringify (data));
+                            toastr.success (data.message, "Successfully Created");
+                            api.Manager.getAllManager (function ( err, data ) {
+                                if ( data ) {
+                                    $scope.managers = api.Manager.managers;
+                                    console.log (" data: ", data);
+                                }
+                            });
+                            $scope.cancel ();
+                            $state.go ("home.clubmanager");
+                        } 
+                        else {
+                            console.log (JSON.stringify (err));
+                            toastr.error (err.errorCode, "Error");
+                        }
+                    });
+                }
 
             }
         }
