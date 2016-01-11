@@ -7,8 +7,9 @@ module.exports = function(router) {
     // update offer rate
     router.post('/offer/update', function (req, res) {
     	var data = {
-    		newCustomer: req.body.newCustomer,
-    		referralCustomer: req.body.referralCustomer
+    		holderUse: req.body.holderUse,
+    		holderReference: req.body.holderReference,
+            customer: req.body.customer
     	}
     	db.offer.update(data, function (data) {
     		res.send(data);

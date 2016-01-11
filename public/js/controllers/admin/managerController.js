@@ -186,14 +186,14 @@ angular.module ('cms.controllers')
 
                         var tempClub, tempClubList = [];
                         _.each (api.Manager.managers, function ( manager ) {
-
                             tempClub = _.findWhere (api.Club.allClub, {clubName: manager.club.clubName});
                             if ( tempClub )
                                 tempClubList.push (tempClub);
 
                         });
-                        $scope.clubs = _.difference (api.Club.allClub, tempClubList);
-                        console.log (" filtered club: ", $scope.clubs);
+                        $scope.clubs = tempClubList;
+                        // $scope.clubs = _.difference (api.Club.allClub, tempClubList);
+                        // console.log (" filtered club: ", $scope.clubs);
                     }
 
                 });

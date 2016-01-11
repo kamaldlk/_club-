@@ -5,7 +5,7 @@
 
              <span layout layout-align="start start" flex>
                     <h3 layout-align="start" class="ft_000">Currency conversion</h3>
-                     <ng-md-icon icon="attach_money" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon>
+                     <!-- <ng-md-icon icon="attach_money" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon> -->
                 </span>
 
 
@@ -118,7 +118,7 @@
 
              <span layout layout-align="start start" flex>
                     <h3 layout-align="start" class="ft_000">Offer configuration</h3>
-                     <ng-md-icon icon="attach_money" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon>
+                     <!-- <ng-md-icon icon="attach_money" style="fill:#aaa;padding-left: 5px;" size="24"></ng-md-icon> -->
                 </span>
             </div>
         </md-toolbar>
@@ -145,10 +145,10 @@ margin: 1% auto ;">
                                         </label>
                                         <span class="md-body-1"> Card Holder</span>
                                     </div>
-                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.newCustomer" aria-label="red" id="red-slider" class>
+                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.holderUse" aria-label="red" id="red-slider" class>
                                     </md-slider>
                                     <div flex="10" layout layout-align="center center">
-                                        <input flex ng-model="offer.newCustomer" aria-label="red" aria-controls="red-slider" class="offer-value"> %
+                                        <input flex ng-model="offer.holderUse" aria-label="red" aria-controls="red-slider" class="offer-value"> %
                                     </div>
                                 </div>
 
@@ -160,10 +160,10 @@ margin: 1% auto ;">
                                         </label>
                                         <span class="md-body-1">Card Holder offer for reference</span>
                                     </div>
-                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.referralCustomer" aria-label="red" id="red-slider" class>
+                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.holderReference" aria-label="red" id="red-slider" class>
                                     </md-slider>
                                     <div flex="10" layout layout-align="center center">
-                                        <input flex ng-model="offer.referralCustomer" aria-label="red" aria-controls="red-slider" class="offer-value"> %
+                                        <input flex ng-model="offer.holderReference" aria-label="red" aria-controls="red-slider" class="offer-value"> %
                                     </div>
 
                                 </div>
@@ -174,10 +174,10 @@ margin: 1% auto ;">
                                         </label>
                                         <span class="md-body-1">Referral Customer</span>
                                     </div>
-                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.referralCustomer" aria-label="red" id="red-slider" class>
+                                    <md-slider layout-padding flex="60" min="0" max="100" ng-model="offer.customer" aria-label="red" id="red-slider" class>
                                     </md-slider>
                                     <div flex="10" layout layout-align="center center">
-                                        <input flex ng-model="offer.referralCustomer" aria-label="red" aria-controls="red-slider" class="offer-value"> %
+                                        <input flex ng-model="offer.customer" aria-label="red" aria-controls="red-slider" class="offer-value"> %
                                     </div>
 
                                 </div>

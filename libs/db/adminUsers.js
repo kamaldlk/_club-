@@ -38,12 +38,12 @@ module.exports = {
                             });
                         }
                         else if(club) {
-                            if(club.managers && club.managers.length >= 1)
-                                callback ({
-                                    error: true,
-                                    errorCode: 'Manager already exists'
-                                })
-                            else {                                
+                            // if(club.managers && club.managers.length >= 1)
+                            //     callback ({
+                            //         error: true,
+                            //         errorCode: 'Manager already exists'
+                            //     })
+                            // else {                                
                                 adminUsers.club = club._id;
                                 adminUsers.save(function(err, savedUser){
                                     savedUser = savedUser.toObject();
@@ -52,7 +52,7 @@ module.exports = {
                                     club.save();
                                     callback(savedUser);
                                 });
-                            }
+                            // }
                         }
                     });
                 }

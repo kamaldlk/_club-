@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 
 module.exports.offerSchema = new mongoose.Schema({   
-    usedByHolder: [{
+    holderUse: [{
      	'percentage': Number,
      	'date': {type: Date, default: Date.now}
     }],
-    toReference: [{
+    holderReference: [{
      	'percentage': Number,
      	'date': {type: Date, default: Date.now}
     }],
-    toUser: [{
+    customer: [{
      	'percentage': Number,
      	'date': {type: Date, default: Date.now}
     }]

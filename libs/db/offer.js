@@ -17,11 +17,14 @@ module.exports = {
             else if(!offer) {
                 console.log('offer ', data);
                 var newoffer = {
-                    newCustomer: {
-                        percentage: data.newCustomer
+                    holderUse: {
+                        percentage: data.holderUse
                     },
-                    referralCustomer: {
-                        percentage: data.referralCustomer
+                    holderReference: {
+                        percentage: data.holderReference
+                    },
+                    customer: {
+                        percentage: data.customer
                     }
                 }
                 console.log(newoffer);
@@ -34,7 +37,7 @@ module.exports = {
                 });
             }
             else {
-                db.offer.update({}, {$push: {'newCustomer': {'percentage': data.newCustomer}, 'referralCustomer': {'percentage': data.referralCustomer}}}, function (err, updated) {
+                db.offer.update({}, {$push: {'holderUse': {'percentage': data.holderUse}, 'holderReference': {'percentage': data.holderReference}, 'customer': {'percentage': data.customer} }}, function (err, updated) {
                     callback({
                         success: true,
                         message: 'Updated'
@@ -61,11 +64,13 @@ module.exports = {
                 });
             }
             else {
-                var newCustomer = offer.newCustomer.pop();
-                var referralCustomer = offer.referralCustomer.pop();
+                var holderUse = offer.holderUse.pop();
+                var holderReference = offer.holderReference.pop();
+                var customer = offer.customer.pop();
                 offer = {
-                    newCustomer: newCustomer.percentage,
-                    referralCustomer: referralCustomer.percentage
+                    holderUse: holderUse.percentage,
+                    holderReference: holderReference.percentage,
+                    customer: customer.percentage
                 }
                 callback(offer);
             }

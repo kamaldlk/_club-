@@ -122,11 +122,11 @@
 
                         <md-input-container ng-show="!updateView">
                             <label>Value</label>
-                            <input ng-model="currency.toValue" type="number" class="ft-18">
+                            <input ng-model="currency.toValue" onkeypress="return isDecimalNumber(event)" required class="ft-18">
                         </md-input-container>
                          <md-input-container ng-show="updateView">
                              <label>Value</label>
-                             <input ng-model="currencyValue.toCurrency[0].value" type="text" class="ft-18">
+                             <input ng-model="currencyValue.toCurrency[0].value" onkeypress="return isDecimalNumber(event)"  required class="ft-18">
                          </md-input-container>
 
                     </span>

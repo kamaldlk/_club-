@@ -56,52 +56,37 @@ angular.module ('cms.controllers')
         $scope.updateCurrency = function ( ev, currency ) {
             $mdDialog.show ({
                 controller: function ( $scope, api ) {
-
                     $scope.updateView = true;
-
                     $scope.currencyData = api.Currency.allCountries;
-
                     $scope.currencyValue = currency;
-
                     console.log ("currency", currency);
 
                     $scope.cancel = function () {
                         $mdDialog.cancel ();
                     };
 
-
                     $scope.update = function ( currencyValue ) {
-
-                        $scope.updateCurrency = {};
-
-                        $scope.updateCurrency.fromCode = currencyValue.fromCurrency.code;
-                        $scope.updateCurrency.toValue = currencyValue.toCurrency[0].value;
-                        console.log ("update :", $scope.updateCurrency);
-
-                        api.Currency.update ($scope.updateCurrency, function ( err, data ) {
-
-                            if ( data ) {
-
-                                api.Currency.getDetails (function ( err, data ) {
-                                    if ( data ) {
-
-                                        $scope.currencyArray = api.Currency.currencyArray;
-                                        console.log ($scope.currencyArray)
-                                        $mdDialog.hide ();
-
-                                    }
-
-                                })
-
-                            }
-
-
-                        })
-
-
+                        if(!currencyValue.fromCurrency.code || !currencyValue.toCurrency[0].value) {
+                            toastr.warning ("Fields shouldn't be empty", "Warning");
+                        }
+                        else {
+                            $scope.updateCurrency = {};
+                            $scope.updateCurrency.fromCode = currencyValue.fromCurrency.code;
+                            $scope.updateCurrency.toValue = currencyValue.toCurrency[0].value;
+                            console.log ("update :", $scope.updateCurrency);
+                            api.Currency.update ($scope.updateCurrency, function ( err, data ) {
+                                if ( data ) {
+                                    api.Currency.getDetails (function ( err, data ) {
+                                        if ( data ) {
+                                            $scope.currencyArray = api.Currency.currencyArray;
+                                            console.log ($scope.currencyArray)
+                                            $mdDialog.hide ();
+                                        }
+                                    })
+                                }
+                            })
+                        }
                     }
-
-
                 },
                 templateUrl: 'templates/admin/dialog/add_currency.html',
                 targetEvent: ev,
@@ -128,7 +113,7 @@ angular.module ('cms.controllers')
             $mdDialog.show (confirm).then (function () {
 
                 api.Offer.Update (offer, function ( err, data ) {
-
+                    
 
                     if ( data ) {
                         toastr.success (data.message, "Successfully Updated");
@@ -158,26 +143,21 @@ angular.module ('cms.controllers')
 
             $scope.save = function ( currency ) {
                 console.log (currency);
-
-                api.Currency.update (currency, function ( err, data ) {
-
-                    if ( data ) {
-
-                        api.Currency.getDetails (function ( err, data ) {
-                            if ( data ) {
-
-                                $scope.currencyArray = api.Currency.currencyConverstionArray;
-
-                                $mdDialog.hide ();
-
-                            }
-
-                        })
-
-                    }
-
-
-                })
+                if(!currency || !currency.fromCode || !currency.toValue) {
+                    toastr.warning ("Fields shouldn't be empty", "Warning");
+                }
+                else {
+                    api.Currency.update (currency, function ( err, data ) {
+                        if ( data ) {
+                            api.Currency.getDetails (function ( err, data ) {
+                                if ( data ) {
+                                    $scope.currencyArray = api.Currency.currencyConverstionArray;
+                                    $mdDialog.hide ();
+                                }
+                            })
+                        }
+                    })
+                }
 
             }
 
