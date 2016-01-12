@@ -41,7 +41,7 @@ var customerUsersSchema = mongoose.model('customerUsers', customerUsers, 'custom
 
 var club = new mongoose.Schema({   
     clubName: {type: String, required: true},
-    netAmount: String,
+    netAmount: Number,
     currencyDetails: {type: Schema.Types.ObjectId, ref: 'currency'},
     address: mongoose.Schema.Types.Mixed,
     logo: {type: String, required: false},
@@ -54,7 +54,11 @@ var club = new mongoose.Schema({
     contactNumber: {type: String, required: true},
     email: String,
     managers: [{type: Schema.Types.ObjectId, ref: 'adminUsers'}],
-    description: String
+    description: String,
+    revenue: [{
+        transaction: String,
+        amount: Number
+    }]
 });
 
 module.exports = {

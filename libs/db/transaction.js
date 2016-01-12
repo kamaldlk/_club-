@@ -19,7 +19,8 @@ module.exports = {
                     errorCode: 'Invalid card'
                 });
             }
-            else if(exists) {                
+            else if(exists) {
+                var clubRevenue;
                 db.offer.findOne({}, function (err, offer) {
                     if(err) {
                         callback({
@@ -30,28 +31,25 @@ module.exports = {
                     }
                     else if(!offer) {
                         offer = {
-                            newCustomer: 0,
-                            referralCustomer: 0
+                            holderUse: 0,
+                            holderReference: 0,
+                            customer: 0
                         }
                         toUSD(offer);
                     }
-                    else if(offer) {
-                        var newCustomer = offer.newCustomer.pop();
-                        var referralCustomer = offer.referralCustomer.pop();
+                    else if(offer) {                        
+                        var holderUse = offer.holderUse.pop();
+                        var holderReference = offer.holderReference.pop();
+                        var customer = offer.customer.pop();
                         offer = {
-                            newCustomer: newCustomer.percentage,
-                            referralCustomer: referralCustomer.percentage
+                            holderUse: holderUse.percentage,
+                            holderReference: holderReference.percentage,
+                            customer: customer.percentage
                         }                
                         toUSD(offer);
                     }
                 });
-                function toUSD (offer) {
-                    var off;
-                    if(data.usedByCardholder) 
-                        off = offer.newCustomer;
-                    else
-                        off = offer.referralCustomer;
-                    data.amount.offer = off;                    
+                function toUSD (offer) {                                      
                     db.currencyConversion.findOne({'fromCurrency.code': data.currencyCode}, 'toCurrency', function (err, currency) {
                         if(err) {
                             callback({
@@ -68,23 +66,29 @@ module.exports = {
                             }
                             else if(!currency)
                                 currency = parseInt(1);
-                            data.amount.saved = (parseInt(data.amount.spent) * (parseInt(off) / 100) * currency).toFixed(3);
-                            if(!data.usedByCardholder) {
-                                data.reference.offer = off;
-                                data.reference.offerAmount = data.amount.saved;
-                                create();
+                            var off;
+                            if(data.usedByCardholder) {
+                                off = offer.holderUse; 
+                                data.amount.saved = (parseInt(data.amount.spent) * (parseInt(off) / 100) * currency).toFixed(3);                   
+                                data.amount.offer = off;
+                                var addToNetAmount = parseInt(data.amount.saved);
+                                clubRevenue = parseInt(data.amount.spent - data.amount.saved);
+                                create(addToNetAmount, clubRevenue);
                             }
-                            else
-                                create();
+                            else {                                
+                                data.reference.offer = offer.customer;
+                                data.reference.offerAmount = (parseInt(data.amount.spent) * (parseInt(offer.customer) / 100) * currency).toFixed(3);
+
+                                data.amount.offer = offer.holderReference;
+                                data.amount.saved = (parseInt(data.amount.spent) * (parseInt(offer.holderReference) / 100) * currency).toFixed(3);
+                                clubRevenue = parseInt(data.amount.spent) - parseInt(data.amount.saved + data.reference.offerAmount);
+                                var addToNetAmount = parseInt(data.amount.saved);
+                                create(addToNetAmount, clubRevenue);
+                            }
                         }
                     });
                 }
-                function create () {  
-                    var addToNetAmount;
-                    if(data.usedByCardholder)
-                        addToNetAmount = parseInt(data.amount.saved);
-                    else 
-                        addToNetAmount = parseInt(data.reference.offerAmount);
+                function create (addToNetAmount, clubRevenue) {                     
                     var transctn = new db.transaction(data);
                     transctn.save(function(err, transaction) {
                         db.customerUsers.update({'cardNo': data.cardNo}, {$inc: {'netAmount': addToNetAmount}}, function (err, updated) {
@@ -96,8 +100,20 @@ module.exports = {
                                 }); 
                             }
                             else {
-                                console.log(updated);
-                                callback(transaction);
+                                db.club.update({'_id': data.clubId}, {$inc: {'netAmount': clubRevenue}, $push: {'revenue': {'transaction': updated._id, 'amount': clubRevenue}}}, function (err, clubUpdate) {
+                                    if(err) {
+                                       callback({
+                                            error: true,
+                                            errorCode: 'UNKNOWN_ERROR',
+                                            stack: err
+                                        }); 
+                                    }
+                                    else {                                        
+                                        console.log(updated);
+                                        console.log('club ', clubUpdate);
+                                        callback(transaction);
+                                    }    
+                                });
                             }
                         });
                     });
@@ -162,7 +178,7 @@ module.exports = {
                 ownerInfo(0);
                 function ownerInfo(i) {
                     if(i >= transactions.length) 
-                        callback(result);
+                        callback(result.reverse());
                     else {
                         var transaction = transactions[i].toObject();
                         db.customerUsers.findOne({'cardNo': transaction.cardNo}, 'profile mobileNo email', function (err, customer) {

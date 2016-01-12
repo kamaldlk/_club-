@@ -80,7 +80,7 @@ angular.module ('cms.controllers')
             else {
                 $scope.club.logo = "logo";
                 $scope.club.createdBy = "admin";
-                $scope.club.netAmount = "0";
+                $scope.club.netAmount = 0;
                 $scope.club.currencyDetails = club.currencyDetails.currency.code;
                 console.log ("Club Details :", JSON.stringify (club));
                 api.Club.createClub (club, function ( err, data ) {

@@ -61,8 +61,8 @@ angular.module ('cms.controllers')
         }
 
         $scope.loggedDate = function ( date ) {
-
-            return date.substring (0, 10);
+            if(date)
+                return date.substring (0, 10);
 
         }
 

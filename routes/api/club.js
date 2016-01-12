@@ -15,7 +15,7 @@ module.exports = function (router) {
 		else {			
 			var data = {
 				clubName: req.body.clubName,
-			    netAmount: req.body.netAmount + ' USD' ,
+			    netAmount: req.body.netAmount,
 			    currencyDetails: req.body.currencyDetails,
 			    address: req.body.address,
 			    createdBy: req.body.createdBy,

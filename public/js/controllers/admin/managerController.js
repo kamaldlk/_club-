@@ -153,14 +153,11 @@ angular.module ('cms.controllers')
         }
 
         $scope.loggedDate = function ( date ) {
-
             return date.substring (0, 10);
-
         }
 
 
         function DialogController ( $scope, $mdDialog, api, Upload ) {
-
 
             $scope.hide = function () {
                 $mdDialog.hide ();
@@ -179,21 +176,18 @@ angular.module ('cms.controllers')
             $scope.getClubList = function () {
                 $scope.updateButton = false;
                 api.Club.getAllClub (function ( err, data ) {
-
                     if ( data ) {
-                        console.log ('managers ', api.Manager.managers);
+                        // console.log ('managers ', api.Manager.managers);
 
+                        // var tempClub, tempClubList = [];
+                        // _.each (api.Manager.managers, function ( manager ) {
+                        //     tempClub = _.findWhere (api.Club.allClub, {clubName: manager.club.clubName});
+                        //     if ( tempClub )
+                        //         tempClubList.push (tempClub);
 
-                        var tempClub, tempClubList = [];
-                        _.each (api.Manager.managers, function ( manager ) {
-                            tempClub = _.findWhere (api.Club.allClub, {clubName: manager.club.clubName});
-                            if ( tempClub )
-                                tempClubList.push (tempClub);
-
-                        });
-                        $scope.clubs = tempClubList;
-                        // $scope.clubs = _.difference (api.Club.allClub, tempClubList);
-                        // console.log (" filtered club: ", $scope.clubs);
+                        // });
+                        $scope.clubs = data;
+                        console.log (" filtered club: ", $scope.clubs);
                     }
 
                 });

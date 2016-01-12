@@ -6,18 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 angular.module ('cms.providers')
-
     .provider ('api', function apiProvider () {
-
     var _apiUrl = null;
     this.setApiUrl = function ( url ) {
         _apiUrl = url;
-
     };
 
     var _apiHeaders = null;
-
-
     var http = null;
     var httpRequest = function ( method, path, data, callback ) {
         if ( http == null ) callback ({
@@ -47,13 +42,10 @@ angular.module ('cms.providers')
     };
 
     var rootScope = null;
-
-
     this.$get = ['$injector', '$http', 'Upload', function ( $injector, $http, FileUpload ) {
         rootScope = $injector.get ('$rootScope');
         http = $http;
         var apiClass = {};
-
         {
             apiClass.User = function () {
                 this.id = "";
@@ -72,7 +64,6 @@ angular.module ('cms.providers')
                         callback (err, data);
                     });
                 };
-
             }
 
             apiClass.User.signIn = function ( user, callback ) {
@@ -97,11 +88,7 @@ angular.module ('cms.providers')
             });
         }
         {
-            apiClass.Currency = function () {
-
-
-            }
-
+            apiClass.Currency = function () {}
             apiClass.Currency.allCountries = [];
             apiClass.Currency.currencyConverstionArray = [];
 
@@ -113,7 +100,6 @@ angular.module ('cms.providers')
                     } else {
                         apiClass.Currency.allCountries = data;
                         callback (null, data);
-
                     }
                 });
             }
@@ -127,13 +113,11 @@ angular.module ('cms.providers')
                         console.log ('signin success ', data)
                         apiClass.Currency.currencyConverstionArray = data;
                         callback (null, data);
-
                     }
                 });
             }
 
             apiClass.Currency.update = function ( currency, callback ) {
-
                 httpRequest ("POST", "api/currencyConversion/update", currency, function ( err, data ) {
                     if ( err ) {
                         console.log ('error in signin ', err)
@@ -145,15 +129,10 @@ angular.module ('cms.providers')
 
                     }
                 });
-
-
             }
-
-
         }
 
         {
-
             apiClass.Club = function () {
                 this.id = "";
                 this.clubName = "";
@@ -178,14 +157,11 @@ angular.module ('cms.providers')
                         console.log ('Club retrieved ', data)
                         apiClass.Club.allClub = data;
                         callback (null, data);
-
                     }
                 });
-
             }
 
             apiClass.Club.createClub = function ( club, callback ) {
-
                 httpRequest ("POST", "api/club/create", club, function ( err, data ) {
                     if ( err ) {
                         console.log ('error in signin ', err)
@@ -196,12 +172,9 @@ angular.module ('cms.providers')
                         callback (null, data);
                     }
                 });
-
-
             }
 
             apiClass.Club.updateClub = function ( club, callback ) {
-
                 httpRequest ("PUT", "api/club/edit?clubName=" + club.clubName, club, function ( err, data ) {
                     if ( err ) {
                         console.log ('error in signin ', err)
@@ -211,13 +184,10 @@ angular.module ('cms.providers')
                         callback (null, data);
                     }
                 });
-
-
             }
+
             apiClass.Club.removeClub = function ( club, callback ) {
-
                 var clubName = club.clubName;
-
                 httpRequest ("DELETE", "api/club/delete?clubName=" + clubName, null, function ( err, data ) {
                     if ( err ) {
                         console.log ('error in signin ', err)
@@ -230,19 +200,12 @@ angular.module ('cms.providers')
                         callback (null, data);
                     }
                 });
-
-
             }
-
-
         }
 
         {
-
             apiClass.Manager = function () {}
-
             apiClass.Manager.managers = [];
-
             apiClass.Manager.getAllManager = function ( callback ) {
                 httpRequest ("GET", "api/adminUsers/getAll", null, function ( err, data ) {
                     if ( err ) {
@@ -252,14 +215,11 @@ angular.module ('cms.providers')
                         console.log ('signin success ', data)
                         apiClass.Manager.managers = data;
                         callback (null, data);
-
                     }
                 });
-
             }
 
             apiClass.Manager.createManager = function ( manager, callback ) {
-
                 httpRequest ("POST", "api/adminUsers/register", manager, function ( err, data ) {
                     if ( err ) {
                         console.log ('error Creating Manager ', err)
@@ -268,17 +228,12 @@ angular.module ('cms.providers')
                         console.log ('Manager Created B4', apiClass.Manager.managers.length)
                         //apiClass.Manager.managers.push (data);
                         console.log ('Manager Created after', apiClass.Manager.managers.length)
-
                         callback (null, data);
                     }
                 });
-
-
             }
 
             apiClass.Manager.updateManager = function ( manager, userName, callback ) {
-
-
                 httpRequest ("PUT", "api/adminUsers/edit?userName=" + userName, manager, function ( err, data ) {
                     if ( err ) {
                         console.log ('error in signin ', err)
@@ -288,13 +243,10 @@ angular.module ('cms.providers')
                         callback (null, data);
                     }
                 });
-
-
             }
+
             apiClass.Manager.removeManager = function ( manager, callback ) {
-
                 var managerUserName = manager.userName;
-
                 httpRequest ("DELETE", "api/adminUsers/remove?userName=" + managerUserName, null, function ( err, data ) {
                     if ( err ) {
                         console.log ('unable to remove manager ', err)
@@ -307,18 +259,13 @@ angular.module ('cms.providers')
                         callback (null, data);
                     }
                 });
-
-
             }
-
         }
+
         {
             apiClass.Offer = function () {}
             apiClass.Offer.offers = {};
-
             apiClass.Offer.Get = function ( callback ) {
-
-
                 httpRequest ("GET", "api/offer/get", null, function ( err, data ) {
                     if ( err ) {
                         console.log ('offer get error ', err)
@@ -329,13 +276,9 @@ angular.module ('cms.providers')
                         callback (null, data);
                     }
                 });
-
-
             }
 
             apiClass.Offer.Update = function ( offer, callback ) {
-
-
                 httpRequest ("POST", "api/offer/update", offer, function ( err, data ) {
                     if ( err ) {
                         console.log ('offer Updated ', err)
@@ -345,23 +288,15 @@ angular.module ('cms.providers')
                         callback (null, data);
                     }
                 });
-
-
             }
-
-
         }
+
         {
-
             apiClass.Member = function () {}
-
             apiClass.Member.allMember = [];
-
             apiClass.Member.allClubMember = [];
             apiClass.Member.AllTransaction = [];
-
             apiClass.Member.Register = function ( member, callback ) {
-
                 httpRequest ("POST", "api/customerUsers/register", member, function ( err, data ) {
                     if ( err ) {
                         console.log (' Member Register Error ', err)
@@ -374,7 +309,6 @@ angular.module ('cms.providers')
             }
 
             apiClass.Member.getAll = function ( callback ) {
-
                 httpRequest ("GET", "api/customerUsers/getAll", null, function ( err, data ) {
                     if ( err ) {
                         console.log (' Member getall error ', err)
@@ -388,7 +322,6 @@ angular.module ('cms.providers')
             }
 
             apiClass.Member.getAllClubMembers = function ( clubId, callback ) {
-
                 httpRequest ("GET", "api/customerUsers/club/get?club=" + clubId, null, function ( err, data ) {
                     if ( err ) {
                         console.log (' Member getall error ', err)
@@ -401,8 +334,7 @@ angular.module ('cms.providers')
                 });
             }
 
-            apiClass.Member.CreateTransection = function ( transaction, callback ) {
-
+            apiClass.Member.CreateTransaction = function ( transaction, callback ) {
                 httpRequest ("POST", "api/transaction/create", transaction, function ( err, data ) {
                     if ( err ) {
                         console.log (' Member getall error ', err)
@@ -414,8 +346,8 @@ angular.module ('cms.providers')
                     }
                 });
             }
-            apiClass.Member.GetAllTransaction = function ( callback ) {
 
+            apiClass.Member.GetAllTransaction = function ( callback ) {
                 httpRequest ("GET", "api/transaction/getAll", null, function ( err, data ) {
                     if ( err ) {
                         console.log (' Error Get all Transaction ', err)
@@ -424,12 +356,11 @@ angular.module ('cms.providers')
                         console.log (' Success Get all Transaction', data)
                         apiClass.Member.AllTransaction = data;
                         callback (null, data);
-
                     }
                 });
             }
-            apiClass.Member.GetClubTransaction = function ( clubId, callback ) {
 
+            apiClass.Member.GetClubTransaction = function ( clubId, callback ) {
                 httpRequest ("GET", "api/transaction/getClub?club=" + clubId, null, function ( err, data ) {
                     if ( err ) {
                         console.log (' Error Get all Transaction ', err)
@@ -438,19 +369,14 @@ angular.module ('cms.providers')
                         console.log (' Success Get all Transaction', data)
                         apiClass.Member.AllTransaction = data;
                         callback (null, data);
-
                     }
                 });
             }
-
-
         }
 
         {
             apiClass.ProfilePic = function () {}
-
             apiClass.ProfilePic.adminUserUpload = function ( file, callback ) {
-
                 FileUpload.upload ({
                     url: _apiUrl + 'api/adminUsers/profilePic',
                     data: {file: file}
@@ -463,10 +389,9 @@ angular.module ('cms.providers')
                     var progressPercentage = parseInt (100.0 * evt.loaded / evt.total);
                     console.log ('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 });
-
             }
-            apiClass.ProfilePic.clubLogoUpload = function ( file, callback ) {
 
+            apiClass.ProfilePic.clubLogoUpload = function ( file, callback ) {
                 FileUpload.upload ({
                     url: _apiUrl + 'api/club/logo',
                     data: {file: file}
@@ -479,11 +404,8 @@ angular.module ('cms.providers')
                     var progressPercentage = parseInt (100.0 * evt.loaded / evt.total);
                     console.log ('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 });
-
             }
         }
-
-
         return apiClass;
     }];
 });

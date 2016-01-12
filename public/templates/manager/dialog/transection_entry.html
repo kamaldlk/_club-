@@ -56,7 +56,7 @@
                       <span layout-padding flex>
                         <md-input-container md-no-float class="md-input-has-placeholder md-block md-has-icon" style="padding-bottom: 0px;">
                             <md-icon md-svg-src="images/icons/telephone.svg" class="nomarg ft_ligthblue"></md-icon>
-                            <input ng-model="referedData.mobile" type="text" placeholder="Mobile" class="ft_fff border-color-aqua">
+                            <input ng-model="referedData.mobile" onkeypress="return isNumber(event)" maxlength="15" minlength="10"  placeholder="Mobile" class="ft_fff border-color-aqua">
                         </md-input-container>
                          </span>
                             </div>
