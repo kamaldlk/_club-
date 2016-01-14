@@ -79,7 +79,7 @@ angular.module ("cms")
             controller: 'memberController'
         })
 
-        apiProvider.setApiUrl ("http://localhost:3002/");
+        apiProvider.setApiUrl ("http://192.168.1.33:3002/");
 
 
     }])

@@ -8,6 +8,8 @@ var mongoose = require('mongoose'),
 module.exports.transactionSchema = new mongoose.Schema({   
     clubId: {type: Schema.Types.ObjectId, ref: 'club'},
     cardNo: String,
+    clubRevenue: Number,
+    spentInUSD: Number,
     amount: {
         spent: Number,
         offer: Number,

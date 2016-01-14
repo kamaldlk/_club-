@@ -7,4 +7,5 @@ require("./club.js")(router);
 require("./currencyConversion.js")(router);
 require("./offer.js")(router);
 require("./transaction.js")(router);
+require("./revenue.js")(router);
 module.exports = router;

@@ -69,29 +69,34 @@ module.exports = {
                             var off;
                             if(data.usedByCardholder) {
                                 off = offer.holderUse; 
-                                data.amount.saved = (parseInt(data.amount.spent) * (parseInt(off) / 100) * currency).toFixed(3);                   
+                                data.spentInUSD = (data.amount.spent * currency).toFixed(3);
+                                data.amount.saved = (parseInt(data.amount.spent) * (parseInt(off) / 100) * currency).toFixed(3); // to USD
                                 data.amount.offer = off;
                                 var addToNetAmount = parseInt(data.amount.saved);
-                                clubRevenue = parseInt(data.amount.spent - data.amount.saved);
+                                var spent = (parseInt(data.amount.spent) * currency).toFixed(3); // converting spent into USD
+                                clubRevenue = spent - data.amount.saved;
                                 create(addToNetAmount, clubRevenue);
                             }
                             else {                                
+                                data.spentInUSD = (data.amount.spent * currency).toFixed(3);
                                 data.reference.offer = offer.customer;
-                                data.reference.offerAmount = (parseInt(data.amount.spent) * (parseInt(offer.customer) / 100) * currency).toFixed(3);
+                                data.reference.offerAmount = (parseInt(data.amount.spent) * (parseInt(offer.customer) / 100) * currency).toFixed(3); // USD
 
                                 data.amount.offer = offer.holderReference;
-                                data.amount.saved = (parseInt(data.amount.spent) * (parseInt(offer.holderReference) / 100) * currency).toFixed(3);
-                                clubRevenue = parseInt(data.amount.spent) - parseInt(data.amount.saved + data.reference.offerAmount);
+                                data.amount.saved = (parseInt(data.amount.spent) * (parseInt(offer.holderReference) / 100) * currency).toFixed(3); // USD
+                                var spent = (parseInt(data.amount.spent) * currency).toFixed(3); // converting spent into USD
+                                clubRevenue = spent - (data.amount.saved + data.reference.offerAmount);
                                 var addToNetAmount = parseInt(data.amount.saved);
                                 create(addToNetAmount, clubRevenue);
                             }
                         }
                     });
                 }
-                function create (addToNetAmount, clubRevenue) {                     
+                function create (addToNetAmount, clubRevenue) { 
+                    data.clubRevenue = clubRevenue;                    
                     var transctn = new db.transaction(data);
                     transctn.save(function(err, transaction) {
-                        db.customerUsers.update({'cardNo': data.cardNo}, {$inc: {'netAmount': addToNetAmount}}, function (err, updated) {
+                        db.customerUsers.findOneAndUpdate({'cardNo': data.cardNo}, {$inc: {'netAmount': addToNetAmount}}, function (err, updated) {
                             if(err) {
                                callback({
                                     error: true,

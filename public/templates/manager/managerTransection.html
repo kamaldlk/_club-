@@ -20,6 +20,7 @@ z-index: 100;">
         <md-button class="md-fab transaction_fab" aria-label="Eat cake" ng-click="addTransaction($event)" style="">
             <md-icon md-svg-src="img/icons/plus79.svg" class="nomarg"></md-icon>
         </md-button>
+        
         <div layout="column" flex class="" layout-margin>
             <md-card class="nomarg">
                 <md-card-content layout-padding>
@@ -84,7 +85,7 @@ z-index: 100;">
                     </md-card-content>
             </md-card>
             <md-card class="nomarg">
-                <md-card-content layout-padding>
+                <md-card-content layout-padding id="table">
 
                     <!--<md-data-table-container>-->
                         <!--<table md-data-table class="data-table-list" md-progress="deferred">-->
@@ -114,33 +115,36 @@ z-index: 100;">
 
                     <!--</md-data-table-container>-->
 
-                    <md-item class="data-table-list ">
+                    <md-item class="data-table-list " >
                         <md-item-content layout="row" class="tbl-header min-h60">
                             <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
-                           <span flex=20 flex-xs="100" layout-align="start center" layout>
+                           <span flex=15 flex-xs="100" layout-align="start center" layout>
                               <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18">
                                  <ng-md-icon icon="face" class="svgheadercolor"></ng-md-icon>
                                  <span class="svgheadercolor ft_16 padd-t3 padd-l5">Card Holder</span>
                               </span>
                            </span>
 
-                           <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span flex=10 flex-xs=100 layout-align="center center" layout>
                            <span class="ft_red">Card no</span>
                            </span>
-                           <span flex=20 flex-xs=100 layout-align="center center" layout>
+                           <span flex=15 flex-xs=100 layout-align="center center" layout>
                            <span class="ft_red">Used By </span>
                            </span>
-                                  <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">Transaction Amount</span>
+                           </span>
+                           <span flex=10 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red"> Card Holder Offer Amount</span>
+                           </span>
+                           <span flex=10 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red"> Referral Offer Amount</span>
+                           </span>
+                           <span flex=10 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">Club Revenue </span>
+                           </span>
+                           <span flex=15 flex-xs=100 layout-align="center center" layout>
                            <span class="ft_red">Transaction Date</span>
-                           </span>
-                            <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red"> Amount</span>
-                           </span>
-                                <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red"> Card Holder Offer</span>
-                           </span>
-                                 <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red"> Referral Offer</span>
                            </span>
 
                             </div>
@@ -149,7 +153,7 @@ z-index: 100;">
                     <md-item class="md-whiteframe-5dp " ng-repeat = "transaction in transactionHistory | filter:transactionListFilter | orderBy:'-transaction.transactionDate' ">
                         <md-item-content layout="row" class="tbl-header min-h60">
                             <div layout="row" layout-xs="column" flex layout-wrap class="full_wid">
-                           <span flex=20 flex-xs="100" layout-align="start center" layout>
+                           <span flex=15 flex-xs="100" layout-align="start center" layout>
                               <span layout-padding class="shopname" class="padd-tr5-lb8 ft-18">
 
                                  <span class="ft_16 padd-t3 padd-l5">{{transaction.cardOwner.profile.firstName}} {{transaction.cardOwner.profile.lastName}}</span>
@@ -160,17 +164,17 @@ z-index: 100;">
                               </span>
                            </span>
 
-                           <span flex=15 flex-xs=100 layout-align="start center" layout>
+                           <span flex=10 flex-xs=100 layout-align="center center" layout>
                            <span class="">{{transaction.cardNo}}</span>
                            </span>
-                           <span flex=20 flex-xs=100 layout-align="center center" layout="column" ng-show="!transaction.usedByCardholder">
+                           <span flex=15 flex-xs=100 layout-align="center center" layout="column" ng-show="!transaction.usedByCardholder">
                                 <span class="ft_16 padd-t3 padd-l5">{{transaction.customerDetails.name}}</span>
                                   <span layout="row">
                         <span class="hash_color md-caption marg-r5" > Mobile : </span>
                             <span class="ft_grn md-caption"> {{transaction.customerDetails.mobile}}</span>
                         </span>
                               </span>
-                                 <span flex=20 flex-xs=100 layout-align="center center" layout="column" ng-show="transaction.usedByCardholder">
+                                 <span flex=15 flex-xs=100 layout-align="center center" layout="column" ng-show="transaction.usedByCardholder">
                                 <span class="ft_16 padd-t3 padd-l5">Own</span>
                                   <span layout="row">
                         <span class="hash_color md-caption marg-r5" ng-show="!transaction.usedByCardholder"> Mobile : </span>
@@ -183,14 +187,21 @@ z-index: 100;">
                         <!--</span>-->
 
                               </span>
+                           <span flex=15 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">${{transaction.spentInUSD}}</span>
                            </span>
-                            <span flex=15 flex-xs=100 layout-align="center center" layout>
-                           <span class="ft_red"> {{transaction.amount.offer}}%</span>
                            </span>
-                                <span flex=15 flex-xs=100 layout-align="center center" layout>
+                            <span flex=10 flex-xs=100 layout-align="center center" layout>
                            <span class="ft_grn"> ${{transaction.amount.saved}}</span>
                            </span>
-                                <span flex=15 flex-xs=100 layout-align="center center" layout>
+                                <span flex=10 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_grn" ng-show="{{transaction.reference.offerAmount}}">${{transaction.reference.offerAmount}}</span>
+                           <span class="" ng-hide="{{transaction.reference.offerAmount}}">$0</span>
+                           </span>
+                           <span flex=10 flex-xs=100 layout-align="center center" layout>
+                           <span class="ft_red">${{transaction.clubRevenue}}</span>
+                           </span>
+                           <span flex=15 flex-xs=100 layout-align="center center" layout>
                            <span class="">{{loggedDate(transaction.transactionDate)}}</span>
                            </span>
                             </div>

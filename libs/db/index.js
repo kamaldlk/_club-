@@ -5,5 +5,6 @@ module.exports = {
     currency: require("./currency.js"),
     currencyConversion: require("./currencyConversion.js"),
     offer: require("./offer.js"),
-    transaction: require("./transaction.js")
+    transaction: require("./transaction.js"),
+    revenue: require("./revenue.js")
 };
