@@ -406,6 +406,30 @@ angular.module ('cms.providers')
                 });
             }
         }
+
+        {
+            apiClass.admin = function () {};
+            apiClass.admin.revenue = function (type, startDate, endDate, callback) {
+                if(!type)
+                    type = 'year';
+                var url = 'api/revenue/club?type=' + type;
+                if(startDate)
+                    url = url + '&startDate=' + startDate;
+                if(endDate)
+                    url = url + '&endDate=' + endDate;
+                console.log('url ', url);
+                httpRequest('GET', url, null, function (err, data) {
+                    if(err) {
+                        console.log('Error at revenue chart ', err);
+                        callback (err, null);                        
+                    }
+                    else {
+                        console.log('Success in revenue chart ', data);
+                        callback(null, data);
+                    }
+                });
+            }
+        }
         return apiClass;
     }];
 });

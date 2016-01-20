@@ -259,7 +259,7 @@ form {
 </style>
 
 
-<div layout="column" flex class="nopadd" ng-init="dashboardInit()">
+<div layout="column" flex class="nopadd" ng-init="dashboardInit(); getRevenue();">
     <md-toolbar class="md-default-theme" style="background-color:transparent;">
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center" style="padding-left: 2px;">
          <span layout layout-align="start start" flex>
@@ -324,6 +324,7 @@ form {
             </div>
 
         </div>
+        <div id="chart"></div>
 
 
     </md-content>

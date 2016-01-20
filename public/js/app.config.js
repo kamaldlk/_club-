@@ -63,7 +63,7 @@ angular.module ("cms")
         })
             .state ('manager.transection', {
             url: "/managertransection",
-            templateUrl: "templates/manager/managerTransection.html",
+            templateUrl: "templates/manager/managerTransaction.html",
             controller: 'transactionController'
         })
 
@@ -79,7 +79,7 @@ angular.module ("cms")
             controller: 'memberController'
         })
 
-        apiProvider.setApiUrl ("http://192.168.1.33:3002/");
+        apiProvider.setApiUrl ("http://localhost:3002/");
 
 
     }])

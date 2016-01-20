@@ -36,8 +36,10 @@ module.exports = function (router) {
 			data.startDate = start(Date.now())
 			data.endDate = end(Date.now());
 		}
-
-		console.log('data ', data);
+		if(request.query.startDate && request.query.endDate) {
+			data.startDate = start(request.query.startDate)
+			data.endDate = end(request.query.endDate);
+		}
 		db.revenue.get(data, function (data) {
 			response.send(data);
 		});

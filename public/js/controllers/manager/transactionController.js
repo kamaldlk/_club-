@@ -10,6 +10,9 @@ angular.module ('cms.controllers')
         $scope.cardHolder = "Card Holder";
         $scope.cardHolderValue = true;
 
+         $scope.startDate = '2015-12-01';
+         $scope.endDate = '2016-01-21';
+
         $scope.searchUser = function ( cardNoValue ) {
             $scope.memberDetail = _.findWhere (api.Member.allMember, {cardNo: cardNoValue});
             console.log ("$scope.memberDetail :", $scope.memberDetail);
@@ -69,6 +72,15 @@ angular.module ('cms.controllers')
         $scope.cancelTransaction = function () {
             $state.go ('manager.transection');
         };
+
+        $scope.printGrid = function(divName) {
+              var printContents = document.getElementById(divName).innerHTML;
+              var popupWin = window.open('', '_blank', 'width=300,height=300');
+              popupWin.document.open()
+              popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/app.css" /><link rel="stylesheet" type="text/css" href="css/common.css" /><link rel="stylesheet" type="text/css" href="css/manager.css" /></head><body onload="window.print()">' + printContents + '</html>');
+              popupWin.document.close();
+
+          }
 
         api.Offer.Get (function ( err, data ) {})
         api.Member.getAll (function ( err, data ) {})

@@ -35,5 +35,47 @@ angular.module ('cms.controllers')
             });
         }
 
+        $scope.getRevenue = function() {
+            $scope.type = 'today';
+            $scope.startDate; // = '2016-1-12' 
+            $scope.endDate; // = '2016-1-18'
+            api.admin.revenue($scope.type, $scope.startDate, $scope.endDate, function (err, data) {
+                if(err) {
+                    console.log(err);
+                    toastr.error (err.errorCode, "error");
+                }
+                else if(data) {
+                    $scope.type;
+                    var format;
+                    if($scope.type === 'year')
+                        format = '%Y';
+                    else if($scope.type === 'month')
+                        format = '%Y-%m';
+                    else
+                        format = '%Y-%m-%d';
+                    var charData = {
+                        bindto: '#chart',
+                        data: {
+                            x : 'x',
+                            columns: [],
+                            groups: [data.group],
+                            type: 'line'
+                        },
+                        axis: {
+                            x: {
+                                type: 'timeseries',
+                                tick: {
+                                    format: format
+                                }
+                            }
+                        }  
+                    }
+                    _.each(data.column, function (column) {
+                        charData.data.columns.push(column);
+                    });
+                    $scope.chart = c3.generate(charData);
+                }
+            });
+        }
 
     }]);
