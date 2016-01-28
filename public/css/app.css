@@ -23,6 +23,8 @@ md-input-container:not(.md-input-invalid) > md-icon.name {
 h2{ font-size:26px !important;color:#023904;}
 
 
+.nomarg-l{margin-left :0px;}
+.svg-wid14 svg{width: 14px;}
 
 
 .toolbardemoScrollShrink .face {
@@ -50,10 +52,10 @@ h2{ font-size:26px !important;color:#023904;}
 .padd-l8{ padding-left:8px;}
 .padd-tr5-lb8{padding:5px 5px 8px 8px;}
 .nopaddtop{padding-top:0px;}
-.nopadd{padding:0px;}
+.nopadd{padding:0px !important;}
 .paddtb-8{padding: 8px 0px;}
 .padd-0{padding: 0;}
-
+.padd-l{padding-left: 5px;}
 /* Margin */
 .marg-t25{margin-top: 25px ! important;}
 .marg-t10{margin-top: 10px;}
@@ -78,6 +80,8 @@ h2{ font-size:26px !important;color:#023904;}
 .hash_color{fill:#666666;color:#666666;}
 .hash_color:hover{fill:#aaa;}
 .ft-black{color:#000;}
+.ft-gold2{color:#999900;}
+.ft-darkaqua{color:#3EA0A7;}
 .icon-white{fill:#023904;}
 .ft_ltgreen{color: rgb(165, 255, 46) !important;}
 
@@ -97,7 +101,7 @@ background-color:#fff;}
 /* link  */
 a:link {
     text-decoration: none;
-}	
+}
 
 
 .nodisplay{display:none;}
@@ -145,7 +149,7 @@ md-sidenav ng-md-icon {
   top: 5px;
 }
 md-content.md-default-theme {
-  background-color: #fafafa; 
+  background-color: #fafafa;
 }
 
 md-card {
@@ -175,9 +179,9 @@ top: 0px;}
   border-radius: 99%;
 }
 
-.md-open-menu-container{
-	top: 65px ! important; 
-}
+/*.md-open-menu-container{
+	top: 65px ! important;
+}*/
 
 /* style slide nav */
 
@@ -242,11 +246,14 @@ table[md-data-table] > thead:not([md-table-progress]) > tr > th{
 	font-weight: normal;
 }
 table[md-data-table] > thead:not([md-table-progress]) > tr > th[numeric] > div{
-	justify-content: flex-start ! important;	
+	justify-content: flex-start ! important;
 }
 table[md-data-table] > tbody > tr > td{
 	font-size: 15px ! important;
-	text-align: left ! important;	
+	text-align: center ! important;
+	border-bottom: 1pt solid #EEEEEE !important;
+	height: 50px;
+	padding: 0px 15px;
 }
 .md-datepicker-button{
 	width: 28px ! important;
@@ -264,7 +271,7 @@ md-select .md-select-value{
 	border: 1px solid #ddd ! important;
 	padding: 5px;
  }
- 
+
 .ctg{
 	margin:5px; color: grey;
 }
@@ -284,7 +291,7 @@ md-select .md-select-value{
 	border: 2px dashed lightgrey;
 }
 .drop-success{
-	padding:15px; margin:0px 15px 15px 35px; color: grey;		
+	padding:15px; margin:0px 15px 15px 35px; color: grey;
 }
 .table-pagination-bg{
 	/* background-color: #E1E1E1; */
@@ -363,6 +370,8 @@ md-select .md-select-value{
 .tbl-body .tbl-search input{ border:none; padding:3px 0px; font-weight:100;outline:0;}
 .tbl-body .tbl-header{color:#333333; padding:10px 0px; font-size:18px !important; background-color:#EEEEEE !important}
 .tbl-body .tbl-body{ color:#666666; }
+.tbl-header th md-icon svg {width:14px;}
+.tbl-header th span {font-size:14px;}
 
 
 /* color */
@@ -376,30 +385,30 @@ md-select .md-select-value{
 .cursor{ cursor:pointer;}
 
 .md-sidenav-left, md-sidenav{top:66px;overflow: hidden;}
-.data-table-list{ cursor:pointer; outline:0;}
+.data-table-list{ cursor:pointer; outline:0;  width: 100%;}
 .data-table-list:nth-child(odd)  md-item-content{ background-color:#f5f6f8;}
 md-list{ padding:0px;}
 
 md-data-table-pagination div{font-size:16px !important; color:#023904 !important; border: none;}
-.md-fab ng-md-icon{ color:#FFFFFF; fill:#FFFFFF;} 
+.md-fab ng-md-icon{ color:#FFFFFF; fill:#FFFFFF;}
 
 
 /* MEDIA */
 @media screen and (max-width: 560px) {
   .merch-addr{width: 100px; text-overflow: ellipsis; overflow:hidden; white-space:nowrap;}
-    
+
 }
 @media screen and (min-width: 561px) and (max-width: 767px) {
   .merch-addr{width: 200px; text-overflow: ellipsis; overflow:hidden; white-space:nowrap;}
-    
+
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
-  
+
     .merch-addr{width: 300px; text-overflow: ellipsis; overflow:hidden; white-space:nowrap;}
 }
 @media screen and (min-width: 1025px) {
-  
+
     .merch-addr{width: 500px; text-overflow: ellipsis; overflow:hidden; white-space:nowrap;}
 }
 
@@ -421,7 +430,7 @@ md-data-table-pagination div{font-size:16px !important; color:#023904 !important
 	top:0px;
 	height:1000px;
 	transition: 0.3s ease-in all;
-	
+
 }
 
 .extractSideContainer{
@@ -516,7 +525,7 @@ md-sidenav md-icon {
     font-weight: 600;
     padding-left: 0px;
     padding-bottom: 3px;
-    font-size: 12px;    
+    font-size: 12px;
 }
 
 .optionSelected {
@@ -541,3 +550,24 @@ md-toolbar:not(.md-menu-toolbar) md-icon{color: grey ! important; margin: 0px ! 
 .angular-google-map-container { height: 400px; }
 
 .md-select-menu-container.md-pagination-select md-content md-option .md-text{ font-size:16px;}
+.wid-160{width: 160px;}
+
+.md-datepicker-calendar{background: rgb(255,255,255);font-size:12px;color:#000;}
+
+.md-calendar-day-header {
+background: rgb(224,224,224);
+color: rgba(0,0,0,0.87);
+}
+.md-datepicker-calendar-pane{border-style: hidden;}
+.span-sty{font-size: 14px;
+color: #000;
+}
+.sales_picker .md-datepicker-button{display:none; }
+.md-calendar-date span{color:#000;font-size:12px;}
+
+ .img-login {
+width: 100%;
+background-position: center center;
+background-size: cover;
+height: 100%;
+}

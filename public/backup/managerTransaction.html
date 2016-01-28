@@ -1,0 +1,150 @@
+<style>
+tr.border_bottom td {
+  border-bottom:1pt solid #EEEEEE !important;
+}
+</style>
+<div layout="column" flex class="nopadd" style="height:100%;background: #CCCCCB;">
+    <md-toolbar class="md-default-theme" style="background: url('images/managers/party-blur.jpg') no-repeat fixed center;background-size:cover;min-height: 120px;">
+        <div class="md-toolbar-tools">
+            <span class="ft_fff"> Transaction list</span>
+
+
+            <div class="search_style">
+                <input type="text" class="search_input" ng-model="transactionListFilter"/>
+                <div class="close">
+                    <span class="front"></span>
+                    <span class="back"></span>
+                </div>
+            </div>
+            <!-- <input type="date" ng-model="date1" date-format="YYYY-MM-DD"/> -->
+        </div>
+
+
+    </md-toolbar>
+
+    <div layout="row" flex style="width:85%;margin:0px auto;margin-top:-50px;position: relative;
+z-index: 89;">
+        <md-button class="md-fab transaction_fab" aria-label="Eat cake" ng-click="addTransaction($event)" style="">
+            <md-icon md-svg-src="img/icons/plus79.svg" class="nomarg"></md-icon>
+        </md-button>
+
+        <div layout="column" flex class="" layout-margin>
+            <md-card class="nomarg">
+                <md-card-content layout-padding>
+                    <div layout="row" layout-padding flex>
+                    <div layout="column" layout-padding flex>
+                             <!--<span layout="row" layout-align="space-between center"><p>Total Sales </p>-->
+                                 <!--<md-menu style="z-index:100;">-->
+                                     <!--<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">-->
+                                         <!--<md-icon md-menu-origin md-svg-icon="img/icons/three-dots.svg"></md-icon>-->
+                                     <!--</md-button>-->
+                                     <!--<md-menu-content width="4" class="menu-dot_content">-->
+                                         <!--<md-menu-item ng-repeat>-->
+                                             <!--<md-button ng-click="ctrl.announceClick($index)">-->
+                                                 <!--<div layout="row">-->
+                                                     <!--<p flex>Quarterly sales</p>-->
+                                                     <!--<md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>-->
+                                                 <!--</div>-->
+                                             <!--</md-button>-->
+                                         <!--</md-menu-item>-->
+                                         <!--<md-menu-item ng-repeat="item in [1, 2, 3]">-->
+                                             <!--<md-button ng-click="ctrl.announceClick($index)">-->
+                                                 <!--<div layout="row">-->
+                                                     <!--<p flex>Monthly sales</p>-->
+                                                     <!--<md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>-->
+                                                 <!--</div>-->
+                                             <!--</md-button>-->
+                                         <!--</md-menu-item>-->
+                                         <!--<md-menu-item ng-repeat="">-->
+                                             <!--<md-button ng-click="ctrl.announceClick($index)">-->
+                                                 <!--<div layout="row">-->
+                                                     <!--<p flex>Weekly sales</p>-->
+                                                     <!--<md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>-->
+                                                 <!--</div>-->
+                                             <!--</md-button>-->
+                                         <!--</md-menu-item>-->
+                                     <!--</md-menu-content>-->
+                                 <!--</md-menu>-->
+
+                             </span>
+
+                        <!--<span class="md-display-2 ft_grn"> $2343.43</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5"> Customer referrals </span>-->
+                            <!--<span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
+                     </div>
+                     <!--<div layout="column" layout-padding flex>-->
+                             <!--<p>Today Sales</p>-->
+                         <!--<span class="md-display-2 ft_grn"> $2343.43</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5"> Customer referrals </span>-->
+                            <!--<span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
+                        <!--<span layout="row">-->
+                        <!--<span class="hash_color md-caption marg-r5">Old customer </span><span class="ft_grn md-caption"> $494.08</span>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                    </div>
+                    </md-card-content>
+            </md-card>
+            <md-card class="nomarg">
+                <md-card-content class="nopadd">
+					<div id="grid" style="overflow: auto;">
+                    <md-data-table-container>
+                        <table md-data-table class="data-table-list">
+                            <thead>
+                            <tr class="tbl-header min-h60">
+                                <th name="Card Holder">
+                                <ng-md-icon icon="face" class="svgheadercolor"></ng-md-icon> <span class="ft_red">Card Holder</span>
+                                </th>
+                                <th name="Card no"><span class="ft_red">Card no</span></th>
+                                <th name="Used By"><span class="ft_red">Used By</span></th>
+                                <th name="Transaction Amount"><span class="ft_red">Transaction Amount</span></th>
+                                <th name="Card Holder Offer Amount"><span class="ft_red">Card Holder Offer Amount</span></th>
+                                <th name="Referral Offer Amount"><span class="ft_red">Referral Offer Amount</span></th>
+                                <th name="Club Revenue"><span class="ft_red">Club Revenue</span></th>
+                                <th name="Transaction Date"><span class="ft_red">Transaction Date</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="border_bottom" ng-repeat = "transaction in transactionHistory | dateRange: startDate : endDate | filter:transactionListFilter | orderBy:'-transaction.transactionDate' ">
+                                <td><span class="pull-left">{{transaction.cardOwner.profile.firstName}} {{transaction.cardOwner.profile.lastName}}</span></br>
+                                <span class="ft-12 pull-left"> Mobile:<span class="ft_grn">{{transaction.cardOwner.mobileNo}}</span></span>
+                                </td>
+                                <td><span>{{transaction.cardNo}}</span></td>
+                                <td>
+                                <span ng-show="transaction.usedByCardholder">Own</span>
+                                <div>
+								<span ng-show="!transaction.usedByCardholder">{{transaction.customerDetails.name}}</span></br>
+		                        <span layout="row" class="wid-160" ng-show="!transaction.usedByCardholder">Mobile :{{transaction.customerDetails.mobile}}</span>
+		                        <!-- <span class="ft_grn md-caption" ng-show="!transaction.usedByCardholder"> - </span> -->
+		                        </div>
+                                </td>
+                                <td> <span class="ft_red">${{transaction.spentInUSD}}</span></td>
+                                <td><span class="ft_grn"> ${{transaction.amount.saved}}</span></td>
+                                <td>
+                                <span>
+		                           <span class="ft_grn" ng-show="{{transaction.reference.offerAmount}}">${{transaction.reference.offerAmount}}</span>
+		                           <span class="" ng-hide="{{transaction.reference.offerAmount}}">$0</span>
+		                           </span>
+                                </td>
+                                <td><span class="ft_red">${{transaction.clubRevenue}}</span></td>
+                                <td><span class="">{{loggedDate(transaction.transactionDate)}}</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </md-data-table-container>
+					</div>
+					<md-button class="md-warn md-raised" ng-click="printGrid('grid')">Print Grid</md-button>
+
+
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>

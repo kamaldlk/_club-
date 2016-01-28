@@ -82,7 +82,7 @@ angular.module ('cms.controllers')
                     };
 
                     $scope.update = function ( manager ) {
-                        if(!manager.profile.firstName || !manager.profile.lastName || !manager.userName || !manager.password || !manager.club.clubName || !manager.address.address1 || !manager.address.address2 || !manager.address.city || !manager.address.state || !manager.address.country || !manager.address.pin || !manager.profile.mobile || !manager.profile.email)
+                        if(!manager.profile.firstName || !manager.profile.lastName || !manager.address.address1 || !manager.address.address2 || !manager.address.city || !manager.address.state || !manager.address.country || !manager.address.pin || !manager.profile.mobile || !manager.profile.email)
                             toastr.warning ("Fields shouldn't be empty", "Warning");
                         else {
                             $scope.manager.createdBy = "admin";
@@ -195,7 +195,6 @@ angular.module ('cms.controllers')
 
             $scope.uploadFile = function () {
                 api.ProfilePic.adminUserUpload ($scope.file, function ( error, data ) {
-
                     if ( data ) {
                         $scope.manager.profile.profilePic = data.data.filePath;
                         console.log (data);

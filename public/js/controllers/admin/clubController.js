@@ -81,7 +81,7 @@ angular.module ('cms.controllers')
                 $scope.club.logo = "logo";
                 $scope.club.createdBy = "admin";
                 $scope.club.netAmount = 0;
-                $scope.club.currencyDetails = club.currencyDetails.currency.code;
+                $scope.club.currencyDetails = club.currencyDetails.currency.code;                
                 console.log ("Club Details :", JSON.stringify (club));
                 api.Club.createClub (club, function ( err, data ) {
                     if ( data ) {
@@ -99,10 +99,10 @@ angular.module ('cms.controllers')
             if(!club.clubName || !club.description || !club.address.address1 || !club.address.address2 || !club.address.city || !club.address.state || !club.address.country || !club.address.pin || !club.contactNumber || !club.email)
                 toastr.warning ("Fields shouldn't be empty", "Warning");
             else {
-                delete $scope.club.logo;
+                delete $scope.club.logo;                
                 delete $scope.club.createdBy;
                 delete $scope.club.netAmount;
-                delete $scope.club.currencyDetails;
+                delete $scope.club.currencyDetails;               
                 console.log ("Club Details :", JSON.stringify (club));
                 api.Club.updateClub (club, function ( err, data ) {
                     if ( data ) {
@@ -116,14 +116,15 @@ angular.module ('cms.controllers')
             }
         }
 
-        $scope.uploadFile = function () {
-            api.ProfilePic.clubLogoUpload ($scope.file, function ( error, data ) {
+        $scope.uploadFile = function (coverPic) {
+            api.ProfilePic.clubLogoUpload (coverPic, function ( error, data ) {
                 if ( data ) {
-                    $scope.club.logo = data.data.filePath;
-                    console.log (data);
-                } else {
+                    $scope.club.coverPic = data.data.filePath;
+                } 
+                else {
+                    toastr.warning ('Not able to upload image', 'Warning');
                 }
-            })
+            });
         };
 
         function DialogController ( $scope, $mdDialog ) {

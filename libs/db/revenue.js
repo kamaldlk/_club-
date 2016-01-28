@@ -75,8 +75,8 @@ module.exports = {
 			}
 			else if(!transactions || transactions.length < 1) {
 				callback({
-					error: true,
-					errorCode: 'No transactions'
+					success: true,
+					message: 'No transactions'
 				});
 			}
 			else {

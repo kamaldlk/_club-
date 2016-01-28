@@ -4,13 +4,12 @@
 
         <!--<img ng-src="images/user_avatar.jpg" class="club_bg">-->
         <md-button class="md-fab md-mini pointer" aria-label="Use visible" ng-click="clublist=false;"
-                   style="position: absolute;bottom: -25px;right: 0px;" ng-hide="true">
+                   style="position: absolute;bottom: -25px;right: 0px;"> 
             <label for="file-upload2">
-                <md-icon md-svg-src="img/icons/mail89.svg" style="margin:0px;" class="pointer"></md-icon>
+                <md-icon md-svg-src="img/icons/mail89.svg"  style="margin:0px;" class="pointer"></md-icon>
             </label>
-            <input id="file-upload2" type="file" ng-model="imgs.image" class="nodisplay " app-filereader
-                   ng-change="uploadFile('file-name2','file-upload2')"/>
-
+            <input id="file-upload2" ngf-select ng-model="coverPic" name="coverPic" ngf-pattern="'image/*'"
+              ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 1200}" class="nodisplay" ng-change="uploadFile(coverPic)">
         </md-button>
     </md-toolbar>
 
@@ -160,11 +159,4 @@ margin: 0px auto;">
         </div>
 
     </md-card>
-
-
-    <!--<md-button class="md-fab" aria-label="Add User"-->
-    <!--style="position: absolute;bottom: 0px;right: 0px;width: 75px;height: 75px;background-color: #F50057 !important;"-->
-    <!--ng-click="createManager($event)">-->
-    <!--<md-icon md-svg-src="images/icons/addUser.svg" style="width: 50px ;height: 50px"></md-icon>-->
-    <!--</md-button>-->
 </div>

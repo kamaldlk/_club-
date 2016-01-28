@@ -324,8 +324,42 @@ form {
             </div>
 
         </div>
-        <div id="chart"></div>
+         <div layout="row" layout-sm="column" flex class="md-whiteframe-1dp marg-t10 applyFlatUI">
+            <div layout="row" layout-align="space-between center" flex class="padd-l8"> <p>Today Sales</p>
+             <md-menu style="">
+                 <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)" style="height:37px;">
+                     <md-icon md-menu-origin md-svg-icon="img/icons/three-dots.svg" class="svg-wid14"></md-icon>
+                 </md-button>
+                 <md-menu-content width="4" class="menu-dot_content">
+                      <md-menu-item ng-repeat="item in ['Today', 'Monthly']">
+                         <md-button ng-click="ctrl.announceClick($index)">
+                             <div layout="row" flex>
+                                 <p flex>Monthly sales</p>
+                                 <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
+                             </div>
+                         </md-button>
+                     </md-menu-item>
+                     <md-menu-item >
+                            <div layout="row" class="marg-t10" flex>
+                                <span flex class="span-sty">Start Date</span>
+                                <md-datepicker ng-model="startDate" class="sales_picker" md-placeholder="Enter date"></md-datepicker>
+                            </div>
+                    </md-menu-item>
+                    <md-menu-item >
+                           <div layout="row" class="marg-t10" flex>
+                               <span flex class="span-sty">End Date</span>
+                               <md-datepicker ng-model="endDate" class="sales_picker" md-placeholder="Enter date"></md-datepicker>
+                           </div>
+                   </md-menu-item>
 
+                 </md-menu-content>
+             </md-menu>
+
+             </div>
+             <md-button class="md-raised md-primary" ng-click="save(club)" >Filter</md-button>
+        </div>
+
+<div id="chart" layout flex></div>
 
     </md-content>
 

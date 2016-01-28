@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 angular.module ('cms.controllers')
-
     .controller ("dashboardController", ["$scope", "$state", "api", "toastr", "$localStorage", function ( $scope, $state, api, toastr, $localStorage ) {
         $scope.api = api;
 
@@ -36,13 +35,17 @@ angular.module ('cms.controllers')
         }
 
         $scope.getRevenue = function() {
-            $scope.type = 'today';
-            $scope.startDate; // = '2016-1-12' 
-            $scope.endDate; // = '2016-1-18'
+            $scope.type = 'date';
+            $scope.startDate = '2016-1-12' 
+            $scope.endDate = '2016-1-18'
             api.admin.revenue($scope.type, $scope.startDate, $scope.endDate, function (err, data) {
                 if(err) {
                     console.log(err);
                     toastr.error (err.errorCode, "error");
+                }
+                else if(data.success ) {
+                    var div = document.getElementById('chart');
+                    div.innerHTML = data.message;
                 }
                 else if(data) {
                     $scope.type;
@@ -74,7 +77,7 @@ angular.module ('cms.controllers')
                         charData.data.columns.push(column);
                     });
                     $scope.chart = c3.generate(charData);
-                }
+                }                
             });
         }
 
