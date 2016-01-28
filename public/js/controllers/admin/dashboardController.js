@@ -34,10 +34,46 @@ angular.module ('cms.controllers')
             });
         }
 
+        $scope.filterOption = ['Today', 'Month', 'Year'];
+        $scope.startDate; 
+        $scope.endDate; 
+
+        $scope.format = function (type, dateString1, dateString2) {            
+            var date1 = dateString1.getDate();
+            var month1 = dateString1.getMonth() + 1; 
+            var year1 = dateString1.getFullYear();
+
+            if(date1 < 10) 
+                date1 = '0' + date1;
+
+            if(month1 < 10) 
+                month1 = '0' + month1;
+            
+            $scope.startDate = year1 + '-' + month1 + '-' + date1;
+    
+            var date2 = dateString2.getDate();
+            var month2 = dateString2.getMonth() + 1; 
+            var year2 = dateString2.getFullYear();
+
+            if(date2 < 10) 
+                date2 = '0' + date2;
+
+            if(month2 < 10) 
+                month2 = '0' + month2;
+
+            $scope.type = type.toLowerCase();
+            $scope.endDate = year2 + '-' + month2 + '-' + date2;   
+            $scope.getRevenue();
+        }
+
+        $scope.filter = function (index) { 
+            $scope.startDate;
+            $scope.endDate;
+            $scope.type = ($scope.filterOption[index]).toLowerCase();
+            $scope.getRevenue();
+        }
+
         $scope.getRevenue = function() {
-            $scope.type = 'date';
-            $scope.startDate = '2016-1-12' 
-            $scope.endDate = '2016-1-18'
             api.admin.revenue($scope.type, $scope.startDate, $scope.endDate, function (err, data) {
                 if(err) {
                     console.log(err);

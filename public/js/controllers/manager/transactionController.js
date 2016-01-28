@@ -10,8 +10,8 @@ angular.module ('cms.controllers')
         $scope.cardHolder = "Card Holder";
         $scope.cardHolderValue = true;
         $scope.filterOption = ['Today', 'Current Month', 'Last Month'];
-        $scope.startDate; // = '2016-01-14';
-        $scope.endDate; // = '2016-01-21';
+        $scope.startDate; 
+        $scope.endDate; 
 
         $scope.loggedDate = function ( date ) {
             if(date)

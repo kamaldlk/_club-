@@ -331,32 +331,31 @@ form {
                      <md-icon md-menu-origin md-svg-icon="img/icons/three-dots.svg" class="svg-wid14"></md-icon>
                  </md-button>
                  <md-menu-content width="4" class="menu-dot_content">
-                      <md-menu-item ng-repeat="item in ['Today', 'Monthly']">
+                      <md-menu-item ng-repeat="item in filterOption">
                          <md-button ng-click="ctrl.announceClick($index)">
                              <div layout="row" flex>
-                                 <p flex>Monthly sales</p>
+                                 <p flex ng-click="filter($index);">{{item}}</p>
                                  <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
                              </div>
                          </md-button>
                      </md-menu-item>
                      <md-menu-item >
-                            <div layout="row" class="marg-t10" flex>
-                                <span flex class="span-sty">Start Date</span>
-                                <md-datepicker ng-model="startDate" class="sales_picker" md-placeholder="Enter date"></md-datepicker>
-                            </div>
+                        <div layout="row" class="marg-t10" flex>
+                            <span flex class="span-sty">Start Date</span>
+                            <md-datepicker ng-model="startDate" class="sales_picker" md-placeholder="Enter date"></md-datepicker>
+                        </div>
                     </md-menu-item>
                     <md-menu-item >
-                           <div layout="row" class="marg-t10" flex>
-                               <span flex class="span-sty">End Date</span>
-                               <md-datepicker ng-model="endDate" class="sales_picker" md-placeholder="Enter date"></md-datepicker>
-                           </div>
+                       <div layout="row" class="marg-t10" flex>
+                           <span flex class="span-sty">End Date</span>
+                           <md-datepicker ng-model="endDate" class="sales_picker" ng-change="format('date', startDate, endDate);" md-placeholder="Enter date"></md-datepicker>
+                       </div>
                    </md-menu-item>
-
                  </md-menu-content>
              </md-menu>
 
              </div>
-             <md-button class="md-raised md-primary" ng-click="save(club)" >Filter</md-button>
+             <!-- <md-button class="md-raised md-primary" ng-click="save(club)" >Filter</md-button> -->
         </div>
 
 <div id="chart" layout flex></div>

@@ -108,6 +108,7 @@ tr.border_bottom td {
             <md-card class="nomarg">
                 <md-card-content layout-padding>
 					<div id="grid" style="overflow: auto;">
+                    <div ng-show="!transactionLength"> No transaction  </div>
                     <md-data-table-container flex layout>
                         <table md-data-table class="data-table-list" >
                             <thead>
@@ -126,7 +127,6 @@ tr.border_bottom td {
                             </thead>
                             <tbody>
                             <tr class="border_bottom" ng-repeat = "transaction in transactionHistory | dateRange: startDate : endDate |filter:transactionListFilter | orderBy:'-transaction.transactionDate' "> 
-                                <div ng-show="!transactionLength"> No transaction  </div>
                                 <td><span class="pull-left" >{{transaction.cardOwner.profile.firstName}} {{transaction.cardOwner.profile.lastName}}</span></br>  {{dateRange}}
                                 <span class="ft-12 hash_color pull-left">Mobile:<span class="ft-12 ft_grn">{{transaction.cardOwner.mobileNo}}</span></span>
                                 </td>
