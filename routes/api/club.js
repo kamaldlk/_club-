@@ -88,7 +88,6 @@ module.exports = function (router) {
 	
 	// logo upload
 	router.post('/club/logo', multipartyMiddleware, function(req,res, next) {
-		console.log('req ', req );
 		var path = req.files.file.path;
         var pattern = 'public/'        
         var output = path.substr(path.indexOf(pattern) + pattern.length, path.length);

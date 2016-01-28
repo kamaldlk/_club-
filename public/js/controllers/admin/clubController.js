@@ -120,6 +120,7 @@ angular.module ('cms.controllers')
             api.ProfilePic.clubLogoUpload (coverPic, function ( error, data ) {
                 if ( data ) {
                     $scope.club.coverPic = data.data.filePath;
+                    toastr.success (data.message, "Image uploaded successfully");
                 } 
                 else {
                     toastr.warning ('Not able to upload image', 'Warning');

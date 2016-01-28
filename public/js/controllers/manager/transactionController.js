@@ -9,9 +9,62 @@ angular.module ('cms.controllers')
     .controller ("transactionController", ["$scope", "$state", "api", "toastr", "$localStorage", "$mdDialog", function ( $scope, $state, api, toastr, $localStorage, $mdDialog ) {
         $scope.cardHolder = "Card Holder";
         $scope.cardHolderValue = true;
+        $scope.filterOption = ['Today', 'Current Month', 'Last Month'];
+        $scope.startDate; // = '2016-01-14';
+        $scope.endDate; // = '2016-01-21';
 
-         $scope.startDate = '2015-12-01';
-         $scope.endDate = '2016-01-21';
+        $scope.loggedDate = function ( date ) {
+            if(date)
+                return date.substring (0, 10);
+        }
+
+        $scope.format = function (dateString1, dateString2) {
+            console.log('dateString1 ', dateString1);
+            console.log('dateString2 ', dateString2);
+            var date1 = dateString1.getDate();
+            var month1 = dateString1.getMonth() + 1; 
+            var year1 = dateString1.getFullYear();
+
+            if(date1 < 10) 
+                date1 = '0' + date1;
+
+            if(month1 < 10) 
+                month1 = '0' + month1;
+            
+            $scope.startDate = year1 + '-' + month1 + '-' + date1;
+    
+            var date2 = dateString2.getDate();
+            var month2 = dateString2.getMonth() + 1; 
+            var year2 = dateString2.getFullYear();
+
+            if(date2 < 10) 
+                date2 = '0' + date2;
+
+            if(month2 < 10) 
+                month2 = '0' + month2;
+            
+            $scope.endDate = year2 + '-' + month2 + '-' + date2;
+            
+
+            console.log($scope.startDate, $scope.endDate);
+        }
+
+        $scope.filter = function (index) { 
+            var now = new Date();
+            if(index == 0) 
+                $scope.format(now, now);
+
+            else if (index == 1) 
+                $scope.format(new Date(now.getFullYear(), now.getMonth(), 1), new Date(now.getFullYear(), now.getMonth() + 1, 0));
+            
+            else if (index == 2) {
+                if (now.getMonth() == 0) 
+                    $scope.format(new Date(now.getFullYear() - 1, 11, 1), new Date(now.getFullYear() - 1, 12, 0));
+                else 
+                    $scope.format(new Date(now.getFullYear(), now.getMonth() - 1, 1), new Date(now.getFullYear(), now.getMonth(), 0));
+            }
+            console.log('startDate ', $scope.startDate, 'endDate ', $scope.endDate);
+        }
 
         $scope.searchUser = function ( cardNoValue ) {
             $scope.memberDetail = _.findWhere (api.Member.allMember, {cardNo: cardNoValue});
@@ -64,10 +117,6 @@ angular.module ('cms.controllers')
             })
         }
 
-        $scope.loggedDate = function ( date ) {
-            if(date)
-                return date.substring (0, 10);
-        }
 
         $scope.cancelTransaction = function () {
             $state.go ('manager.transection');

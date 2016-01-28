@@ -177,19 +177,9 @@ angular.module ('cms.controllers')
                 $scope.updateButton = false;
                 api.Club.getAllClub (function ( err, data ) {
                     if ( data ) {
-                        // console.log ('managers ', api.Manager.managers);
-
-                        // var tempClub, tempClubList = [];
-                        // _.each (api.Manager.managers, function ( manager ) {
-                        //     tempClub = _.findWhere (api.Club.allClub, {clubName: manager.club.clubName});
-                        //     if ( tempClub )
-                        //         tempClubList.push (tempClub);
-
-                        // });
                         $scope.clubs = data;
                         console.log (" filtered club: ", $scope.clubs);
                     }
-
                 });
             }
 
@@ -199,13 +189,10 @@ angular.module ('cms.controllers')
                         $scope.manager.profile.profilePic = data.data.filePath;
                         console.log (data);
                     } else {
-
+                        toastr.warning ('Not able to upload image', 'Warning');
                     }
-
-                })
-
+                });
             };
-
 
             $scope.save = function ( manager ) {
                 if(!manager.profile.firstName || !manager.profile.lastName || !manager.userName || !manager.password || !manager.club.clubName || !manager.address.address1 || !manager.address.address2 || !manager.address.city || !manager.address.state || !manager.address.country || !manager.address.pin || !manager.profile.mobile || !manager.profile.email)

@@ -36,10 +36,10 @@ tr.border_bottom td {
                      <md-icon md-menu-origin md-svg-icon="img/icons/three-dots.svg" class="svg-wid14"></md-icon>
                  </md-button>
                  <md-menu-content width="4" class="menu-dot_content">
-                      <md-menu-item ng-repeat="item in ['Today', 'Monthly']">
+                      <md-menu-item ng-repeat="item in filterOption">
                          <md-button ng-click="ctrl.announceClick($index)">
                              <div layout="row" flex>
-                                 <p flex>{{item}}</p>
+                                 <p flex ng-click="filter($index);">{{item}}</p>
                                  <md-icon md-menu-align-target md-svg-icon="img/icons/sale21.svg" style="margin: auto 3px auto 0;"></md-icon>
                              </div>
                          </md-button>
@@ -53,7 +53,7 @@ tr.border_bottom td {
                     <md-menu-item >
                        <div layout="row" class="marg-t10" flex>
                            <span flex class="span-sty">End Date</span>
-                           <md-datepicker ng-model="endDate" class="sales_picker" md-placeholder="Enter date"></md-datepicker>
+                           <md-datepicker ng-model="endDate" class="sales_picker" ng-change="format(startDate, endDate);" md-placeholder="Enter date"></md-datepicker>
                        </div>
                    </md-menu-item>
 
@@ -125,26 +125,27 @@ tr.border_bottom td {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="border_bottom" ng-repeat = "transaction in transactionHistory | filter:transactionListFilter | orderBy:'-transaction.transactionDate' ">
-                                <td><span class="pull-left">{{transaction.cardOwner.profile.firstName}} {{transaction.cardOwner.profile.lastName}}</span></br>
+                            <tr class="border_bottom" ng-repeat = "transaction in transactionHistory | dateRange: startDate : endDate |filter:transactionListFilter | orderBy:'-transaction.transactionDate' "> 
+                                <div ng-show="!transactionLength"> No transaction  </div>
+                                <td><span class="pull-left" >{{transaction.cardOwner.profile.firstName}} {{transaction.cardOwner.profile.lastName}}</span></br>  {{dateRange}}
                                 <span class="ft-12 hash_color pull-left">Mobile:<span class="ft-12 ft_grn">{{transaction.cardOwner.mobileNo}}</span></span>
                                 </td>
                                 <td><span>{{transaction.cardNo}}</span></td>
                                 <td>
                                 <span ng-show="transaction.usedByCardholder">Own</span>
                                 <div ng-show="!transaction.usedByCardholder" class="full_wid pull-left">
-								<span >{{transaction.customerDetails.name}}</span></br>
-		                        <span class="wid-160 ft-12 hash_color" ng-show="!transaction.usedByCardholder">Mobile :<span class="ft-12 ft_grn">{{transaction.customerDetails.mobile}}</span></span>
-		                        <!-- <span class="ft_grn md-caption" ng-show="!transaction.usedByCardholder"> - </span> -->
-		                        </div>
+                                <span >{{transaction.customerDetails.name}}</span></br>
+                                <span class="wid-160 ft-12 hash_color" ng-show="!transaction.usedByCardholder">Mobile :<span class="ft-12 ft_grn">{{transaction.customerDetails.mobile}}</span></span>
+                                <!-- <span class="ft_grn md-caption" ng-show="!transaction.usedByCardholder"> - </span> -->
+                                </div>
                                 </td>
                                 <td> <span class="ft_red">${{transaction.spentInUSD}}</span></td>
                                 <td><span class="ft_grn"> ${{transaction.amount.saved}}</span></td>
                                 <td>
                                 <span>
-		                           <span class="ft_grn" ng-show="{{transaction.reference.offerAmount}}">${{transaction.reference.offerAmount}}</span>
-		                           <span class="" ng-hide="{{transaction.reference.offerAmount}}">$0</span>
-		                           </span>
+                                   <span class="ft_grn" ng-show="{{transaction.reference.offerAmount}}">${{transaction.reference.offerAmount}}</span>
+                                   <span class="" ng-hide="{{transaction.reference.offerAmount}}">$0</span>
+                                   </span>
                                 </td>
                                 <td><span class="ft_red">${{transaction.clubRevenue}}</span></td>
                                 <td><span class="">{{loggedDate(transaction.transactionDate)}}</span></td>
@@ -153,8 +154,8 @@ tr.border_bottom td {
                         </table>
 
                     </md-data-table-container>
-					</div>
-					<md-button class="md-warn md-raised" ng-click="printGrid('grid')">Print Grid</md-button>
+                    </div>
+                    <md-button class="md-warn md-raised" ng-click="printGrid('grid')">Print Grid</md-button>
 
 
                     </md-card-content>
